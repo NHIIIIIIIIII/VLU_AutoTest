@@ -15,6 +15,8 @@ public class DriverConfig {
             WebDriverManager.chromedriver().setup();
             ChromeOptions chromeOptions = new ChromeOptions();
 //            chromeOptions.addArguments("--headless=new");
+            chromeOptions.setAcceptInsecureCerts(true); // Chấp nhận chứng chỉ không an toàn
+            chromeOptions.addArguments("--ignore-certificate-errors"); // Bỏ qua lỗi chứng chỉ
             driver = new ChromeDriver(chromeOptions);
         }
         return driver;
