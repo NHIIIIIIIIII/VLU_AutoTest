@@ -22,7 +22,6 @@ public class MajorTest extends BaseTest {
 
     /**
      * @author Trần Văn Hiếu - 2274802010262
-     *
      */
     @DataProvider(name = "Major")
     public Object[][] MajorData() {
@@ -40,6 +39,7 @@ public class MajorTest extends BaseTest {
     /**
      * @author Trần Văn Hiếu - 2274802010262
      * @Title: Kiểm thử chức năng thêm ngành học
+     * @since 06/03/2025
      */
     @Test(dataProvider = "Major")
     public void addNewMajor(String id, String name, String abbreviation, String programName) {
