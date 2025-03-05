@@ -7,7 +7,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverConfig {
     public static String baseURL = "https://cntttest.vanlanguni.edu.vn:18081/Phancong02/Account/Login";
-    public static WebDriver driver;
+    private static WebDriver driver;
+
 
 
     public static WebDriver getDriver() {
@@ -29,7 +30,7 @@ public class DriverConfig {
         }
     }
 
-    public static void sleep(int second) {
+    public static void sleep(long second) {
         try {
             Thread.sleep(second + 1000);
         } catch (Exception e) {
