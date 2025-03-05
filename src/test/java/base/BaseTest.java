@@ -1,7 +1,7 @@
 package base;
 
-import config.DriverConfig;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import utils.Tools;
@@ -9,7 +9,7 @@ import utils.Tools;
 public class BaseTest extends DriverConfig {
     protected Tools tools;
     protected JavascriptExecutor js;
-
+    protected WebDriver driver;
     @BeforeSuite
     protected void setupSuite() {
         driver = getDriver();

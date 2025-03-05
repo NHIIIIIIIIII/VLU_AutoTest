@@ -1,11 +1,11 @@
-package tests;
+package testCases;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import utils.AuthenticationMicrosoftBypass;
 
-import static config.DriverConfig.getDriver;
-import static config.DriverConfig.sleep;
+import static base.DriverConfig.getDriver;
+import static base.DriverConfig.sleep;
 
 public class test {
     AuthenticationMicrosoftBypass auth;

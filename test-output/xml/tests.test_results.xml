@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Register Tests"
+           tests="8"
+           failures="1"
+           errors="0"
+           skipped="7"
+           time="0,008">
+    <properties></properties>
+
+            <testcase
+                name="setupTest"
+                time="0,008"
+                classname="testCases.test">
+
+            <failure type="java.lang.NullPointerException" message="Cannot invoke &quot;org.openqa.selenium.WebDriver.getCurrentUrl()&quot; because &quot;this.driver&quot; is null">
+                <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.getCurrentUrl()" because "this.driver" is null
+                testCases.test.setupTest(test.java:43)java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)java.base/java.lang.reflect.Method.invoke(Method.java:580)org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:655)org.testng.TestRunner.beforeRun(TestRunner.java:644)org.testng.TestRunner.run(TestRunner.java:610)org.testng.SuiteRunner.runTest(SuiteRunner.java:421)org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)org.testng.SuiteRunner.run(SuiteRunner.java:312)org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)org.testng.TestNG.runSuitesLocally(TestNG.java:1208)org.testng.TestNG.runSuites(TestNG.java:1112)org.testng.TestNG.run(TestNG.java:1079)com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+]]>
+            </failure>
+    </testcase>
+
+            <testcase
+                name="setupMethod"
+                time="0.0"
+                classname="testCases.test">
+            </testcase>
+            <testcase
+                name="tearDown"
+                time="0.0"
+                classname="testCases.test">
+            </testcase>
+            <testcase
+                name="setupClass"
+                time="0.0"
+                classname="testCases.test">
+            </testcase>
+            <testcase
+                name="setupMethod"
+                time="0.0"
+                classname="testCases.test">
+            </testcase>
+            <testcase
+                name="cleanupClass"
+                time="0.0"
+                classname="testCases.test">
+            </testcase>
+            <testcase
+                name="testGetCookiesFromFirstLogin"
+                time="0.0"
+                classname="testCases.test">
+            </testcase>
+            <testcase
+                name="testLoginWithCookies"
+                time="0.0"
+                classname="testCases.test">
+            </testcase>
+
+</testsuite>
