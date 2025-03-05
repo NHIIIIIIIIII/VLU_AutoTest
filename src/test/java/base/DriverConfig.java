@@ -10,7 +10,10 @@ public class DriverConfig {
     private static WebDriver driver;
 
 
-
+    /**
+     * Khởi tạo driver
+     * @return driver : WebDriver
+     */
     public static WebDriver getDriver() {
         if (driver == null) {
             WebDriverManager.chromedriver().setup();
@@ -23,6 +26,9 @@ public class DriverConfig {
         return driver;
     }
 
+    /**
+     * Thoát driver
+     */
     public static void quitDriver() {
         if (driver != null) {
             driver.quit();
@@ -30,6 +36,10 @@ public class DriverConfig {
         }
     }
 
+    /**
+     * Thread.sleep tính bằng giây
+     * @param second số giây
+     */
     public static void sleep(long second) {
         try {
             Thread.sleep(second + 1000);
