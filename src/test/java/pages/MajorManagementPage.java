@@ -87,7 +87,7 @@ public class MajorManagementPage {
      *
      * @param item: Tên chương trình đào tạo
      */
-    private void selectTrainingProgram(String item) {
+    public void selectTrainingProgram(String item) {
         Select trainingProgramDropdownElement = new Select(wait.until(ExpectedConditions.elementToBeClickable(trainingProgramDropdown)));
         trainingProgramDropdownElement.selectByVisibleText(item);
 
@@ -99,35 +99,35 @@ public class MajorManagementPage {
      *
      * @Caution: It will show Term Management Default
      */
-    private void clickTermAndMajorTab() {
+    public void clickTermAndMajorTab() {
         wait.until(ExpectedConditions.elementToBeClickable(termAndMajorTab)).click();
     }
 
     /**
      * Clicks on the Major tab.
      */
-    private void clickMajorTab() {
+    public void clickMajorTab() {
         wait.until(ExpectedConditions.elementToBeClickable(majorTab)).click();
     }
 
     /**
      * Click add Major Button
      */
-    private void clickAddMajorButton() {
+    public void clickAddMajorButton() {
         wait.until(ExpectedConditions.elementToBeClickable(addMajorButton)).click();
     }
 
     /**
      * Nhập id Ngành
      */
-    private void enterMajorId(String id) {
+    public void enterMajorId(String id) {
         wait.until(ExpectedConditions.elementToBeClickable(majorIdField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, id);
     }
 
     /**
      * Nhập tên Ngành
      */
-    private void enterMajorName(String majorName) {
+    public void enterMajorName(String majorName) {
         wait.until(ExpectedConditions.elementToBeClickable(majorNameField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, majorName);
     }
 
@@ -136,14 +136,14 @@ public class MajorManagementPage {
      *
      * @param abbreviation Tên ngành viết tắt
      */
-    private void enterMajorAbbreviation(String abbreviation) {
+    public void enterMajorAbbreviation(String abbreviation) {
         wait.until(ExpectedConditions.elementToBeClickable(majorAbbreviationInput)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, abbreviation);
     }
 
     /**
      * Ấn nút lưu
      */
-    private void clickSaveButton() {
+    public void clickSaveButton() {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(saveButton)).click();
         } catch (Exception e) {
@@ -154,25 +154,28 @@ public class MajorManagementPage {
     /**
      * Click close Major
      */
-    private void clickCloseButton() {
+    public void clickCloseButton() {
         wait.until(ExpectedConditions.elementToBeClickable(closeButton)).click();
     }
 
-    private WebElement checkDialogDisplayed() {
+    public WebElement checkDialogDisplayed() {
         try {
             WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
-            return shortWait.until(ExpectedConditions.visibilityOfElementLocated(dialogErrorField));
+            WebElement dialogElement =  shortWait.until(ExpectedConditions.visibilityOfElementLocated(dialogErrorField));
+            System.out.println("Dialog is displayed");
+            return dialogElement;
         } catch (TimeoutException timeEx) {
+            Assert.fail("Dialog not displayed");
             return null;
         }
     }
 
 
-    private void clickOkErrorButton() {
+    public void clickOkErrorButton() {
         wait.until(ExpectedConditions.elementToBeClickable(okErrorButton)).click();
     }
 
-    private void checkErrorMessage(WebElement errorElement, String errorMessage) {
+    public void checkErrorMessage(WebElement errorElement, String errorMessage) {
         System.out.println("==========================================");
         System.out.println("Check Error : ");
         System.out.println("Actual : " + errorElement.getText());
@@ -183,23 +186,23 @@ public class MajorManagementPage {
     }
 
 
-    private void checkMajorIdError(String expectedMessage) {
+    public void checkMajorIdError(String expectedMessage) {
         checkErrorMessage(wait.until(ExpectedConditions.presenceOfElementLocated(majorIdError)), expectedMessage);
     }
 
-    private void checkMajorNameError(String expectedMessage) {
+    public void checkMajorNameError(String expectedMessage) {
         checkErrorMessage(wait.until(ExpectedConditions.presenceOfElementLocated(majorNameError)), expectedMessage);
     }
 
-    private void checkMajorAbbreviationError(String expectedMessage) {
+    public void checkMajorAbbreviationError(String expectedMessage) {
         checkErrorMessage(wait.until(ExpectedConditions.presenceOfElementLocated(majorAbbreviationError)), expectedMessage);
     }
 
-    private void checkProgramTypeError(String expectedMessage) {
+    public void checkProgramTypeError(String expectedMessage) {
         checkErrorMessage(wait.until(ExpectedConditions.presenceOfElementLocated(programTypeError)), expectedMessage);
     }
 
-    private void checkDialogError(String expectedMessage) {
+    public void checkDialogError(String expectedMessage) {
         checkErrorMessage(wait.until(ExpectedConditions.presenceOfElementLocated(dialogErrorField)), expectedMessage);
     }
 
@@ -209,7 +212,7 @@ public class MajorManagementPage {
      * @param id
      * @return boolean
      */
-    private boolean checkMajorIdValid(String id) {
+    public boolean checkMajorIdValid(String id) {
         if (id.isEmpty()) {
             System.out.println("Major ID Empty");
             checkMajorIdError(majorIdEmptyErrorMessage);
@@ -218,7 +221,7 @@ public class MajorManagementPage {
             System.out.println("Major ID > 50");
             checkMajorIdError(majorIdMaxLengthErrorMessage);
             return false;
-        } else if (!id.matches("^[a-zA-Z0-9_-]+$\"") || id.contains(" ")) {
+        } else if (!id.matches("^[a-zA-Z0-9_-]+$\"") && id.contains(" ")) {
             System.out.println("Major ID Invalid Format");
             checkMajorIdError(majorIdInvalidFormatErrorMessage);
             return false;
@@ -231,7 +234,7 @@ public class MajorManagementPage {
      * @param name
      * @return boolean
      */
-    private boolean checkMajorNameValid(String name) {
+    public boolean checkMajorNameValid(String name) {
         if (name.isEmpty()) {
             System.out.println("Major name Empty");
             checkMajorNameError(majorNameEmptyErrorMessage);
@@ -252,7 +255,7 @@ public class MajorManagementPage {
      * @param abbreviation
      * @return boolean
      */
-    private boolean checkMajorAbbreviationValid(String abbreviation) {
+    public boolean checkMajorAbbreviationValid(String abbreviation) {
         if (abbreviation.isEmpty()) {
             System.out.println("Major abbreviation Empty");
             checkMajorAbbreviationError(majorAbbreviatioEmptyErrorMessage);
@@ -273,7 +276,7 @@ public class MajorManagementPage {
      * @param programName
      * @return boolean
      */
-    private boolean checkMajorProgramNameValid(String programName) {
+    public boolean checkMajorProgramNameValid(String programName) {
         if (programName.isEmpty()) {
             System.out.println("Major programName not selected");
             checkProgramTypeError(majorTrainingProgramNotSelectedErrorMessage);
