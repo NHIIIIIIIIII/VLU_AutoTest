@@ -1,4 +1,4 @@
-package config;
+package base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -7,19 +7,28 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverConfig {
     public static String baseURL = "https://cntttest.vanlanguni.edu.vn:18081/Phancong02/Account/Login";
-    public static WebDriver driver;
+    private static WebDriver driver;
 
 
+    /**
+     * Khởi tạo driver
+     * @return driver : WebDriver
+     */
     public static WebDriver getDriver() {
         if (driver == null) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions chromeOptions = new ChromeOptions();
 //            chromeOptions.addArguments("--headless=new");
+            chromeOptions.setAcceptInsecureCerts(true); // Chấp nhận chứng chỉ không an toàn
+            chromeOptions.addArguments("--ignore-certificate-errors"); // Bỏ qua lỗi chứng chỉ
             driver = new ChromeDriver(chromeOptions);
         }
         return driver;
     }
 
+    /**
+     * Thoát driver
+     */
     public static void quitDriver() {
         if (driver != null) {
             driver.quit();
@@ -27,7 +36,11 @@ public class DriverConfig {
         }
     }
 
-    public static void sleep(int second) {
+    /**
+     * Thread.sleep tính bằng giây
+     * @param second số giây
+     */
+    public static void sleep(long second) {
         try {
             Thread.sleep(second + 1000);
         } catch (Exception e) {

@@ -2,7 +2,7 @@
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
-!**/src/test/**/build/
+!**/src/tests.test/**/build/
 
 ### Config ###
 config.properties
@@ -10,6 +10,7 @@ config.properties
 TestNG_Reports
 GradleReports
 test-output
+
 *.log
 ### IntelliJ IDEA ###
 #.idea/modules.xml
@@ -22,7 +23,7 @@ test-output
 *.ipr
 out/
 !**/src/main/**/out/
-!**/src/test/**/out/
+!**/src/tests.test/**/out/
 
 ### Eclipse ###
 .apt_generated
@@ -34,7 +35,7 @@ out/
 .sts4-cache
 bin/
 !**/src/main/**/bin/
-!**/src/test/**/bin/
+!**/src/tests.test/**/bin/
 
 ### NetBeans ###
 /nbproject/private/
