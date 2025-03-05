@@ -9,7 +9,8 @@ config.properties
 ### Report ###
 TestNG_Reports
 GradleReports
-tests.test-output
+test-output
+
 *.log
 ### IntelliJ IDEA ###
 #.idea/modules.xml

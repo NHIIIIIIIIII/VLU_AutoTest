@@ -31,7 +31,7 @@ dependencies {
 }
 
 tasks.named<Test>("test") {
-    // Sử dụng TestNG cho unit tests
+    // Sử dụng TestNG cho unit testCases
     useTestNG {
         useDefaultListeners = true
         outputDirectory = file("$projectDir/TestNG_Reports")
@@ -44,4 +44,12 @@ tasks.named<Test>("test") {
 tasks.test {
 //    useJUnitPlatform()
     useTestNG()
+}
+
+tasks.javadoc {
+    options {
+        (this as StandardJavadocDocletOptions).apply {
+            addStringOption("tag", "Caution:a:Caution:")
+        }
+    }
 }
