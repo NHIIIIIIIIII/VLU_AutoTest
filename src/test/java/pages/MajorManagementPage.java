@@ -30,12 +30,7 @@ public class MajorManagementPage {
     private final By saveButton = By.xpath("//button[contains(text(),'Lưu')]");
 
 
-    //    Toast
 
-    //    Message Successfully
-    private final String addSuccess = "Lưu thành công!";
-    private final String deleteSuccess = "Xóa thành công!";
-    private final String updateSuccess = "Cập nhật thành công!";
 
 
     public MajorManagementPage(WebDriver driver, WebDriverWait wait) {
@@ -133,7 +128,7 @@ public class MajorManagementPage {
         enterMajorAbbreviation(abbreviation);
         selectTrainingProgram(programName);
         clickSaveButton();
-        notifiCheck.checkNotification(addSuccess);
+        notifiCheck.checkAddNotification();
     }
 
     /**
@@ -152,7 +147,7 @@ public class MajorManagementPage {
         enterMajorAbbreviation(abbreviation);
         selectTrainingProgram(programName);
         clickSaveButton();
-        notifiCheck.checkNotification(updateSuccess);
+        notifiCheck.checkAddNotification();
     }
 
     public void searchMajor(String search) {
