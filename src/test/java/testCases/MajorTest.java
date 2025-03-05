@@ -27,12 +27,12 @@ public class MajorTest extends BaseTest {
     public Object[][] MajorData() {
         return new Object[][]{
                 // id,  name,  abbreviation,  programName
-                {"adkin", "shinki", "SSTK", "Đặc biệt"}, // Thêm thành công
-                {"slo", "hiqoa", "HOA", "Tiêu chuẩn"}, //Thêm trùng lặp
-                {"dwrgb  ", "e4f", "se2", "Đặc biệt"}, // Id sai quy tắc (chứa khoảng trắng)
+                {"adkin", "shinki", "SSTK", "Đặc biệt"}, // Thêm ngành học thành công
+                {"slo", "hiqoa", "HOA", "Tiêu chuẩn"}, //Thêm ngành học bị trùng lặp
+                {"dwrgb  ", "e4f", "se2", "Đặc biệt"}, // Thêm ngành học với Id sai quy tắc (chứa khoảng trắng)
                 {"", "", "", ""}, // Trống
-                {tools.generateRandomString(258), tools.generateRandomString(258), tools.generateRandomString(52), "Tiêu chuẩn"}, // Nhập trên cận biên trên
-                {"drr#%", "cef", "wf", "Đặc biệt"}, // Id sai quy tắc (chứa kí tự đặc biệt)
+                {tools.generateRandomString(258), tools.generateRandomString(258), tools.generateRandomString(52), "Tiêu chuẩn"}, // Nhập các giá trị trên cận biên trên
+                {"drr#%", "cef", "wf", "Đặc biệt"}, // Thêm ngành học với Id sai quy tắc (chứa kí tự đặc biệt)
         };
     }
 
