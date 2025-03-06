@@ -36,6 +36,7 @@ public class Notification {
      * Kiểm tra thông báo thêm thành công
      */
     public void checkAddNotification() {
+        System.out.println("Thêm thành công");
         Assert.assertEquals(
                 getNotification().getText(),
                 addSuccess,
