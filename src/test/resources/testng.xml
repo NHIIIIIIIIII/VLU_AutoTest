@@ -2,9 +2,9 @@
 <suite name="Totoday Test" thread-count="4">
 
     <!--    Xong-->
-    <test name="Register Tests">
+    <test name="Academic Degrees Test">
         <classes>
-            <class name="testCases.test"/>
+            <class name="testCases.AcademicDegreesTest"/>
         </classes>
     </test>
 </suite>
