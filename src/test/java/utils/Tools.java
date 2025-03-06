@@ -2,6 +2,7 @@ package utils;
 
 import org.openqa.selenium.*;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -13,7 +14,7 @@ public class Tools {
     private final WebDriver driver;
     private static JavascriptExecutor js;
 
-    public Tools(WebDriver driver){
+    public Tools(WebDriver driver) {
         this.driver = driver;
         js = (JavascriptExecutor) this.driver;
     }
@@ -62,7 +63,7 @@ public class Tools {
         }
     }
 
-    public WebElement getElementChildByXpath( WebElement parentElement,String xpath) {
+    public WebElement getElementChildByXpath(WebElement parentElement, String xpath) {
 
         try {
             return parentElement.findElement(By.xpath(xpath));
@@ -80,7 +81,7 @@ public class Tools {
     }
 
 
-    public boolean addDisplayBlockCSS(WebElement element){
+    public boolean addDisplayBlockCSS(WebElement element) {
         if (checkElementIsDisplayed(element)) {
             js.executeScript("arguments[0].style.display = 'block'", element);
             return true;
@@ -88,13 +89,12 @@ public class Tools {
         return false;
     }
 
-    public boolean checkOptionSelectedByClass(WebElement element){
+    public boolean checkOptionSelectedByClass(WebElement element) {
         try {
             String className = element.getAttribute("class");
             return className.contains("selected") || className.contains("active");
 
-        }
-        catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
 
@@ -112,10 +112,17 @@ public class Tools {
 //        return null;
 //    }
 
+
     public String generateRandomString(int length) {
-        String uuid = UUID.randomUUID().toString().replaceAll("-", ""); // Loại bỏ dấu "-"
-        return uuid.substring(0, Math.min(length, uuid.length()));
+        String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        SecureRandom RANDOM = new SecureRandom();
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            sb.append(CHARACTERS.charAt(RANDOM.nextInt(CHARACTERS.length())));
+        }
+        return sb.toString();
     }
+
 
     public String generateRandomNumber(int length) {
         StringBuilder sb = new StringBuilder();
@@ -146,7 +153,6 @@ public class Tools {
 
         return String.format("rgb(%d, %d, %d)", r, g, b);
     }
-
 
 
 }
