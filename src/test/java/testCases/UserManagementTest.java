@@ -20,9 +20,9 @@ public class UserManagementTest extends BaseTest {
     public Object[][] userDataForCreation() {
         return new Object[][]{
                 // TC_CU_01: Nhập thông tin hợp lệ (email có đuôi @vanlanguni.vn)
-                {"227480201091180", "Nguyen Van An", "nguyenvanan@vanlanguni.vn", "Cơ hữu", "Giảng viên"},
+                {"227480201091840", "Nguyen Van An", "nguyenvanan@vanlanguni.vn", "Cơ hữu", "Giảng viên"},
                 // TC_CU_02: Nhập đầy đủ (bao gồm chọn role) nhưng email không hợp lệ
-                {"227480280109181", "Tran Thi Be", "tranthibe@gmail.com", "Thỉnh giảng", "Giảng viên"},
+                {"227480201091851", "Tran Thi Be", "tranthibe@gmail.com", "Thỉnh giảng", "Giảng viên"},
                 // TC_CU_03: Không nhập gì cả
                 {"", "", "", "", ""}
         };

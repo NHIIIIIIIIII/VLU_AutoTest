@@ -55,102 +55,74 @@ public class UserManagementPage {
     // Constructor
     public UserManagementPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Increased timeout to 20 seconds
+        this.wait = wait;
         notifiCheck = new Notification(this.wait);
     }
 
     // Click on the User tab
     public void clickUserTab() {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(userTab)).click();
-        } catch (Exception e) {
-            Assert.fail("Failed to click User tab: " + e.getMessage());
-        }
+        wait.until(ExpectedConditions.elementToBeClickable(userTab)).click();
     }
 
     // Click on the Add User button
     public void clickAddUserButton() {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(addUserButton)).click();
-        } catch (Exception e) {
-            Assert.fail("Failed to click Add User button: " + e.getMessage());
-        }
+        wait.until(ExpectedConditions.elementToBeClickable(addUserButton)).click();
     }
 
     // Enter User ID
     public void enterUserId(String id) {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(userIdInput)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, id);
-        } catch (Exception e) {
-            Assert.fail("Failed to enter User ID: " + e.getMessage());
-        }
+        wait.until(ExpectedConditions.elementToBeClickable(userIdInput)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, id);
     }
 
     // Enter User Name
     public void enterUserName(String name) {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(userNameInput)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, name);
-        } catch (Exception e) {
-            Assert.fail("Failed to enter User Name: " + e.getMessage());
-        }
+        wait.until(ExpectedConditions.elementToBeClickable(userNameInput)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, name);
     }
 
     // Enter Email
     public void enterEmail(String email) {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(emailInput)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, email);
-        } catch (Exception e) {
-            Assert.fail("Failed to enter Email: " + e.getMessage());
-        }
+        wait.until(ExpectedConditions.elementToBeClickable(emailInput)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, email);
     }
 
     // Select Contract Type
     public void selectContractType(String contractType) {
-        try {
-            // Ensure the dropdown is clickable and opened
-            WebElement dropdownElement = wait.until(ExpectedConditions.elementToBeClickable(contractTypeDropdown));
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropdownElement);
-            dropdownElement.click();
+        // Ensure the dropdown is clickable and opened
+        WebElement dropdownElement = wait.until(ExpectedConditions.elementToBeClickable(contractTypeDropdown));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropdownElement);
+        dropdownElement.click();
 
-            // Wait for the dropdown options to be visible and select the appropriate option
-            if (contractType.equalsIgnoreCase("Cơ hữu")) {
-                WebElement option = wait.until(ExpectedConditions.elementToBeClickable(contractType_CoHuu));
-                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
-                option.click();
-            } else if (contractType.equalsIgnoreCase("Thỉnh giảng")) {
-                WebElement option = wait.until(ExpectedConditions.elementToBeClickable(contractType_ThinhGiang));
-                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
-                option.click();
-            }
-        } catch (Exception e) {
-            Assert.fail("Failed to select Contract Type '" + contractType + "': " + e.getMessage());
+        // Wait for the dropdown options to be visible and select the appropriate option
+        if (contractType.equalsIgnoreCase("Cơ hữu")) {
+            WebElement option = wait.until(ExpectedConditions.elementToBeClickable(contractType_CoHuu));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
+            option.click();
+        } else if (contractType.equalsIgnoreCase("Thỉnh giảng")) {
+            WebElement option = wait.until(ExpectedConditions.elementToBeClickable(contractType_ThinhGiang));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
+            option.click();
         }
     }
 
     // Select Role
     public void selectRole(String role) {
-        try {
-            // Ensure the dropdown is clickable and opened
-            WebElement dropdownElement = wait.until(ExpectedConditions.elementToBeClickable(roleDropdown));
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropdownElement);
-            dropdownElement.click();
+        // Ensure the dropdown is clickable and opened
+        WebElement dropdownElement = wait.until(ExpectedConditions.elementToBeClickable(roleDropdown));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropdownElement);
+        dropdownElement.click();
 
-            // Wait for the dropdown options to be visible and select the appropriate option
-            if (role.equalsIgnoreCase("BCN khoa")) {
-                WebElement option = wait.until(ExpectedConditions.elementToBeClickable(role_BCNKhoa));
-                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
-                option.click();
-            } else if (role.equalsIgnoreCase("Bộ môn")) {
-                WebElement option = wait.until(ExpectedConditions.elementToBeClickable(role_BoMon));
-                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
-                option.click();
-            } else if (role.equalsIgnoreCase("Giảng viên")) {
-                WebElement option = wait.until(ExpectedConditions.elementToBeClickable(role_GiangVien));
-                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
-                option.click();
-            }
-        } catch (Exception e) {
-            Assert.fail("Failed to select Role '" + role + "': " + e.getMessage());
+        // Wait for the dropdown options to be visible and select the appropriate option
+        if (role.equalsIgnoreCase("BCN khoa")) {
+            WebElement option = wait.until(ExpectedConditions.elementToBeClickable(role_BCNKhoa));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
+            option.click();
+        } else if (role.equalsIgnoreCase("Bộ môn")) {
+            WebElement option = wait.until(ExpectedConditions.elementToBeClickable(role_BoMon));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
+            option.click();
+        } else if (role.equalsIgnoreCase("Giảng viên")) {
+            WebElement option = wait.until(ExpectedConditions.elementToBeClickable(role_GiangVien));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
+            option.click();
         }
     }
 
@@ -159,17 +131,13 @@ public class UserManagementPage {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(saveButton)).click();
         } catch (Exception e) {
-            Assert.fail("Save button not interacted: " + e.getMessage());
+            Assert.fail("Save button not interacted");
         }
     }
 
     // Click Close Button
     public void clickCloseButton() {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(closeButton)).click();
-        } catch (Exception e) {
-            Assert.fail("Failed to click Close button: " + e.getMessage());
-        }
+        wait.until(ExpectedConditions.elementToBeClickable(closeButton)).click();
     }
 
     // Check if dialog is displayed
@@ -187,11 +155,7 @@ public class UserManagementPage {
 
     // Click OK on error dialog
     public void clickOkErrorButton() {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(okErrorButton)).click();
-        } catch (Exception e) {
-            Assert.fail("Failed to click OK button on error dialog: " + e.getMessage());
-        }
+        wait.until(ExpectedConditions.elementToBeClickable(okErrorButton)).click();
     }
 
     // Check error message
@@ -206,13 +170,9 @@ public class UserManagementPage {
 
     // Check success notification
     public void checkSuccessNotification() {
-        try {
-            WebElement successElement = wait.until(ExpectedConditions.visibilityOfElementLocated(successNotification));
-            Assert.assertTrue(successElement.isDisplayed(), "Success notification not displayed");
-            System.out.println("Success Notification Displayed: " + successElement.getText());
-        } catch (Exception e) {
-            Assert.fail("Failed to verify success notification: " + e.getMessage());
-        }
+        WebElement successElement = wait.until(ExpectedConditions.visibilityOfElementLocated(successNotification));
+        Assert.assertTrue(successElement.isDisplayed(), "Success notification not displayed");
+        System.out.println("Success Notification Displayed: " + successElement.getText());
     }
 
     // Check User ID Error
