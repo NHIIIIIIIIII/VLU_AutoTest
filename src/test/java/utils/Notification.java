@@ -1,8 +1,7 @@
-package base;
+package utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,6 +36,7 @@ public class Notification {
      * Kiểm tra thông báo thêm thành công
      */
     public void checkAddNotification() {
+        System.out.println("Thêm thành công");
         Assert.assertEquals(
                 getNotification().getText(),
                 addSuccess,
