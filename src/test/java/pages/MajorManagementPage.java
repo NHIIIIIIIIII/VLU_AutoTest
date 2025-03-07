@@ -158,6 +158,7 @@ public class MajorManagementPage {
         wait.until(ExpectedConditions.elementToBeClickable(closeButton)).click();
     }
 
+
     public WebElement checkDialogDisplayed() {
         try {
             WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
