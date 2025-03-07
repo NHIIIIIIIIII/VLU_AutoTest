@@ -158,6 +158,7 @@ public class MajorManagementPage {
         wait.until(ExpectedConditions.elementToBeClickable(closeButton)).click();
     }
 
+
     public WebElement checkDialogDisplayed() {
         try {
             WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
@@ -165,7 +166,7 @@ public class MajorManagementPage {
             System.out.println("Dialog is displayed");
             return dialogElement;
         } catch (TimeoutException timeEx) {
-            Assert.fail("Dialog not displayed");
+//            Assert.fail("Dialog not displayed");
             return null;
         }
     }
@@ -221,7 +222,7 @@ public class MajorManagementPage {
             System.out.println("Major ID > 50");
             checkMajorIdError(majorIdMaxLengthErrorMessage);
             return false;
-        } else if (!id.matches("^[a-zA-Z0-9_-]+$\"") && id.contains(" ")) {
+        } else if (!id.matches("^[a-zA-Z0-9_-]{1,50}$")) {
             System.out.println("Major ID Invalid Format");
             checkMajorIdError(majorIdInvalidFormatErrorMessage);
             return false;
@@ -312,7 +313,7 @@ public class MajorManagementPage {
         if (checkDialogDisplayed() == null) {
             if (checkMajorIdValid(id) && checkMajorNameValid(name) && checkMajorAbbreviationValid(abbreviation)) {
                 notifiCheck.checkAddNotification();
-                clickCloseButton();
+//                clickCloseButton();
             }
         } else {
             checkDialogError(duplicateMajorIdErrorMessage);

@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import utils.AuthenticationMicrosoftBypass;
+import utils.JsonReader;
 import utils.Tools;
 
 import java.time.Duration;
@@ -16,6 +17,7 @@ public class BaseTest extends DriverConfig {
     protected static WebDriver driver;
     protected static AuthenticationMicrosoftBypass auth;
     protected static WebDriverWait wait;
+    protected static JsonReader jsonReader;
 
     @BeforeSuite
     protected void setupSuite() {
@@ -27,6 +29,8 @@ public class BaseTest extends DriverConfig {
         auth = new AuthenticationMicrosoftBypass(driver);
         auth.setBrowserCookiesFromProperties();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        jsonReader = new JsonReader();
+
 
     }
 
