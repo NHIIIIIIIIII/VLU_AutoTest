@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.Notification;
 
@@ -13,110 +13,116 @@ import java.time.Duration;
 
 public class AcademicDegreeManagementPage {
     private final WebDriver driver;
-    private final WebDriverWait wait; // Thêm WebDriverWait để sử dụng cơ chế chờ
-    private Notification notification;
+    private final WebDriverWait wait;
+    private final Notification notification;
 
-    // Input Element
+    // Input Elements
     private final By codeADInput = By.xpath("//input[@id='id']");
     private final By nameADInput = By.xpath("//input[@id='name']");
     private final By orderADInput = By.xpath("//input[@id='level']");
 
-    // Btn Element
+    // Button Elements
     private final By openADButton = By.xpath("//button[@class='dt-button createNew btn btn-primary']");
     private final By saveADButton = By.xpath("//button[contains(text(),'Lưu')]");
     private final By closeADButton = By.id("btnClose");
     private final By okADButton = By.xpath("//button[normalize-space()='OK']");
+    private final By editADButton = By.xpath("//tbody/tr[1]/td[5]/a[1]/i[1]");
 
-    // Field Error
+    // Field Error Elements
     public final By adIdError = By.id("id-error");
-    public final By adNameError  = By.id("name-error");
-    public final By adOrderError  = By.id("level-error");
+    public final By adNameError = By.id("name-error");
+    public final By adOrderError = By.id("level-error");
 
-    // AD Id Message Error (Error message = EM)
+    // Error Messages
+    // AD Id Error Messages
     private final String idADEmptyEM = "Bạn chưa nhập mã học hàm, học vị";
-    private final String idADDuplicateEM = "Mã học hàm, học vị này đã tồn tại!";  // Hiển thị trên dialog
+    private final String idADDuplicateEM = "Mã học hàm, học vị này đã tồn tại!";
     private final String idADMaxLengthEM = "Tối đa 50 kí tự được cho phép";
     private final String idADInvalidFormatEM = "Chỉ được nhập số-chữ không dấu và không có khoảng trắng!";
 
-    // AD Name Message Error (Error message = EM)
+    // AD Name Error Messages
     private final String nameADEmptyEM = "Bạn chưa nhập tên học hàm, học vị";
     private final String nameADMaxLengthEM = "Tối đa 100 kí tự được cho phép";
 
-    // AD Name Message Error (Error message = EM)
+    // AD Order Error Messages
     private final String orderADEmptyEM = "Bạn chưa nhập thứ tự";
     private final String orderADMaxLengthEM = "Vui lòng nhập nhỏ hơn hoặc bằng 100";
     private final String orderADMinLengthEM = "Vui lòng nhập lớn hơn hoặc bằng 1";
-
-    // Dialog Error Message
-    private final By dialogErrorField = By.id("swal2-html-container");
-    // Order AD Invalid Format Message Error
     private final String orderADInvalidFormatEM = "Thứ tự phải là một số hợp lệ!";
 
+    // Dialog Error Element
+    private final By dialogErrorField = By.id("swal2-html-container");
 
     public AcademicDegreeManagementPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Khởi tạo wait với timeout 10 giây
-        notification = new Notification(this.wait);
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.notification = new Notification(this.wait);
     }
 
     /**
-     * Điều hướng đến trang Academic Degree Management
+     * Navigate to Academic Degree Management page
      */
     public void navigateToADPage() {
         driver.get("https://cntttest.vanlanguni.edu.vn:18081/Phancong02/AcademicDegree");
-        // Chờ cho trang tải xong bằng cách kiểm tra một phần tử chính (ví dụ: openADButton)
-        wait.until(ExpectedConditions.visibilityOfElementLocated(openADButton));
+        wait.until(ExpectedConditions.elementToBeClickable(openADButton));
     }
 
-    /**
-     * Clicks on the Academic Degree.
-     * @Caution It will show Academic Degree Management Default
-     */
-    public void clickOpenAD() {
-        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(openADButton));
-        button.click();
-    }
-
-    public void EnterCodeADInput(String id) {
-        WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(codeADInput));
+    // Input methods
+    public void enterCodeADInput(String id) {
+        WebElement input = wait.until(ExpectedConditions.elementToBeClickable(codeADInput));
+        input.clear();
         input.sendKeys(id);
     }
 
-    public void EnterNameADInput(String name) {
-        WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(nameADInput));
+    public void enterNameADInput(String name) {
+        WebElement input = wait.until(ExpectedConditions.elementToBeClickable(nameADInput));
+        input.clear();
         input.sendKeys(name);
     }
 
-    public void EnterOrderADInput(int order) {
-        WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(orderADInput));
+    public void enterOrderADInput(int order) {
+        WebElement input = wait.until(ExpectedConditions.elementToBeClickable(orderADInput));
         input.clear();
         input.sendKeys(String.valueOf(order));
     }
 
-    /**
-     * Click add, close Academic Degree Button
-     */
+    // Button click methods
+    public void clickOpenAD() {
+        wait.until(ExpectedConditions.elementToBeClickable(openADButton)).click();
+    }
+
     public void clickSaveAD() {
-        WebElement saveBtn = wait.until(ExpectedConditions.elementToBeClickable(saveADButton));
-        saveBtn.submit();
+        wait.until(ExpectedConditions.elementToBeClickable(saveADButton)).click();
     }
 
     public void clickCloseAD() {
-        WebElement closeBtn = wait.until(ExpectedConditions.elementToBeClickable(closeADButton));
-        closeBtn.click();
+        wait.until(ExpectedConditions.elementToBeClickable(closeADButton)).click();
     }
 
     public void clickOkErrorAD() {
-        WebElement clickOkErrorBtn = wait.until(ExpectedConditions.elementToBeClickable(okADButton));
-        clickOkErrorBtn.click();
+        wait.until(ExpectedConditions.elementToBeClickable(okADButton)).click();
     }
 
-    /**
-     * Check toast-message
-     */
+    public void clickEditOpenAD() {
+        wait.until(ExpectedConditions.elementToBeClickable(editADButton)).click();
+    }
+
+    // Notification methods
     public void notificationAdd() {
         notification.checkAddNotification();
     }
+    /**
+     * Validation message checking methods
+     */
+
+//    public void checkSuccessMessage(WebElement messageElement, String expectedMessage, String messageType) {
+//        System.out.println("==========================================");
+//        System.out.println("Check " + messageType + " : ");
+//        System.out.println("Actual : " + messageElement.getText());
+//        System.out.println("Expect : " + expectedMessage);
+//        Assert.assertEquals(messageElement.getText(), expectedMessage, messageType + " Message not equal");
+//        System.out.println("==========================================");
+//    }
 
     public void checkErrorMessage(WebElement errorElement, String errorMessage) {
         System.out.println("==========================================");
@@ -132,7 +138,6 @@ public class AcademicDegreeManagementPage {
     }
 
     public void checkADNameError(String expectedMessage) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Thay đổi thời gian chờ ở đây
         checkErrorMessage(wait.until(ExpectedConditions.presenceOfElementLocated(adNameError)), expectedMessage);
     }
 
@@ -147,82 +152,73 @@ public class AcademicDegreeManagementPage {
     public WebElement checkDialogDisplayed() {
         try {
             WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
-            WebElement dialogElement =  shortWait.until(ExpectedConditions.visibilityOfElementLocated(dialogErrorField));
+            WebElement dialogElement = shortWait.until(ExpectedConditions.elementToBeClickable(dialogErrorField));
             System.out.println("Dialog is displayed");
             return dialogElement;
-        } catch (TimeoutException timeEx) {
+        } catch (TimeoutException e) {
             return null;
         }
     }
 
-    /**
-     * Kiểm tra hợp lệ Academic Degree Id
-     * @param-id
-     * @return boolean
-     */
+    // Validation methods
     public boolean checkADIdValid(String id) {
         if (id.isEmpty()) {
             System.out.println("Academic Degree ID Empty");
             checkADIdError(idADEmptyEM);
             return false;
-        } else if (id.length() > 50) {
+        }
+        if (id.length() > 50) {
             System.out.println("Academic Degree ID > 50");
             checkADIdError(idADMaxLengthEM);
             return false;
-        } else if (!id.matches("^[a-zA-Z0-9_-]{1,50}$")) {
+        }
+        if (!id.matches("^[a-zA-Z0-9_-]{1,50}$")) {
             System.out.println("Academic Degree ID Invalid Format");
             checkADIdError(idADInvalidFormatEM);
             return false;
-        } else return true;
+        }
+        return true;
     }
 
-    /**
-     * Kiểm tra hợp lệ Academic Degree Name
-     * @param-name
-     * @return boolean
-     */
     public boolean checkADNameValid(String name) {
         if (name.isEmpty()) {
             System.out.println("Academic Degree name Empty");
             checkADNameError(nameADEmptyEM);
             return false;
-
-        } else if (name.length() > 100) {
+        }
+        if (name.length() > 100) {
             System.out.println("Academic Degree name > 100");
             checkADNameError(nameADMaxLengthEM);
             return false;
-
-        } else return true;
+        }
+        return true;
     }
 
     public boolean checkADOrderValid(int order) {
-        // Kiểm tra nếu order < 1 (thứ tự không hợp lệ)
         if (order < 1) {
-            System.out.println("Academic Degree order must be greater than or equal to 1.");
-            checkADOrderError(orderADMinLengthEM);  // Check error for the order field
-            return false;  // Kết thúc kiểm thử nếu lỗi
-        }
-
-        // Kiểm tra nếu order > 100
-        if (order > 100) {
-            System.out.println("Academic Degree order cannot be greater than 100.");
-            checkADOrderError(orderADMaxLengthEM);  // Check error for the order field
+            System.out.println("Academic Degree order must be greater than or equal to 1");
+            checkADOrderError(orderADMinLengthEM);
             return false;
         }
-
-        else return true;
+        if (order > 100) {
+            System.out.println("Academic Degree order cannot be greater than 100");
+            checkADOrderError(orderADMaxLengthEM);
+            return false;
+        }
+        return true;
     }
 
+    // Main operation methods
     public void addNewADDetails(String id, String name, int order) {
         navigateToADPage();
         clickOpenAD();
-        EnterCodeADInput(id);
-        EnterNameADInput(name);
-        EnterOrderADInput(order);
+        enterCodeADInput(id);
+        enterNameADInput(name);
+        enterOrderADInput(order);
         clickSaveAD();
 
-        if (checkDialogDisplayed() == null) {
-            // Sửa lại đây để gọi đúng phương thức với các tham số đúng
+        WebElement dialog = checkDialogDisplayed();
+        if (dialog == null) {
             if (checkADIdValid(id) && checkADNameValid(name) && checkADOrderValid(order)) {
                 notification.checkAddNotification();
             }
@@ -231,4 +227,23 @@ public class AcademicDegreeManagementPage {
             clickOkErrorAD();
         }
     }
+
+    public void editADDetails(String name, int order) {
+        navigateToADPage();
+        clickEditOpenAD();
+        enterNameADInput(name);
+        enterOrderADInput(order);
+        clickSaveAD();
+
+        WebElement dialog = checkDialogDisplayed();
+        if (dialog == null) {
+            if (checkADNameValid(name) && checkADOrderValid(order)) {
+                notification.checkUpdateNotification();
+            }
+        } else {
+            checkDialogError(idADDuplicateEM);
+            clickOkErrorAD();
+        }
+    }
+
 }
