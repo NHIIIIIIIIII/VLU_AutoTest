@@ -1,14 +1,15 @@
 package pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.Notification;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import static base.DriverConfig.sleep;
 
@@ -19,12 +20,14 @@ public class MajorManagementPage {
     private final Notification notifiCheck;
 
     private final By trainingProgramDropdown = By.xpath("//select[@id='program_type']");
+    private final By firstRowTableField = By.xpath("(//table[@id='tblMajor']//tbody//tr)[1]");
 
     //    Input Element
     private final By majorIdField = By.id("id");
     private final By majorNameField = By.id("name");
     private final By majorAbbreviationInput = By.id("abbreviation");
-    private final By searchBoxField = By.className("form-control");
+    private final By searchBoxField = By.xpath("//input[@class='form-control'][@placeholder='Nhập tìm kiếm...']");
+
 
     //    Button Element
     private final By majorTab = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/section[1]/div[1]/div[1]/div[1]/div[2]/ul[1]/li[2]/a[1]");
@@ -34,6 +37,7 @@ public class MajorManagementPage {
     private final By saveButton = By.xpath("//button[contains(text(),'Lưu')]");
     private final By closeButton = By.xpath("//button[@class='ui-dialog-titlebar-close btn-close']");
     private final By okErrorButton = By.xpath("//button[normalize-space()='OK']");
+    private final By updateButton = By.xpath("(//table[@id='tblMajor']//tbody//a[@title='Chỉnh sửa'])[1]");
 
     //    Field Error
     private final By majorIdError = By.id("id-error");
@@ -161,7 +165,7 @@ public class MajorManagementPage {
     public WebElement checkDialogDisplayed() {
         try {
             WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
-            WebElement dialogElement =  shortWait.until(ExpectedConditions.visibilityOfElementLocated(dialogErrorField));
+            WebElement dialogElement = shortWait.until(ExpectedConditions.visibilityOfElementLocated(dialogErrorField));
             System.out.println("Dialog is displayed");
             return dialogElement;
         } catch (TimeoutException timeEx) {
@@ -175,6 +179,15 @@ public class MajorManagementPage {
         wait.until(ExpectedConditions.elementToBeClickable(okErrorButton)).click();
     }
 
+    public void clickUpdateButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(updateButton)).click();
+    }
+
+    public void getFirstRowTable() {
+        WebElement firstRow = wait.until(ExpectedConditions.presenceOfElementLocated(firstRowTableField));
+        System.out.println(firstRow.getText());
+    }
+
     public void checkErrorMessage(WebElement errorElement, String errorMessage) {
         System.out.println("==========================================");
         System.out.println("Check Error : ");
@@ -182,7 +195,6 @@ public class MajorManagementPage {
         System.out.println("Expect : " + errorMessage);
         Assert.assertEquals(errorElement.getText(), errorMessage, "Error Message not equal");
         System.out.println("==========================================");
-
     }
 
 
@@ -199,7 +211,8 @@ public class MajorManagementPage {
     }
 
     public void checkProgramTypeError(String expectedMessage) {
-        checkErrorMessage(wait.until(ExpectedConditions.presenceOfElementLocated(programTypeError)), expectedMessage);
+        if (checkMajorProgramNameErrorDisplayed())
+            checkErrorMessage(wait.until(ExpectedConditions.presenceOfElementLocated(programTypeError)), expectedMessage);
     }
 
     public void checkDialogError(String expectedMessage) {
@@ -227,6 +240,24 @@ public class MajorManagementPage {
             return false;
         } else return true;
     }
+//    public List<String> checkMajorIdValid(String id) {
+//        List<String> errors = new ArrayList<>();
+//
+//        if (id.isEmpty()) {
+//            checkMajorIdError(majorIdEmptyErrorMessage);
+//            errors.add(majorIdEmptyErrorMessage);
+//        }
+//        if (id.length() > 50) {
+//            checkMajorIdError(majorIdMaxLengthErrorMessage);
+//            errors.add(majorIdMaxLengthErrorMessage);
+//        }
+//        if (!id.matches("^[a-zA-Z0-9_-]{1,50}$")) {
+//            checkMajorIdError(majorIdInvalidFormatErrorMessage);
+//            errors.add(majorIdInvalidFormatErrorMessage);
+//        }
+//
+//        return errors;
+//    }
 
     /**
      * Kiểm tra hợp lệ Major Name
@@ -248,6 +279,20 @@ public class MajorManagementPage {
         } else return true;
 
     }
+//    public List<String> checkMajorNameValid(String name) {
+//        List<String> errors = new ArrayList<>();
+//
+//        if (name.isEmpty()) {
+//            checkMajorNameError(majorNameEmptyErrorMessage);
+//            errors.add(majorNameEmptyErrorMessage);
+//        }
+//        if (name.length() > 255) {
+//            checkMajorNameError(majorNameMaxLengthErrorMessage);
+//            errors.add(majorNameMaxLengthErrorMessage);
+//        }
+//
+//        return errors;
+//    }
 
     /**
      * Kiểm tra hợp lệ Abbreviation
@@ -269,6 +314,20 @@ public class MajorManagementPage {
         } else return true;
 
     }
+//    public List<String> checkMajorAbbreviationValid(String abbreviation) {
+//        List<String> errors = new ArrayList<>();
+//
+//        if (abbreviation.isEmpty()) {
+//            checkMajorAbbreviationError(majorAbbreviatioEmptyErrorMessage);
+//            errors.add(majorAbbreviatioEmptyErrorMessage);
+//        }
+//        if (abbreviation.length() > 50) {
+//            checkMajorAbbreviationError(majorAbbreviationMaxLengthErrorMessage);
+//            errors.add(majorAbbreviationMaxLengthErrorMessage);
+//        }
+//
+//        return errors;
+//    }
 
     /**
      * Kiểm tra hợp lệ Program Name
@@ -285,6 +344,25 @@ public class MajorManagementPage {
         } else return true;
 
     }
+//    public List<String> checkMajorProgramNameValid(String programName) {
+//        List<String> errors = new ArrayList<>();
+//
+//        if (programName.isEmpty() && checkMajorProgramNameErrorDisplayed()) {
+//            checkProgramTypeError(majorTrainingProgramNotSelectedErrorMessage);
+//            errors.add(majorTrainingProgramNotSelectedErrorMessage);
+//        }
+//
+//        return errors;
+//    }
+
+
+    public boolean checkMajorProgramNameErrorDisplayed() {
+        try {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(programTypeError)).isDisplayed();
+        } catch (TimeoutException timeoutException){
+            return false;
+        }
+    }
 
     /**
      * Thêm ngành học mới và kiểm tra với nhiều case
@@ -294,7 +372,7 @@ public class MajorManagementPage {
      * @param abbreviation Tên viết tắt
      * @param programName  Tên Chương trình đào tạo
      */
-    public void addMajorWithMultiCase(String id, String name, String abbreviation,String programName) {
+    public void addMajorWithMultiCase(String id, String name, String abbreviation, String programName) {
         clickTermAndMajorTab();
         clickMajorTab();
         clickAddMajorButton();
@@ -307,7 +385,7 @@ public class MajorManagementPage {
         enterMajorAbbreviation(abbreviation);
         sleep(5);
 
-        if(!programName.isEmpty()) selectTrainingProgram(programName);
+        if (!programName.isEmpty()) selectTrainingProgram(programName);
         clickSaveButton();
         if (checkDialogDisplayed() == null) {
             if (checkMajorIdValid(id) && checkMajorNameValid(name) && checkMajorAbbreviationValid(abbreviation)) {
@@ -320,6 +398,120 @@ public class MajorManagementPage {
         }
 
     }
+//    public void addMajorWithMultiCase(String id, String name, String abbreviation, String programName) {
+//        clickTermAndMajorTab();
+//        clickMajorTab();
+//
+//        sleep(5);
+//        clickAddMajorButton();
+//        enterMajorId(id);
+//        enterMajorName(name);
+//        sleep(5);
+//
+//        enterMajorAbbreviation(abbreviation);
+//        sleep(5);
+//
+//        if (!programName.isEmpty()) selectTrainingProgram(programName);
+//
+//        clickSaveButton();
+//
+//        if (checkDialogDisplayed() == null) {
+//            List<String> errors = new ArrayList<>();
+//            errors.addAll(checkMajorIdValid(id));
+//            errors.addAll(checkMajorNameValid(name));
+//            errors.addAll(checkMajorAbbreviationValid(abbreviation));
+//            errors.addAll(checkMajorProgramNameValid(programName));
+//
+//            if (errors.isEmpty()) {
+//                notifiCheck.checkUpdateNotification();
+//            } else {
+//                for (String error : errors) {
+//                    System.out.println(error);
+//                }
+//            }
+//        } else {
+//            checkDialogError(duplicateMajorIdErrorMessage);
+//            clickOkErrorButton();
+//        }
+//    }
+
+    /**
+     * Sửa ngành học và kiểm tra với nhiều case
+     *
+     * @param id           Nhập id để tìm kiếm
+     * @param name         Tên ngành
+     * @param abbreviation Tên viết tắt
+     * @param programName  Tên Chương trình đào tạo
+     */
+    public void updateMajorWithMultiCase(String id, String name, String abbreviation, String programName) {
+        clickTermAndMajorTab();
+        clickMajorTab();
+        searchMajor(id);
+//        getFirstRowTable();
+        clickUpdateButton();
+//        enterMajorId(id);
+//        sleep(5);
+
+        enterMajorName(name);
+        sleep(5);
+
+        enterMajorAbbreviation(abbreviation);
+        sleep(5);
+
+        if (!programName.isEmpty()) selectTrainingProgram(programName);
+//        else selectTrainingProgram("---- Chọn CTĐT ----");
+        clickSaveButton();
+        if (checkDialogDisplayed() == null) {
+//            if (checkMajorProgramNameErrorDisplayed()) {
+//                checkProgramTypeError(majorTrainingProgramNotSelectedErrorMessage);
+//            }
+            if (checkMajorNameValid(name) && checkMajorAbbreviationValid(abbreviation)) {
+                notifiCheck.checkUpdateNotification();
+//                clickCloseButton();
+            }
+        } else {
+            checkDialogError(duplicateMajorIdErrorMessage);
+            clickOkErrorButton();
+        }
+
+    }
+//    public void updateMajorWithMultiCase(String id, String name, String abbreviation, String programName) {
+//        clickTermAndMajorTab();
+//        clickMajorTab();
+//        searchMajor(id);
+//        sleep(5);
+//        getFirstRowTable();
+//        clickUpdateButton();
+//
+//        enterMajorName(name);
+//        sleep(5);
+//
+//        enterMajorAbbreviation(abbreviation);
+//        sleep(5);
+//
+//        if (!programName.isEmpty()) selectTrainingProgram(programName);
+//
+//        clickSaveButton();
+//
+//        if (checkDialogDisplayed() == null) {
+//            List<String> errors = new ArrayList<>();
+////            errors.addAll(checkMajorIdValid(id));
+//            errors.addAll(checkMajorNameValid(name));
+//            errors.addAll(checkMajorAbbreviationValid(abbreviation));
+////            errors.addAll(checkMajorProgramNameValid(programName));
+//
+//            if (errors.isEmpty()) {
+//                notifiCheck.checkUpdateNotification();
+//            } else {
+//                for (String error : errors) {
+//                    System.out.println(error);
+//                }
+//            }
+//        } else {
+//            checkDialogError(duplicateMajorIdErrorMessage);
+//            clickOkErrorButton();
+//        }
+//    }
 
 //    ================================================================================================================================
 
@@ -399,8 +591,8 @@ public class MajorManagementPage {
         clickCloseButton();
     }
 
-    public void searchMajor(String search) {
-        wait.until(ExpectedConditions.elementToBeClickable(searchBoxField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, search);
+    public void searchMajor(String searchValue) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(searchBoxField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, searchValue);
     }
 
 
