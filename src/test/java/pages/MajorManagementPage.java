@@ -91,6 +91,7 @@ public class MajorManagementPage {
         Select trainingProgramDropdownElement = new Select(wait.until(ExpectedConditions.elementToBeClickable(trainingProgramDropdown)));
         trainingProgramDropdownElement.selectByVisibleText(item);
 
+        
     }
 
 
