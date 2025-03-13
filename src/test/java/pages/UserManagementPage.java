@@ -374,6 +374,7 @@ public class UserManagementPage {
         clickSaveButton();
     }
 
+
     // Add new user and handle multiple cases
     public void addUserWithMultiCase(String id, String name, String email, String contract, String role) {
         clickUserTab();

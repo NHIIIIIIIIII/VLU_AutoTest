@@ -16,6 +16,7 @@ public class UpdateUserTest extends BaseTest {
         UserManagement = new UserManagementPage(driver, wait);
     }
 
+
     @BeforeMethod
     public void prepareTest() {
         // Bấm vào tab Người dùng
