@@ -53,5 +53,27 @@ public class JsonReader extends BaseTest {
 
         };
     }
+    @DataProvider(name = "updateInformationData")
+    public Object[][] UpdateInformationData() {
+        return new Object[][]{
+                // Dữ liệu hợp lệ
+                {"Professora", 12},
+                {tools.generateRandomString(50), 20},  // Nhập tên ngẫu nhiên
+                {"Valid Name", 15},  // Dữ liệu hợp lệ với thứ tự trong phạm vi
+
+                // Dữ liệu không hợp lệ
+                {tools.generateRandomString(150), 110}, // Name quá dài, Order > 100
+
+                // Các trường hợp kiểm thử lỗi với tên học hàm (Name)
+                {"", 2},  // Thất bại do trống Name
+                {"A very long name that exceeds the allowed limit of 100 characters, making this a test case that should fail!", 3},  // Name quá 100 ký tự
+
+                // Các trường hợp kiểm thử lỗi với thứ tự (Order)
+                {"Valid Name", 0},  // Thất bại do Order = 0
+                {"Valid Name", 111},  // Thất bại do Order > 100
+        };
+    }
+
+
 
 }
