@@ -13,8 +13,8 @@ public class UserManagementPage {
     private final Notification notifiCheck;
 
     // Input Elements
-    private final By userIdInput = By.xpath("/html/body/div[3]/div[2]/form/div[1]/input");
-    private final By userNameInput = By.xpath("/html/body/div[3]/div[2]/form/div[2]/input");
+    private final By userIdInput = By.id("staff_id");
+    private final By userNameInput = By.xpath("(//input[@id='full_name'])[1]");
     private final By emailInput = By.xpath("/html/body/div[3]/div[2]/form/div[3]/input");
     private final By contractTypeDropdown = By.xpath("/html/body/div[3]/div[2]/form/div[4]/div/span[1]/span/span[1]");
     private final By roleDropdown = By.xpath("/html/body/div[3]/div[2]/form/div[5]/div/span[1]/span/span[1]");
@@ -25,6 +25,8 @@ public class UserManagementPage {
     private final By saveButton = By.xpath("/html/body/div[3]/div[2]/form/div[7]/button[2]");
     private final By closeButton = By.xpath("//button[@class='ui-dialog-titlebar-close btn-close']");
     private final By okErrorButton = By.xpath("//button[normalize-space()='OK']");
+    private final By UpdateButton = By.xpath("(//a[@title='Chỉnh sửa'])[1]");
+    private final By saveButtonup = By.xpath("(//button[contains(text(),'Lưu')])[1]");
 
     // Dropdown values
     private final By contractType_CoHuu = By.xpath("//li[normalize-space()='Cơ hữu']");
@@ -33,16 +35,17 @@ public class UserManagementPage {
     private final By role_BoMon = By.xpath("//li[normalize-space()='Bộ môn']");
     private final By role_GiangVien = By.xpath("//li[normalize-space()='Giảng viên']");
 
-    // Success Notification
-    private final By successNotification = By.xpath("/html[1]/body[1]/span[1]");
-
     // Error Fields
-    private final By userIdError = By.xpath("/html[1]/body[1]/div[3]/div[2]/form[1]/div[1]/label[2]");
-    private final By userNameError = By.xpath("/html[1]/body[1]/div[3]/div[2]/form[1]/div[2]/label[2]");
-    private final By emailError = By.xpath("/html[1]/body[1]/div[3]/div[2]/form[1]/div[3]/label[2]");
-    private final By contractTypeError = By.xpath("/html[1]/body[1]/div[3]/div[2]/form[1]/div[4]/div[1]/label[1]");
-    private final By roleError = By.xpath("/html[1]/body[1]/div[3]/div[2]/form[1]/div[5]/div[1]/label[1]");
+    private final By userIdError = By.xpath("(//label[contains(text(),'Bạn chưa nhập mã giảng viên')])[1]");
+    private final By userIdError1 = By.xpath("(//label[contains(text(),'Chỉ được nhập số-chữ không dấu và không có khoảng ')])[1]");
+    private final By userNameError = By.xpath("/html/body[1]/div[3]/div[2]/form[1]/div[2]/label[2]");
+    private final By emailError = By.xpath("(//label[contains(text(),'Vui lòng nhập email Văn Lang hợp lệ!')])[1]");
+    private final By contractTypeError = By.xpath("/html/body[1]/div[3]/div[2]/form[1]/div[4]/div[1]/label[1]");
+    private final By roleError = By.xpath("/html/body[1]/div[3]/div[2]/form[1]/div[5]/div[1]/label[1]");
     private final By dialogErrorField = By.id("swal2-html-container");
+
+    // Search User
+    private final By findduser = By.xpath("(//input[@placeholder='Nhập tìm kiếm...'])[1]");
 
     // Error Messages
     private final String userIdEmptyErrorMessage = "Bạn chưa nhập mã giảng viên";
@@ -61,83 +64,205 @@ public class UserManagementPage {
 
     // Click on the User tab
     public void clickUserTab() {
-        wait.until(ExpectedConditions.elementToBeClickable(userTab)).click();
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(userTab));
+            element.click();
+            System.out.println("Clicked User Tab successfully.");
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find User Tab: " + e.getMessage());
+            throw e;
+        }
     }
 
     // Click on the Add User button
     public void clickAddUserButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(addUserButton)).click();
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(addUserButton));
+            element.click();
+            System.out.println("Clicked Add User Button successfully.");
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find Add User Button: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    // Click Update Button
+    public void clickUpdateButton() {
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(UpdateButton));
+            element.click();
+            System.out.println("Clicked Update Button successfully.");
+            // Chờ form cập nhật hiển thị bằng cách chờ userIdInput xuất hiện
+            wait.until(ExpectedConditions.visibilityOfElementLocated(userIdInput));
+            System.out.println("Update form displayed successfully (userIdInput is visible).");
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find Update Button or form did not display: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    // Click Save Button in Update Form
+    public void clickSaveButtonup() {
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(saveButtonup));
+            element.click();
+            System.out.println("Clicked Save Button (Update) successfully.");
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find Save Button (Update): " + e.getMessage());
+            throw e;
+        }
     }
 
     // Enter User ID
     public void enterUserId(String id) {
-        wait.until(ExpectedConditions.elementToBeClickable(userIdInput)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, id);
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(userIdInput));
+            element.clear();
+            element.sendKeys(id);
+            System.out.println("Entered User ID: " + id);
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find User ID input with locator " + userIdInput + ": " + e.getMessage());
+            throw new NoSuchElementException("User ID input not found. Check locator: " + userIdInput, e);
+        }
+    }
+
+    // Get User ID value
+    public String getUserIdValue() {
+        try {
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(userIdInput));
+            String value = element.getAttribute("value");
+            System.out.println("Got User ID value: " + value);
+            return value;
+        } catch (TimeoutException e) {
+            System.out.println("Failed to get User ID value with locator " + userIdInput + ": " + e.getMessage());
+            throw new NoSuchElementException("User ID input not found. Check locator: " + userIdInput, e);
+        }
     }
 
     // Enter User Name
     public void enterUserName(String name) {
-        wait.until(ExpectedConditions.elementToBeClickable(userNameInput)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, name);
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(userNameInput));
+            element.clear();
+            element.sendKeys(name);
+            System.out.println("Entered User Name: " + name);
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find User Name input: " + e.getMessage());
+            throw e;
+        }
     }
 
     // Enter Email
     public void enterEmail(String email) {
-        wait.until(ExpectedConditions.elementToBeClickable(emailInput)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, email);
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(emailInput));
+            element.clear();
+            element.sendKeys(email);
+            System.out.println("Entered Email: " + email);
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find Email input: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    // Get Email value
+    public String getEmailValue() {
+        try {
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(emailInput));
+            String value = element.getAttribute("value");
+            System.out.println("Got Email value: " + value);
+            return value;
+        } catch (TimeoutException e) {
+            System.out.println("Failed to get Email value: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    // Enter Search Query
+    public void enterSearchQuery(String query) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(findduser));
+            element.clear();
+            element.sendKeys(query);
+            System.out.println("Entered Search Query: " + query);
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find Search input: " + e.getMessage());
+            throw e;
+        }
     }
 
     // Select Contract Type
     public void selectContractType(String contractType) {
-        // Ensure the dropdown is clickable and opened
-        WebElement dropdownElement = wait.until(ExpectedConditions.elementToBeClickable(contractTypeDropdown));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropdownElement);
-        dropdownElement.click();
+        try {
+            WebElement dropdownElement = wait.until(ExpectedConditions.elementToBeClickable(contractTypeDropdown));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropdownElement);
+            dropdownElement.click();
 
-        // Wait for the dropdown options to be visible and select the appropriate option
-        if (contractType.equalsIgnoreCase("Cơ hữu")) {
-            WebElement option = wait.until(ExpectedConditions.elementToBeClickable(contractType_CoHuu));
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
-            option.click();
-        } else if (contractType.equalsIgnoreCase("Thỉnh giảng")) {
-            WebElement option = wait.until(ExpectedConditions.elementToBeClickable(contractType_ThinhGiang));
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
-            option.click();
+            if (contractType.equalsIgnoreCase("Cơ hữu")) {
+                WebElement option = wait.until(ExpectedConditions.elementToBeClickable(contractType_CoHuu));
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
+                option.click();
+            } else if (contractType.equalsIgnoreCase("Thỉnh giảng")) {
+                WebElement option = wait.until(ExpectedConditions.elementToBeClickable(contractType_ThinhGiang));
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
+                option.click();
+            }
+            System.out.println("Selected Contract Type: " + contractType);
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find or select Contract Type: " + e.getMessage());
+            throw e;
         }
     }
 
     // Select Role
     public void selectRole(String role) {
-        // Ensure the dropdown is clickable and opened
-        WebElement dropdownElement = wait.until(ExpectedConditions.elementToBeClickable(roleDropdown));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropdownElement);
-        dropdownElement.click();
+        try {
+            WebElement dropdownElement = wait.until(ExpectedConditions.elementToBeClickable(roleDropdown));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropdownElement);
+            dropdownElement.click();
 
-        // Wait for the dropdown options to be visible and select the appropriate option
-        if (role.equalsIgnoreCase("BCN khoa")) {
-            WebElement option = wait.until(ExpectedConditions.elementToBeClickable(role_BCNKhoa));
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
-            option.click();
-        } else if (role.equalsIgnoreCase("Bộ môn")) {
-            WebElement option = wait.until(ExpectedConditions.elementToBeClickable(role_BoMon));
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
-            option.click();
-        } else if (role.equalsIgnoreCase("Giảng viên")) {
-            WebElement option = wait.until(ExpectedConditions.elementToBeClickable(role_GiangVien));
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
-            option.click();
+            if (role.equalsIgnoreCase("BCN khoa")) {
+                WebElement option = wait.until(ExpectedConditions.elementToBeClickable(role_BCNKhoa));
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
+                option.click();
+            } else if (role.equalsIgnoreCase("Bộ môn")) {
+                WebElement option = wait.until(ExpectedConditions.elementToBeClickable(role_BoMon));
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
+                option.click();
+            } else if (role.equalsIgnoreCase("Giảng viên")) {
+                WebElement option = wait.until(ExpectedConditions.elementToBeClickable(role_GiangVien));
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
+                option.click();
+            }
+            System.out.println("Selected Role: " + role);
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find or select Role: " + e.getMessage());
+            throw e;
         }
     }
 
     // Click Save Button
     public void clickSaveButton() {
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(saveButton)).click();
-        } catch (Exception e) {
-            Assert.fail("Save button not interacted");
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(saveButton));
+            element.click();
+            System.out.println("Clicked Save Button successfully.");
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find Save Button: " + e.getMessage());
+            throw e;
         }
     }
 
     // Click Close Button
     public void clickCloseButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(closeButton)).click();
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(closeButton));
+            element.click();
+            System.out.println("Clicked Close Button (Exit) successfully.");
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find Close Button (Exit): " + e.getMessage());
+            throw e;
+        }
     }
 
     // Check if dialog is displayed
@@ -155,7 +280,14 @@ public class UserManagementPage {
 
     // Click OK on error dialog
     public void clickOkErrorButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(okErrorButton)).click();
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(okErrorButton));
+            element.click();
+            System.out.println("Clicked OK on error dialog successfully.");
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find OK Button on error dialog: " + e.getMessage());
+            throw e;
+        }
     }
 
     // Check error message
@@ -168,16 +300,26 @@ public class UserManagementPage {
         System.out.println("==========================================");
     }
 
-    // Check success notification
+    // Check success notification using notifiCheck (similar to MajorManagementPage)
     public void checkSuccessNotification() {
-        WebElement successElement = wait.until(ExpectedConditions.visibilityOfElementLocated(successNotification));
-        Assert.assertTrue(successElement.isDisplayed(), "Success notification not displayed");
-        System.out.println("Success Notification Displayed: " + successElement.getText());
+        try {
+
+            notifiCheck.checkAddNotification(); // Giả định phương thức này kiểm tra thông báo thành công
+            System.out.println("Success notification checked successfully using notifiCheck.");
+        } catch (Exception e) {
+            System.out.println("Failed to check success notification: " + e.getMessage());
+            throw new RuntimeException("Error while checking success notification", e);
+        }
     }
 
     // Check User ID Error
     public void checkUserIdError(String expectedMessage) {
-        checkErrorMessage(wait.until(ExpectedConditions.presenceOfElementLocated(userIdError)), expectedMessage);
+        try {
+            checkErrorMessage(wait.until(ExpectedConditions.presenceOfElementLocated(userIdError1)), expectedMessage);
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find User ID Error: " + e.getMessage());
+            throw e;
+        }
     }
 
     // Check User Name Error
@@ -187,7 +329,12 @@ public class UserManagementPage {
 
     // Check Email Error
     public void checkEmailError(String expectedMessage) {
-        checkErrorMessage(wait.until(ExpectedConditions.presenceOfElementLocated(emailError)), expectedMessage);
+        try {
+            checkErrorMessage(wait.until(ExpectedConditions.presenceOfElementLocated(emailError)), expectedMessage);
+        } catch (TimeoutException e) {
+            System.out.println("Failed to find Email Error: " + e.getMessage());
+            throw e;
+        }
     }
 
     // Check Contract Type Error
@@ -226,6 +373,7 @@ public class UserManagementPage {
         if (!role.isEmpty()) selectRole(role);
         clickSaveButton();
     }
+
 
     // Add new user and handle multiple cases
     public void addUserWithMultiCase(String id, String name, String email, String contract, String role) {
