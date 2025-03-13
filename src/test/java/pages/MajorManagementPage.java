@@ -187,7 +187,9 @@ public class MajorManagementPage {
         WebElement firstRow = wait.until(ExpectedConditions.presenceOfElementLocated(firstRowTableField));
         System.out.println(firstRow.getText());
     }
-
+    public void searchMajor(String searchValue) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(searchBoxField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, searchValue);
+    }
     public void checkErrorMessage(WebElement errorElement, String errorMessage) {
         System.out.println("==========================================");
         System.out.println("Check Error : ");
@@ -591,9 +593,7 @@ public class MajorManagementPage {
         clickCloseButton();
     }
 
-    public void searchMajor(String searchValue) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(searchBoxField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, searchValue);
-    }
+
 
 
 }
