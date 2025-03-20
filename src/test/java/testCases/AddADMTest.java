@@ -111,7 +111,7 @@ public class AddADMTest extends BaseTest {
                     }
                 } else {
                     Notification notification = addADMPage.getNotification();
-                    notification.checkAddNotification();
+                    notification.testAddNotification();
                 }
                 success = true;
             } catch (Exception e) {
