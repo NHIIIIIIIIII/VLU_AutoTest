@@ -123,7 +123,7 @@ public class MajorManagementPage {
      * Nhập id Ngành
      */
     public void enterMajorId(String id) {
-            wait.until(ExpectedConditions.elementToBeClickable(majorIdField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, id);
+        wait.until(ExpectedConditions.elementToBeClickable(majorIdField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, id);
     }
 
     /**
@@ -186,9 +186,20 @@ public class MajorManagementPage {
         WebElement firstRow = wait.until(ExpectedConditions.presenceOfElementLocated(firstRowTableField));
         System.out.println(firstRow.getText());
     }
+
     public void searchMajor(String searchValue) {
         wait.until(ExpectedConditions.presenceOfElementLocated(searchBoxField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, searchValue);
     }
+
+    public String getTextMajorNameError() {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(majorNameError)).getText();
+    }
+
+    public String getTextMajorAbbreviationError(){
+        return wait.until(ExpectedConditions.presenceOfElementLocated(majorAbbreviationError)).getText();
+
+    }
+
     public void checkErrorMessage(WebElement errorElement, String errorMessage) {
         System.out.println("==========================================");
         System.out.println("Check Error : ");
@@ -360,7 +371,7 @@ public class MajorManagementPage {
     public boolean checkMajorProgramNameErrorDisplayed() {
         try {
             return wait.until(ExpectedConditions.visibilityOfElementLocated(programTypeError)).isDisplayed();
-        } catch (TimeoutException timeoutException){
+        } catch (TimeoutException timeoutException) {
             return false;
         }
     }
@@ -591,8 +602,6 @@ public class MajorManagementPage {
         notifiCheck.testAddNotification();
         clickCloseButton();
     }
-
-
 
 
 }

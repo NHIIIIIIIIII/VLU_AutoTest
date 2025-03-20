@@ -68,12 +68,12 @@ public class MajorTest extends BaseTest {
      * @Title: Kiểm thử chức năng thêm ngành học
      * @since 06/03/2025
      */
-//    @Test(dataProvider = "newMajor", priority = 0)
-////    public void addNewMajor(String id, String name, String abbreviation, String programName) {
-////        sleep(10);
-////        majorManagement.addMajorWithMultiCase(id, name, abbreviation, programName);
-////        sleep(10);
-////    }
+    @Test(dataProvider = "newMajor", priority = 0)
+    public void addNewMajor(String id, String name, String abbreviation, String programName) {
+        sleep(10);
+        majorManagement.addMajorWithMultiCase(id, name, abbreviation, programName);
+        sleep(10);
+    }
 
     /**
      * @author Trần Văn Hiếu - 2274802010262

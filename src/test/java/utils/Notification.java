@@ -36,9 +36,8 @@ public class Notification {
      */
     public void testAddNotification() {
         System.out.println("======== Check Notification Toast ========");
-        System.out.println("Expect :" + deleteSuccess);
+        System.out.println("Expect :" + addSuccess);
         System.out.println("Actual :" + getNotification().getText());
-        System.out.println("Thêm thành công");
         Assert.assertEquals(
                 getNotification().getText(),
                 addSuccess,
@@ -51,7 +50,7 @@ public class Notification {
      */
     public void testUpdateNotification() {
         System.out.println("======== Check Notification Toast ========");
-        System.out.println("Expect :" + deleteSuccess);
+        System.out.println("Expect :" + updateSuccess);
         System.out.println("Actual :" + getNotification().getText());
         Assert.assertEquals(
                 getNotification().getText(),
