@@ -44,7 +44,7 @@ public class JsonReader extends BaseTest {
 
                 // Các trường hợp kiểm thử lỗi với tên học hàm (Name)
                 {"MCB004", "", 2},  // Thất bại do trống cột - tên học hàm (Name empty)
-                {"MDB005", "A very long name that exceeds the allowed limit of 100 characters, making this a test case that should fail!", 3},  // Thất bại do tên học hàm dài quá 100 ký tự
+                {"MDB005", "A very long name that exceeds the allowed limit of 100 characters, making this a DeleteMajorTest case that should fail!", 3},  // Thất bại do tên học hàm dài quá 100 ký tự
 
                 // Các trường hợp kiểm thử lỗi với thứ tự (Order)
                 {"MEB006", "Valid Name", 0},  // Thất bại do thứ tự = 0 (Order = 0)
@@ -66,7 +66,7 @@ public class JsonReader extends BaseTest {
 
                 // Các trường hợp kiểm thử lỗi với tên học hàm (Name)
                 {"", 2},  // Thất bại do trống Name
-                {"A very long name that exceeds the allowed limit of 100 characters, making this a test case that should fail!", 3},  // Name quá 100 ký tự
+                {"A very long name that exceeds the allowed limit of 100 characters, making this a DeleteMajorTest case that should fail!", 3},  // Name quá 100 ký tự
 
                 // Các trường hợp kiểm thử lỗi với thứ tự (Order)
                 {"Valid Name", 0},  // Thất bại do Order = 0
