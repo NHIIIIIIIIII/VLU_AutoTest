@@ -191,14 +191,24 @@ public class MajorManagementPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(searchBoxField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, searchValue);
     }
 
+    public String getTextMajorIdError(){
+        return wait.until(ExpectedConditions.presenceOfElementLocated(majorIdError)).getText();
+
+    }
+
     public String getTextMajorNameError() {
         return wait.until(ExpectedConditions.presenceOfElementLocated(majorNameError)).getText();
     }
 
     public String getTextMajorAbbreviationError(){
         return wait.until(ExpectedConditions.presenceOfElementLocated(majorAbbreviationError)).getText();
+    }
+
+    public String getTextTrainingProgramError(){
+        return wait.until(ExpectedConditions.presenceOfElementLocated(programTypeError)).getText();
 
     }
+
 
     public void checkErrorMessage(WebElement errorElement, String errorMessage) {
         System.out.println("==========================================");

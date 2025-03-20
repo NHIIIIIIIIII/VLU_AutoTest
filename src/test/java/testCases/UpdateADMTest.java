@@ -105,7 +105,7 @@ public class UpdateADMTest extends BaseTest {
                         okButton.click();
                     }
                 } else {
-                    updateADMPage.getNotification().checkUpdateNotification();
+                    updateADMPage.getNotification().testUpdateNotification();
                 }
                 success = true;
             } catch (Exception e) {
