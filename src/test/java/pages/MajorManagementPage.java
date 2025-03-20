@@ -8,8 +8,6 @@ import org.testng.Assert;
 import utils.Notification;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 import static base.DriverConfig.sleep;
 
@@ -125,7 +123,7 @@ public class MajorManagementPage {
      * Nhập id Ngành
      */
     public void enterMajorId(String id) {
-        wait.until(ExpectedConditions.elementToBeClickable(majorIdField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, id);
+            wait.until(ExpectedConditions.elementToBeClickable(majorIdField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, id);
     }
 
     /**
@@ -392,7 +390,7 @@ public class MajorManagementPage {
         clickSaveButton();
         if (checkDialogDisplayed() == null) {
             if (checkMajorIdValid(id) && checkMajorNameValid(name) && checkMajorAbbreviationValid(abbreviation)) {
-                notifiCheck.checkAddNotification();
+                notifiCheck.testAddNotification();
 //                clickCloseButton();
             }
         } else {
@@ -426,7 +424,7 @@ public class MajorManagementPage {
 //            errors.addAll(checkMajorProgramNameValid(programName));
 //
 //            if (errors.isEmpty()) {
-//                notifiCheck.checkUpdateNotification();
+//                notifiCheck.testUpdateNotification();
 //            } else {
 //                for (String error : errors) {
 //                    System.out.println(error);
@@ -469,7 +467,7 @@ public class MajorManagementPage {
 //                checkProgramTypeError(majorTrainingProgramNotSelectedErrorMessage);
 //            }
             if (checkMajorNameValid(name) && checkMajorAbbreviationValid(abbreviation)) {
-                notifiCheck.checkUpdateNotification();
+                notifiCheck.testUpdateNotification();
 //                clickCloseButton();
             }
         } else {
@@ -484,7 +482,7 @@ public class MajorManagementPage {
 //        searchMajor(id);
 //        sleep(5);
 //        getFirstRowTable();
-//        clickUpdateButton();
+//        clickDeleteButton();
 //
 //        enterMajorName(name);
 //        sleep(5);
@@ -504,7 +502,7 @@ public class MajorManagementPage {
 ////            errors.addAll(checkMajorProgramNameValid(programName));
 //
 //            if (errors.isEmpty()) {
-//                notifiCheck.checkUpdateNotification();
+//                notifiCheck.testUpdateNotification();
 //            } else {
 //                for (String error : errors) {
 //                    System.out.println(error);
@@ -535,7 +533,7 @@ public class MajorManagementPage {
         enterMajorAbbreviation(abbreviation);
         selectTrainingProgram(programName);
         clickSaveButton();
-        notifiCheck.checkAddNotification();
+        notifiCheck.testAddNotification();
     }
 
     /**
@@ -590,7 +588,7 @@ public class MajorManagementPage {
         enterMajorAbbreviation(abbreviation);
         selectTrainingProgram(programName);
         clickSaveButton();
-        notifiCheck.checkAddNotification();
+        notifiCheck.testAddNotification();
         clickCloseButton();
     }
 

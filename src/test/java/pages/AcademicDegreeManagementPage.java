@@ -109,7 +109,7 @@ public class AcademicDegreeManagementPage {
 
     // Notification methods
     public void notificationAdd() {
-        notification.checkAddNotification();
+        notification.testAddNotification();
     }
     /**
      * Validation message checking methods
@@ -220,7 +220,7 @@ public class AcademicDegreeManagementPage {
         WebElement dialog = checkDialogDisplayed();
         if (dialog == null) {
             if (checkADIdValid(id) && checkADNameValid(name) && checkADOrderValid(order)) {
-                notification.checkAddNotification();
+                notification.testAddNotification();
             }
         } else {
             checkDialogError(idADDuplicateEM);
@@ -238,7 +238,7 @@ public class AcademicDegreeManagementPage {
         WebElement dialog = checkDialogDisplayed();
         if (dialog == null) {
             if (checkADNameValid(name) && checkADOrderValid(order)) {
-                notification.checkUpdateNotification();
+                notification.testUpdateNotification();
             }
         } else {
             checkDialogError(idADDuplicateEM);

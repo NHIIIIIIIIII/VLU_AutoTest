@@ -304,7 +304,7 @@ public class UserManagementPage {
     public void checkSuccessNotification() {
         try {
 
-            notifiCheck.checkAddNotification(); // Giả định phương thức này kiểm tra thông báo thành công
+            notifiCheck.testAddNotification(); // Giả định phương thức này kiểm tra thông báo thành công
             System.out.println("Success notification checked successfully using notifiCheck.");
         } catch (Exception e) {
             System.out.println("Failed to check success notification: " + e.getMessage());
