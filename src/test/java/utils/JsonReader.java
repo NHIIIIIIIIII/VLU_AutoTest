@@ -30,7 +30,7 @@ public class JsonReader extends BaseTest {
     public Object[][] AcademicDegreeData() {
         return new Object[][]{
                 // Dữ liệu hợp lệ
-                {"MDA001", "Professora", 12},
+                {"MECA001", "Professora", 12},
                 {tools.generateRandomString(50), tools.generateRandomString(50), 20},  // Nhập các giá trị ngẫu nhiên
                 // Dữ liệu không hợp lệ
                 {tools.generateRandomString(100), tools.generateRandomString(150), 110},
@@ -38,21 +38,29 @@ public class JsonReader extends BaseTest {
 
                 // Các trường hợp kiểm thử lỗi với mã học hàm (ID)
                 {"", "Parofessorc", 13},  // Thất bại do trống cột - id
-                {"MDA001", "Another Valid Name", 2},  // Thất bại do mã học hàm trùng lặp (ID duplicate)
-                {"AABavAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "Valid Name", 1},  // Thất bại do mã học hàm dài hơn 50 ký tự
-                {"MCB_002", "Valid Name", 1},  // Thất bại do mã học hàm có dấu gạch dưới (ID không hợp lệ)
+                {"MDa001", "Another Valid Name", 2},  // Thất bại do mã học hàm trùng lặp (ID duplicate)
+                {"AABavAAaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "Valid Name", 1},  // Thất bại do mã học hàm dài hơn 50 ký tự
+                {"MaB_002", "Valid Name", 1},  // Thất bại do mã học hàm có dấu gạch dưới (ID không hợp lệ)
 
                 // Các trường hợp kiểm thử lỗi với tên học hàm (Name)
-                {"MCB004", "", 2},  // Thất bại do trống cột - tên học hàm (Name empty)
-                {"MDB005", "A very long name that exceeds the allowed limit of 100 characters, making this a test case that should fail!", 3},  // Thất bại do tên học hàm dài quá 100 ký tự
+                {"MCC004", "", 2},  // Thất bại do trống cột - tên học hàm (Name empty)
+                {"MDE005", "A very long name that exceeds the allowed limit of 100 characters, making this a test case that should fail!", 3},  // Thất bại do tên học hàm dài quá 100 ký tự
 
                 // Các trường hợp kiểm thử lỗi với thứ tự (Order)
-                {"MEB006", "Valid Name", 0},  // Thất bại do thứ tự = 0 (Order = 0)
-                {"MEB007", "Valid Name", 111},  // Thất bại do thứ tự > 100 (Order > 100)
-                {"MEB008", "Valid Name", 15},  // Dữ liệu hợp lệ với thứ tự trong phạm vi
+                {"MEC006", "Valid Name", 0},  // Thất bại do thứ tự = 0 (Order = 0)
+                {"MES007", "Valid Name", 111},  // Thất bại do thứ tự > 100 (Order > 100)
+                {"MEO008", "Valid Name", 15},  // Dữ liệu hợp lệ với thứ tự trong phạm vi
 
         };
     }
+    public Object[] getTestCase(int index) {
+        Object[][] data = AcademicDegreeData();
+        if (index >= 0 && index < data.length) {
+            return data[index];
+        }
+        throw new IllegalArgumentException("Invalid test case index: " + index);
+    }
+
     @DataProvider(name = "updateInformationData")
     public Object[][] UpdateInformationData() {
         return new Object[][]{
@@ -73,6 +81,18 @@ public class JsonReader extends BaseTest {
                 {"Valid Name", 111},  // Thất bại do Order > 100
         };
     }
+    @DataProvider(name = "searchData")
+    public static Object[][] getSearchData() {
+        return new Object[][] {
+                {"Professora"},  // Tìm kiếm bằng tên
+                {"12345"},  // Tìm kiếm bằng ID (giả sử ID là số nhưng lưu dưới dạng chuỗi)
+                {tools.generateRandomString(20)},  // Tên ngẫu nhiên (giới hạn 20 ký tự)
+                {3}  // Tìm kiếm theo thứ tự (Order)
+        };
+    }
+
+
+
 
 
 
