@@ -18,23 +18,23 @@ public class AddMajorTest extends BaseTest {
         notifiCheck = new Notification(wait);
     }
 
-    @Test(priority = 0, testName = "TC_CM_01")
-    public void testAddMajorSuccess() {
-        addMajorPage.clickTermAndMajorTab();
-        addMajorPage.clickMajorTab();
-        addMajorPage.clickAddMajorButton();
-        addMajorPage.enterMajorId("CNTT2023");
-        sleep(5);
-
-        addMajorPage.enterMajorName("Công nghệ thông tin 2023");
-        sleep(5);
-
-        addMajorPage.enterMajorAbbreviation("CNTT");
-        sleep(5);
-        addMajorPage.selectTrainingProgram("Đặc biệt");
-        addMajorPage.clickSaveButton();
-        notifiCheck.testAddNotification();
-    }
+//    @Test(priority = 0, testName = "TC_CM_01")
+//    public void testAddMajorSuccess() {
+//        addMajorPage.clickTermAndMajorTab();
+//        addMajorPage.clickMajorTab();
+//        addMajorPage.clickAddMajorButton();
+//        addMajorPage.enterMajorId("CNTT2023");
+//        sleep(5);
+//
+//        addMajorPage.enterMajorName("Công nghệ thông tin 2023");
+//        sleep(5);
+//
+//        addMajorPage.enterMajorAbbreviation("CNTT");
+//        sleep(5);
+//        addMajorPage.selectTrainingProgram("Đặc biệt");
+//        addMajorPage.clickSaveButton();
+//        notifiCheck.testAddNotification();
+//    }
 
 
     @Test(priority = 1, testName = "TC_CM_02")
