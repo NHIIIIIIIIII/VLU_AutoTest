@@ -42,9 +42,6 @@ public class AddADMTest extends BaseTest {
         addADMPage.clickSaveADButton();
         notifiCheck.testAddNotification();
         sleep(5);
-
-        addADMPage.clickOkADButton();
-        sleep(5);
     }
 
 //   data > maxLength
@@ -211,17 +208,5 @@ public class AddADMTest extends BaseTest {
     public void cleanup() {
 //        cleanupTest();
     }
-    @AfterMethod
-    public void checkAfterMethod(ITestResult result) {
-        //Bắt trạng thái hoặc tên Test case sau khi chạy xong để xử lý gì đó
-        if (ITestResult.FAILURE == result.getStatus()) {
-            System.out.println(result.getName() + " failed");
-        }
-        else if(ITestResult.SUCCESS == result.getStatus()){
-            System.out.println(result.getName() + " passed");
-        }
-        else{
-            System.out.println(result.getName() + " skipped");
-        }
-    }
+
 }

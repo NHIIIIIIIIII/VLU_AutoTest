@@ -21,7 +21,7 @@ public class DeleteMajorTest extends BaseTest {
     public void testDeleteSuccess(){
         deleteMajorPage.clickTermAndMajorTab();
         deleteMajorPage.clickMajorTab();
-        deleteMajorPage.searchMajor("22122222");
+        deleteMajorPage.searchMajor("CNTT2023Success");
         deleteMajorPage.clickDeleteButton();
         Assert.assertTrue(deleteMajorPage.checkDialogConfirmDisplayed(),"Dialog not displayed");
         deleteMajorPage.clickDeletedDialog();

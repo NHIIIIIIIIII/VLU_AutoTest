@@ -19,4 +19,36 @@
             <class name="testCases.DeleteADMTest"/>
         </classes>
     </test>
+
+    <test name="Add Majors Test">
+        <classes>
+            <class name="testCases.AddMajorTest"/>
+        </classes>
+    </test>
+    <test name="Update Majors Test">
+        <classes>
+            <class name="testCases.UpdateMajorTest"/>
+        </classes>
+    </test>
+    <test name="Delete Majors Test">
+        <classes>
+            <class name="testCases.DeleteMajorTest"/>
+        </classes>
+    </test>
+
+<!--    <test name="Add User Test">-->
+<!--        <classes>-->
+<!--            <class name="testCases.Ad"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="Update User Test">-->
+<!--        <classes>-->
+<!--            <class name="testCases.UpdateUserTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+    <test name="Find User Test">
+        <classes>
+            <class name="testCases.FindUserTest"/>
+        </classes>
+    </test>
 </suite>
