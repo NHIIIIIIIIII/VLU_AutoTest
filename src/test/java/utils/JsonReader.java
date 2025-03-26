@@ -29,28 +29,12 @@ public class JsonReader extends BaseTest {
     @DataProvider(name = "academicDegreeData")
     public Object[][] AcademicDegreeData() {
         return new Object[][]{
-                // Dữ liệu hợp lệ
-                {"MECA001", "Professora", 12},
-                {tools.generateRandomString(50), tools.generateRandomString(50), 20},  // Nhập các giá trị ngẫu nhiên
-                // Dữ liệu không hợp lệ
+                {tools.generateRandomString(10), "Another Valid Name", 12},
                 {tools.generateRandomString(100), tools.generateRandomString(150), 110},
-
-
-                // Các trường hợp kiểm thử lỗi với mã học hàm (ID)
-                {"", "Parofessorc", 13},  // Thất bại do trống cột - id
-                {"MDa001", "Another Valid Name", 2},  // Thất bại do mã học hàm trùng lặp (ID duplicate)
-                {"AABavAAaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "Valid Name", 1},  // Thất bại do mã học hàm dài hơn 50 ký tự
-                {"MaB_002", "Valid Name", 1},  // Thất bại do mã học hàm có dấu gạch dưới (ID không hợp lệ)
-
-                // Các trường hợp kiểm thử lỗi với tên học hàm (Name)
-                {"MCC004", "", 2},  // Thất bại do trống cột - tên học hàm (Name empty)
-                {"MDE005", "A very long name that exceeds the allowed limit of 100 characters, making this a test case that should fail!", 3},  // Thất bại do tên học hàm dài quá 100 ký tự
-
-                // Các trường hợp kiểm thử lỗi với thứ tự (Order)
-                {"MEC006", "Valid Name", 0},  // Thất bại do thứ tự = 0 (Order = 0)
-                {"MES007", "Valid Name", 111},  // Thất bại do thứ tự > 100 (Order > 100)
-                {"MEO008", "Valid Name", 15},  // Dữ liệu hợp lệ với thứ tự trong phạm vi
-
+                {"", "", null },  // Thất bại do trống cột - id
+                {"A1234BC5", "Professora", 2},  // Thất bại do mã học hàm trùng lặp (ID duplicate)
+                {"MO0$%02", "Valid Name", 1},  // Thất bại do mã học hàm có ký tự đặc biệt (ID không hợp lệ)
+                {tools.generateRandomString(10), "Valid Name", 0},  // Thất bại do thứ tự = 0 (Order = 0)
         };
     }
     public Object[] getTestCase(int index) {

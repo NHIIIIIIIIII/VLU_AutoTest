@@ -28,8 +28,9 @@ dependencies {
     testImplementation("io.github.bonigarcia:webdrivermanager:5.9.2")
     testImplementation("org.seleniumhq.selenium:selenium-chromium-driver:4.28.1")
     testImplementation("org.testng:reportng:1.2.2")
-//    testImplementation("org.apache.poi:poi:5.4.0")
-//    testImplementation("org.apache.poi:poi-ooxml:5.4.0")
+    testImplementation("org.apache.poi:poi:5.4.0")
+    testImplementation("org.apache.poi:poi-ooxml:5.4.0")
+
 }
 
 tasks.named<Test>("test") {
@@ -38,6 +39,7 @@ tasks.named<Test>("test") {
         useDefaultListeners = true
         outputDirectory = file("$projectDir/TestNG_Reports")
     }
+
     reports {
         html.required.set(true)
         html.outputLocation.set(file("$projectDir/GradleReports"))
@@ -46,6 +48,7 @@ tasks.named<Test>("test") {
 tasks.test {
 //    useJUnitPlatform()
     useTestNG()
+
 }
 
 tasks.javadoc {
