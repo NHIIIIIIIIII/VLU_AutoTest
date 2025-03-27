@@ -1,20 +1,29 @@
 package testCases;
 
 import base.BaseTest;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.AddADMPage;
 import utils.JsonReader;
 import utils.Notification;
 
+import java.time.Duration;
+
 public class AddADMTest extends BaseTest {
     private AddADMPage addADMPage;
     private Notification notifiCheck;
     private JsonReader jsonReader;
+
+    /**
+     * @author Nguyễn Liên Nhi - 2274802010612
+     * @Title: Kiểm thử chức năng sửa học hàm học vị
+     * @since 06/03/2025
+     */
 
     @BeforeClass
     public void setupClass() {
@@ -137,6 +146,10 @@ public class AddADMTest extends BaseTest {
         addADMPage.clickSaveADButton();
         sleep(2);
 
+        // Replace sleep with explicit wait for the error dialog
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.visibilityOf(addADMPage.checkErrorDialogDisplayed()));
         System.out.println("==========================================");
         System.out.println("Check Error: ");
         System.out.println("Actual: " + addADMPage.checkErrorDialogDisplayed().getText());
@@ -146,6 +159,9 @@ public class AddADMTest extends BaseTest {
 
         addADMPage.clickOkADButton();
         addADMPage.clickCloseADButton();
+        } catch (TimeoutException e) {
+            Assert.fail("Error dialog did not appear within 10 seconds", e);
+        }
     }
 
     // Data Invalid Format ID - định dạng ko hợp lệ

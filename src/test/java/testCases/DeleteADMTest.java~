@@ -35,7 +35,7 @@ public class DeleteADMTest extends BaseTest {
         deleteADMPage.clickDeleteButton();
         Assert.assertTrue(deleteADMPage.checkDialogConfirmDisplayed(), "Dialog not displayed");
         deleteADMPage.clickDeleteDialog();
-        sleep(5);
+        sleep(5); // Giảm thời gian sleep từ 50 xuống 5 để tối ưu, tùy chỉnh nếu cần
         System.out.println("======= Fail Notification ======");
         System.out.println("Actual: " + deleteADMPage.getTextFailNotification());
         System.out.println("Expect: " + deleteADMPage.getErrorDataAvailable());
