@@ -41,11 +41,11 @@
 <!--            <class name="testCases.Ad"/>-->
 <!--        </classes>-->
 <!--    </test>-->
-<!--    <test name="Update User Test">-->
-<!--        <classes>-->
-<!--            <class name="testCases.UpdateUserTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="Update User Test">
+        <classes>
+            <class name="testCases.UpdateUserTest"/>
+        </classes>
+    </test>
     <test name="Find User Test">
         <classes>
             <class name="testCases.FindUserTest"/>
