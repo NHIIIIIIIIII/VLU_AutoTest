@@ -20,9 +20,9 @@ public class FindUserPage {
     
     // Result Elements
     private final By searchResults = By.xpath("//table[@id='tblUser']//tbody/tr");
-    private final By userIdColumn = By.xpath("/html[1]/body[1]/div[2]/div[2]/div[3]/div[1]/section[1]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]");
-    private final By userNameColumn = By.xpath("/html[1]/body[1]/div[2]/div[2]/div[3]/div[1]/section[1]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[3]");
-    private final By userEmailColumn = By.xpath("/html[1]/body[1]/div[2]/div[2]/div[3]/div[1]/section[1]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[4]");
+    private final By userIdColumn = By.xpath("//tbody//tr[1]//td[2]");
+    private final By userNameColumn = By.xpath("//tbody//tr[1]//td[3]");
+    private final By userEmailColumn = By.xpath("//tbody//tr[1]//td[4]");
 
     // Constructor
     public FindUserPage(WebDriver driver, WebDriverWait wait) {

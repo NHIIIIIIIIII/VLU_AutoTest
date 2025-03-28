@@ -187,7 +187,7 @@ public class AddUserPage {
     }
 
     public static void checkSuccessNotification() {
-        notifiCheck.checkAddNotification();
+        notifiCheck.testAddNotification();
     }
 
     public static void checkUserIdError(String expectedMessage) {

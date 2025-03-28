@@ -350,7 +350,7 @@ public class UpdateUserPage {
     public void checkSuccessNotification() {
         try {
 
-            notifiCheck.checkUpdateNotification(); // Giả định phương thức này kiểm tra thông báo thành công
+            notifiCheck.testUpdateNotification(); // Giả định phương thức này kiểm tra thông báo thành công
             System.out.println("Success notification checked successfully using notifiCheck.");
         } catch (Exception e) {
             System.out.println("Failed to check success notification: " + e.getMessage());
