@@ -36,12 +36,11 @@
         </classes>
     </test>
 
-<!--    <test name="Add User Test">-->
-<!--        <classes>-->
-<!--            <class name="testCases.Ad"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-
+    <test name="Add User Test">
+        <classes>
+            <class name="testCases.AddUserTest"/>
+        </classes>
+    </test>
     <test name="Update User Test">
         <classes>
             <class name="testCases.UpdateUserTest"/>

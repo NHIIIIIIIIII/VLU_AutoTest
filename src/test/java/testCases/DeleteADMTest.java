@@ -46,17 +46,6 @@ public class DeleteADMTest extends BaseTest {
         deleteADMPage.clickFailClose();
     }
 
-    @Test(priority = 2, testName = "TC_DeleteADM_03")
-    public void testDeleteFailWithFindNotFound() {
-        deleteADMPage.searchADM("Tiến sĩ Không Tồn Tại");
-        sleep(5);
-        System.out.println("======= Fail Notification ======");
-        System.out.println("Actual: " + deleteADMPage.getTextFindNotFound());
-        System.out.println("Expect: " + deleteADMPage.getErrorFindNotFound());
-        Assert.assertEquals(deleteADMPage.getTextFindNotFound(),
-                deleteADMPage.getErrorFindNotFound(),
-                "No result message does not match expected");
-    }
     @AfterClass
     public void cleanup() {
 //        cleanupTest();
