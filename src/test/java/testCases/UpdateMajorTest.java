@@ -4,7 +4,6 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.MajorManagementPage;
 import pages.UpdateMajorPage;
 import utils.Notification;
 
