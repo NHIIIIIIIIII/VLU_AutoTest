@@ -1,10 +1,55 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Totoday Test" thread-count="4">
+<suite name="PCGD Test" thread-count="3" parallel="none">
 
-    <!--    Xong-->
-    <test name="Register Tests">
+    <listeners>
+        <listener class-name="utils.ExcelTestListener"></listener>
+    </listeners>
+    <test name="Add Academic Degrees Test">
         <classes>
-            <class name="testCases.test"/>
+            <class name="testCases.AddADMTest"/>
+        </classes>
+    </test>
+    <test name="Update Academic Degrees Test">
+        <classes>
+            <class name="testCases.UpdateADMTest"/>
+        </classes>
+    </test>
+    <test name="Delete Academic Degrees Test">
+        <classes>
+            <class name="testCases.DeleteADMTest"/>
+        </classes>
+    </test>
+
+    <test name="Add Majors Test">
+        <classes>
+            <class name="testCases.AddMajorTest"/>
+        </classes>
+    </test>
+    <test name="Update Majors Test">
+        <classes>
+            <class name="testCases.UpdateMajorTest"/>
+        </classes>
+    </test>
+    <test name="Delete Majors Test">
+        <classes>
+            <class name="testCases.DeleteMajorTest"/>
+        </classes>
+    </test>
+
+<!--    <test name="Add User Test">-->
+<!--        <classes>-->
+<!--            <class name="testCases.Ad"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="Update User Test">
+        <classes>
+            <class name="testCases.UpdateUserTest"/>
+        </classes>
+    </test>
+    <test name="Find User Test">
+        <classes>
+            <class name="testCases.FindUserTest"/>
         </classes>
     </test>
 </suite>

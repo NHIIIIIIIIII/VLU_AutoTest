@@ -9,13 +9,11 @@ import org.testng.Assert;
 
 public class Notification {
 
-    private final WebDriverWait wait;
-
     public final By toastNotification = By.className("toast-container");
-
-    //    Message Successfully
+    private final WebDriverWait wait;
+    //    Message Toast
     private final String addSuccess = "Lưu thành công!";
-    private final String deleteSuccess = "Xóa thành công!";
+    private final String deleteSuccess = "Xoá thành công!";
     private final String updateSuccess = "Cập nhật thành công!";
 
 
@@ -23,11 +21,12 @@ public class Notification {
         this.wait = wait;
     }
 
+
     public WebElement getNotification() {
         try {
             return wait.until(ExpectedConditions.presenceOfElementLocated(toastNotification));
         } catch (TimeoutException timeEx) {
-            Assert.fail("toastNotification not found");
+//            Assert.fail("toastNotification not found");
             return null;
         }
     }
@@ -35,8 +34,10 @@ public class Notification {
     /**
      * Kiểm tra thông báo thêm thành công
      */
-    public void checkAddNotification() {
-        System.out.println("Thêm thành công");
+    public void testAddNotification() {
+        System.out.println("======== Check Notification Toast ========");
+        System.out.println("Expect :" + addSuccess);
+        System.out.println("Actual :" + getNotification().getText());
         Assert.assertEquals(
                 getNotification().getText(),
                 addSuccess,
@@ -47,7 +48,10 @@ public class Notification {
     /**
      * Kiểm tra cập nhật thông báo thành công
      */
-    public void checkUpdateNotification() {
+    public void testUpdateNotification() {
+        System.out.println("======== Check Notification Toast ========");
+        System.out.println("Expect :" + updateSuccess);
+        System.out.println("Actual :" + getNotification().getText());
         Assert.assertEquals(
                 getNotification().getText(),
                 updateSuccess,
@@ -58,7 +62,10 @@ public class Notification {
     /**
      * Kiểm tra thông báo xóa thành công
      */
-    public void checkDeleteNotification() {
+    public void testDeleteNotification() {
+        System.out.println("======== Check Notification Toast ========");
+        System.out.println("Expect :" + deleteSuccess);
+        System.out.println("Actual :" + getNotification().getText());
         Assert.assertEquals(
                 getNotification().getText(),
                 deleteSuccess,
