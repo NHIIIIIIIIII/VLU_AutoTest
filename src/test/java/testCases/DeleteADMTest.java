@@ -21,12 +21,12 @@ public class DeleteADMTest extends BaseTest {
 
     @Test(priority = 0, testName = "TC_DeleteADM_01")
     public void testDeleteSuccess() {
-        deleteADMPage.searchADM("Tiến sĩ Công nghệ thông tin");
+        deleteADMPage.searchADM("PhD in Information Technology");
         deleteADMPage.clickDeleteButton();
         Assert.assertTrue(deleteADMPage.checkDialogConfirmDisplayed(), "Dialog not displayed");
+        deleteADMPage.checkDialog();
         deleteADMPage.clickDeleteDialog();
         notifiCheck.testDeleteNotification();
-//        deleteADMPage.clickFailClose();
     }
 
     @Test(priority = 1, testName = "TC_DeleteADM_02")
@@ -34,6 +34,7 @@ public class DeleteADMTest extends BaseTest {
         deleteADMPage.searchADM("Tiến sĩ");
         deleteADMPage.clickDeleteButton();
         Assert.assertTrue(deleteADMPage.checkDialogConfirmDisplayed(), "Dialog not displayed");
+        deleteADMPage.checkDialog();
         deleteADMPage.clickDeleteDialog();
         sleep(5);
         System.out.println("======= Fail Notification ======");
