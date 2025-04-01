@@ -24,6 +24,7 @@ public class DeleteMajorTest extends BaseTest {
         deleteMajorPage.searchMajor("CNTT2023Success");
         deleteMajorPage.clickDeleteButton();
         Assert.assertTrue(deleteMajorPage.checkDialogConfirmDisplayed(),"Dialog not displayed");
+        deleteMajorPage.checkDialog();
         deleteMajorPage.clickDeletedDialog();
         notifiCheck.testDeleteNotification();
     }
@@ -35,6 +36,7 @@ public class DeleteMajorTest extends BaseTest {
         deleteMajorPage.searchMajor("012345");
         deleteMajorPage.clickDeleteButton();
         Assert.assertTrue(deleteMajorPage.checkDialogConfirmDisplayed(), "Dialog not displayed");
+        deleteMajorPage.checkDialog();
         deleteMajorPage.clickDeletedDialog();
         sleep(50);
         String messageFail = "Không thể xoá do ngành này đã có dữ liệu!";
