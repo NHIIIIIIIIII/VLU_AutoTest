@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.AddMajorPage;
-import pages.MajorManagementPage;
 import utils.Notification;
 
 public class AddMajorTest extends BaseTest {

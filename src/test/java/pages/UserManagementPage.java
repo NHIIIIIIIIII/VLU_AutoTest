@@ -304,7 +304,7 @@ public class UserManagementPage {
     public void checkSuccessNotification() {
         try {
 
-            notifiCheck.testAddNotification(); // Giả định phương thức này kiểm tra thông báo thành công
+            notifiCheck.testUpdateNotification(); // Giả định phương thức này kiểm tra thông báo thành công
             System.out.println("Success notification checked successfully using notifiCheck.");
         } catch (Exception e) {
             System.out.println("Failed to check success notification: " + e.getMessage());
@@ -373,7 +373,6 @@ public class UserManagementPage {
         if (!role.isEmpty()) selectRole(role);
         clickSaveButton();
     }
-
 
     // Add new user and handle multiple cases
     public void addUserWithMultiCase(String id, String name, String email, String contract, String role) {
