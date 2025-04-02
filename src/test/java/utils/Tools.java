@@ -1,18 +1,20 @@
 package utils;
 
 import org.openqa.selenium.*;
+import org.testng.Assert;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 
 public class Tools {
 
-    private final WebDriver driver;
     private static JavascriptExecutor js;
+    private final WebDriver driver;
 
     public Tools(WebDriver driver) {
         this.driver = driver;
@@ -155,4 +157,64 @@ public class Tools {
     }
 
 
+    public void checkEqualMessage(String actualMessage, String expectMessage) {
+        System.out.println("==========================================");
+        System.out.println("Check Error : ");
+        System.out.println("Actual : " + actualMessage);
+        System.out.println("Expect : " + expectMessage);
+        Assert.assertEquals(actualMessage, expectMessage, "Message not equal");
+        System.out.println("==========================================");
+    }
+
+
+    public void checkContainsMessageList(List<String> actualMessages, String expectedMessage) {
+        System.out.println("==========================================");
+        System.out.println("Check Expect In Actual : ");
+        System.out.println("Actual : " + actualMessages.toString());
+        System.out.println("Expect : " + expectedMessage);
+        System.out.println("==========================================");
+
+        Assert.assertTrue(actualMessages.contains(expectedMessage),
+                          "Expected message '" + expectedMessage + "' not found in " + actualMessages);
+
+    }
+
+    public void checkContainsMessage(String actualMessages, String expectedMessage) {
+        System.out.println("==========================================");
+        System.out.println("Check Expect In Actual : ");
+        System.out.println("Actual : " + actualMessages);
+        System.out.println("Expect : " + expectedMessage);
+        System.out.println("==========================================");
+
+        Assert.assertTrue(actualMessages.contains(expectedMessage),
+                          "Expected message '" + expectedMessage + "' not found in " + actualMessages);
+
+    }
+
+
+    public void checkContainsMessageListElement(List<WebElement> listElement, String expectedMessage) {
+        System.out.println("==========================================");
+        System.out.println("Check Expect In Actual : ");
+
+        // Tạo danh sách chứa nội dung chữ của các phần tử
+        List<String> actualMessages = new ArrayList<>();
+        for (WebElement element : listElement) {
+            actualMessages.add(element.getText().trim()); // Lấy nội dung chữ và bỏ khoảng trắng
+        }
+
+        System.out.println("Actual : " + actualMessages);
+        System.out.println("Expect : " + expectedMessage);
+        System.out.println("==========================================");
+
+        // Kiểm tra nếu expectedMessage có trong danh sách actualMessages
+        boolean found = false;
+        for (String message : actualMessages) {
+            if (message.equals(expectedMessage)) {
+                found = true;
+                break; // Nếu tìm thấy, thoát khỏi vòng lặp ngay
+            }
+        }
+
+        Assert.assertTrue(found, "Expected message '" + expectedMessage + "' not found in " + actualMessages);
+    }
 }

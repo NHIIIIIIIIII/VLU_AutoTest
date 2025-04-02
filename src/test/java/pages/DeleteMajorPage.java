@@ -68,7 +68,6 @@ public class DeleteMajorPage {
 
     public void clickDeletedDialog(){
         wait.until(ExpectedConditions.elementToBeClickable(deleteDialogBtn)).click();
-
     }
     public void clickFailClose() {
         wait.until(ExpectedConditions.elementToBeClickable(failCloseBtn)).click();
