@@ -3,6 +3,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/tests.test/**/build/
+**/src/test/**/test.java
 
 ### Config ###
 config.properties
