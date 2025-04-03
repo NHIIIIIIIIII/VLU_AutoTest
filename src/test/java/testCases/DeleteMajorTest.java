@@ -14,12 +14,12 @@ import java.util.List;
 public class DeleteMajorTest extends BaseTest {
     DeleteMajorPage deleteMajorPage;
     private Notification notifiCheck;
-    Dialog dialogUtils = new Dialog(driver,wait);
+    Dialog dialogUtils;
     @BeforeClass
     public void setupClass() {
         deleteMajorPage = new DeleteMajorPage(driver, wait);
         notifiCheck = new Notification(wait);
-
+        dialogUtils = new Dialog(driver,wait);
     }
 
     @Test(priority = 0,testName = "TC_DM_01")

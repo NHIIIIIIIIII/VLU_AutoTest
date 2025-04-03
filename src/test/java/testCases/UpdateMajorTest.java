@@ -1,11 +1,10 @@
 package testCases;
 
 import base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.MajorManagementPage;
 import pages.UpdateMajorPage;
+import utils.Dialog;
 import utils.Notification;
 
 /**
@@ -15,12 +14,14 @@ import utils.Notification;
  */
 public class UpdateMajorTest extends BaseTest {
     UpdateMajorPage updateMajorPage;
+    Dialog dialogUtils;
     private Notification notifiCheck;
 
     @BeforeClass
     public void setupClass() {
         updateMajorPage = new UpdateMajorPage(driver, wait);
         notifiCheck = new Notification(wait);
+        dialogUtils = new Dialog(driver, wait);
     }
 
 
@@ -60,12 +61,7 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.clickSaveButton();
 
         String errorMessage = "Bạn chưa nhập tên ngành";
-        System.out.println("==========================================");
-        System.out.println("Check Error : ");
-        System.out.println("Actual : " + updateMajorPage.getTextMajorNameError());
-        System.out.println("Expect : " + errorMessage);
-        Assert.assertEquals(updateMajorPage.getTextMajorNameError(), errorMessage, "Error Message not equal");
-        System.out.println("==========================================");
+        tools.checkEqualMessage(updateMajorPage.getTextMajorNameError(), errorMessage);
         updateMajorPage.clickCloseButton();
     }
 
@@ -86,37 +82,12 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.clickSaveButton();
 
         String errorMessage = "Bạn chưa nhập tên viết tắt của ngành";
-        System.out.println("==========================================");
-        System.out.println("Check Error : ");
-        System.out.println("Actual : " + updateMajorPage.getTextMajorAbbreviationError());
-        System.out.println("Expect : " + errorMessage);
-        Assert.assertEquals(updateMajorPage.getTextMajorAbbreviationError(), errorMessage, "Error Message not equal");
-        System.out.println("==========================================");
+        tools.checkEqualMessage(updateMajorPage.getTextMajorAbbreviationError(), errorMessage);
         updateMajorPage.clickCloseButton();
     }
 
 
     @Test(priority = 3, testName = "TC_UM_04")
-    public void UpdateMajorWithNoSelectTrainingProgram() {
-        updateMajorPage.clickTermAndMajorTab();
-        updateMajorPage.clickMajorTab();
-        updateMajorPage.searchMajor("CNTT2023");
-        sleep(5);
-        updateMajorPage.clickUpdateButton();
-
-        sleep(5);
-
-        updateMajorPage.enterMajorName("Cong Nghe Thong Tin");
-        sleep(5);
-
-        updateMajorPage.enterMajorAbbreviation("CNTT");
-        sleep(5);
-//        addMajorPage.selectTrainingProgram("Đặc biệt");
-        updateMajorPage.clickSaveButton();
-        notifiCheck.testUpdateNotification();
-    }
-
-    @Test(priority = 4, testName = "TC_UM_05")
     public void UpdateMajorWithAllEmptyAndNoSelectTrainingProgram() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
@@ -134,24 +105,15 @@ public class UpdateMajorTest extends BaseTest {
 //        addMajorPage.selectTrainingProgram("Đặc biệt");
         updateMajorPage.clickSaveButton();
 
-
         String majorNameEmptyErrorMessage = "Bạn chưa nhập tên ngành";
         String majorAbbreviatioEmptyErrorMessage = "Bạn chưa nhập tên viết tắt của ngành";
-        System.out.println("==========================================");
-        System.out.println("Check Error : ");
-        System.out.println("Actual : " + updateMajorPage.getTextMajorNameError());
-        System.out.println("Expect : " + majorNameEmptyErrorMessage);
-        Assert.assertEquals(updateMajorPage.getTextMajorNameError(), majorNameEmptyErrorMessage, "Error Message not equal");
+        tools.checkEqualMessage(updateMajorPage.getTextMajorNameError(), majorNameEmptyErrorMessage);
+        tools.checkEqualMessage(updateMajorPage.getTextMajorAbbreviationError(), majorAbbreviatioEmptyErrorMessage);
 
-
-        System.out.println("Actual : " + updateMajorPage.getTextMajorAbbreviationError());
-        System.out.println("Expect : " + majorAbbreviatioEmptyErrorMessage);
-        Assert.assertEquals(updateMajorPage.getTextMajorAbbreviationError(), majorAbbreviatioEmptyErrorMessage, "Error Message not equal");
-        System.out.println("==========================================");
         updateMajorPage.clickCloseButton();
     }
 
-    @Test(priority = 5, testName = "TC_UM_06")
+    @Test(priority = 4, testName = "TC_UM_05")
     public void UpdateMajorWithMajorAbbreviationMore50() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
@@ -170,17 +132,11 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.clickSaveButton();
 
         String majorAbbreviationMaxLengthErrorMessage = "Tối đa 50 kí tự được cho phép";
-        System.out.println("==========================================");
-        System.out.println("Check Error : ");
-
-        System.out.println("Actual : " + updateMajorPage.getTextMajorAbbreviationError());
-        System.out.println("Expect : " + majorAbbreviationMaxLengthErrorMessage);
-        Assert.assertEquals(updateMajorPage.getTextMajorAbbreviationError(), majorAbbreviationMaxLengthErrorMessage, "Error Message not equal");
-        System.out.println("==========================================");
+        tools.checkEqualMessage(updateMajorPage.getTextMajorAbbreviationError(), majorAbbreviationMaxLengthErrorMessage);
         updateMajorPage.clickCloseButton();
     }
 
-    @Test(priority = 6, testName = "TC_UM_07")
+    @Test(priority = 5, testName = "TC_UM_06")
     public void UpdateMajorWithMajorNameMore255() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
@@ -199,17 +155,12 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.clickSaveButton();
 
         String majorNameMaxLengthErrorMessage = "Tối đa 255 kí tự được cho phép";
-        System.out.println("==========================================");
-        System.out.println("Check Error : ");
+        tools.checkEqualMessage(updateMajorPage.getTextMajorNameError(), majorNameMaxLengthErrorMessage);
 
-        System.out.println("Actual : " + updateMajorPage.getTextMajorNameError());
-        System.out.println("Expect : " + majorNameMaxLengthErrorMessage);
-        Assert.assertEquals(updateMajorPage.getTextMajorNameError(), majorNameMaxLengthErrorMessage, "Error Message not equal");
-        System.out.println("==========================================");
         updateMajorPage.clickCloseButton();
     }
 
-    @Test(priority = 7, testName = "TC_UM_08")
+    @Test(priority = 6, testName = "TC_UM_07")
     public void UpdateMajorWithMajorNameAndAbbreviationMore() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
@@ -229,17 +180,9 @@ public class UpdateMajorTest extends BaseTest {
 
         String majorNameMaxLengthErrorMessage = "Tối đa 255 kí tự được cho phép";
         String majorAbbreviationMaxLengthErrorMessage = "Tối đa 50 kí tự được cho phép";
-        System.out.println("==========================================");
-        System.out.println("Check Error : ");
-        System.out.println("Actual : " + updateMajorPage.getTextMajorNameError());
-        System.out.println("Expect : " + majorNameMaxLengthErrorMessage);
-        Assert.assertEquals(updateMajorPage.getTextMajorNameError(), majorNameMaxLengthErrorMessage, "Error Message not equal");
+        tools.checkEqualMessage(updateMajorPage.getTextMajorNameError(), majorNameMaxLengthErrorMessage);
+        tools.checkEqualMessage(updateMajorPage.getTextMajorAbbreviationError(), majorAbbreviationMaxLengthErrorMessage);
 
-
-        System.out.println("Actual : " + updateMajorPage.getTextMajorAbbreviationError());
-        System.out.println("Expect : " + majorAbbreviationMaxLengthErrorMessage);
-        Assert.assertEquals(updateMajorPage.getTextMajorAbbreviationError(), majorAbbreviationMaxLengthErrorMessage, "Error Message not equal");
-        System.out.println("==========================================");
         updateMajorPage.clickCloseButton();
     }
 

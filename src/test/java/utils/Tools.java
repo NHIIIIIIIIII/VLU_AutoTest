@@ -166,6 +166,15 @@ public class Tools {
         System.out.println("==========================================");
     }
 
+    public void checkEqualBoolean(Boolean actualMessage, Boolean expectMessage) {
+        System.out.println("==========================================");
+        System.out.println("Check Error : ");
+        System.out.println("Actual : " + actualMessage);
+        System.out.println("Expect : " + expectMessage);
+        Assert.assertEquals(actualMessage, expectMessage, "Message not equal");
+        System.out.println("==========================================");
+    }
+
 
     public void checkContainsMessageList(List<String> actualMessages, String expectedMessage) {
         System.out.println("==========================================");
@@ -179,7 +188,7 @@ public class Tools {
 
     }
 
-    public void checkContainsMessage(String actualMessages, String expectedMessage) {
+    public void checkContainsMessage(List<String> actualMessages, String expectedMessage) {
         System.out.println("==========================================");
         System.out.println("Check Expect In Actual : ");
         System.out.println("Actual : " + actualMessages);

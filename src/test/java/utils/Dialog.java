@@ -16,7 +16,7 @@ public class Dialog {
     private final WebDriver driver;
     private final WebDriverWait wait;
 
-    private final By dialogConfirm = By.xpath("//div[contains(@role,'dialog')]");
+    private final By dialogConfirm = By.xpath("//div[@aria-labelledby='swal2-title' and @role='dialog']");
     private final By dialogContent = By.xpath("//div[@id='swal2-html-container']");
     private final By CloseBtn = By.xpath("//button[normalize-space()='OK']");
     private final By dialogTitle = By.xpath("//h2[@id='swal2-title']");
