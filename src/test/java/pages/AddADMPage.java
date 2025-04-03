@@ -15,6 +15,7 @@ public class AddADMPage extends BaseTest {
     private final Notification notification;
 
     // Locators for Button Elements
+    private final By openADTab = By.xpath("//div[@role='dialog']");
     private final By addADButton = By.xpath("//button[@class='dt-button createNew btn btn-primary']");
     private final By saveADButton = By.xpath("//button[contains(text(),'Lưu')]");
     private final By okADButton = By.xpath("//button[normalize-space()='OK']");
@@ -24,13 +25,16 @@ public class AddADMPage extends BaseTest {
     private final By nameADInput = By.xpath("//input[@id='name']");
     private final By orderADInput = By.xpath("//input[@id='level']");
 
+    // Locator for Dialog Error Element
+    private final By dialogErrorField = By.id("swal2-html-container");
+    private final By notificationTextDialog = By.xpath("//h2[@id='swal2-title']");
+    private final By notificationMessageDialog = By.xpath("//div[@id='swal2-html-container']");
+    private final By closeADBtnDialog = By.xpath("//button[@class='ui-dialog-titlebar-close btn-close']");
     // Locators for Field Errors
     private final By adIdError = By.id("id-error");
     private final By adNameError = By.id("name-error");
     private final By adOrderError = By.id("level-error");
 
-    // Locator for Dialog Error Element
-    private final By dialogErrorField = By.id("swal2-html-container");
 
     // Error Messages
     private final String idADEmptyEM = "Bạn chưa nhập mã học hàm, học vị";
@@ -65,6 +69,20 @@ public class AddADMPage extends BaseTest {
     public String getOrderADMinLengthEM() { return orderADMinLengthEM; }
 
     // Action Methods
+    public boolean isDialogDisplayed() {
+        try {
+            sleep(2);
+            if (driver.findElement(openADTab).isDisplayed()) {
+                System.out.println("Tab Quản lý học hàm, học vị đã xuất hiện");
+                return true;
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("Tab Quản lý học hàm, học vị chưa xuất hiện");
+        }
+        return false;
+    }
+
+
     public void clickAddADButton() {
         wait.until(ExpectedConditions.elementToBeClickable(addADButton)).click();
     }
@@ -73,13 +91,17 @@ public class AddADMPage extends BaseTest {
         wait.until(ExpectedConditions.elementToBeClickable(saveADButton)).click();
     }
 
-    public void clickOkADButton() {
+    public void clickOkADButtonDialog() {
         wait.until(ExpectedConditions.elementToBeClickable(okADButton)).click();
+    }
+    public void clickCloseADButtonDialog() {
+        wait.until(ExpectedConditions.elementToBeClickable(closeADBtnDialog)).click();
     }
 
     public void clickCloseADButton() {
         wait.until(ExpectedConditions.elementToBeClickable(closeADButton)).click();
     }
+
 
     public void enterCodeAD(String code) {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(codeADInput));
@@ -121,6 +143,48 @@ public class AddADMPage extends BaseTest {
 
     public String getTextADOrderError() {
         return wait.until(ExpectedConditions.presenceOfElementLocated(adOrderError)).getText();
+    }
+
+    // Methods Dialog
+    public boolean checkTextDialog(WebDriver driver) {
+        try {
+            driver.findElement(notificationTextDialog);
+            System.out.println("Text Dialog is displayed");
+            return true;
+        } catch (NoSuchElementException e) {
+            System.out.println("Text Dialog not found displayed");
+            return false;
+        }
+    }
+
+    public boolean checkMessageDialog(WebDriver driver) {
+        try {
+            driver.findElement(notificationMessageDialog);
+            System.out.println("Message Dialog is displayed");
+            return true;
+        } catch (NoSuchElementException e) {
+            System.out.println("Message Dialog not found displayed");
+            return false;
+        }
+    }
+
+    public boolean checkOKDialogBtn(WebDriver driver) {
+        try {
+            driver.findElement(okADButton);
+            System.out.println("OK Dialog Button is displayed");
+            return true;
+        } catch (NoSuchElementException e) {
+            System.out.println("OK Dialog Button not found displayed");
+            return false;
+        }
+    }
+
+
+    public void checkDialog() {
+        checkTextDialog(driver);
+        checkMessageDialog(driver);
+        checkOKDialogBtn(driver);
+
     }
 
     // Error Checking Methods

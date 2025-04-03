@@ -42,7 +42,10 @@ public class Notification {
                 getNotification().getText(),
                 addSuccess,
                 "Notification message not match with expect"
+
         );
+        System.out.println("==========================================");
+
     }
 
     /**
@@ -57,6 +60,8 @@ public class Notification {
                 updateSuccess,
                 "Notification message not match with expect"
         );
+        System.out.println("==========================================");
+
     }
 
     /**
@@ -71,6 +76,8 @@ public class Notification {
                 deleteSuccess,
                 "Notification message not match with expect"
         );
+        System.out.println("==========================================");
+
     }
 
 }

@@ -27,11 +27,13 @@ import java.util.List;
 
     @Test(priority = 0, testName = "TC_DeleteADM_01")
     public void testDeleteSuccess() {
-        deleteADMPage.searchADM("PhD in Information Technology");
+        deleteADMPage.searchADM("Tiến sĩ Công nghệ thông tin");
         deleteADMPage.clickDeleteButton();
         tools.checkEqualBoolean("Kiểm tra dialog hiển thị",dialogUtils.checkDialogConfirmDisplayed(),true);
         deleteADMPage.checkDialog();
+        sleep(3);
         deleteADMPage.clickDeleteDialog();
+        sleep(3);
         notifiCheck.testDeleteNotification();
     }
 
@@ -41,11 +43,20 @@ import java.util.List;
         deleteADMPage.clickDeleteButton();
         tools.checkEqualBoolean("Kiểm tra dialog hiển thị",dialogUtils.checkDialogConfirmDisplayed(),true);
         deleteADMPage.checkDialog();
-        deleteADMPage.clickDeleteDialog();
         sleep(5);
         System.out.println("======= Fail Notification ======");
-        tools.checkEqualBoolean("Kiểm tra dialog hiển thị",dialogUtils.checkDialogConfirmDisplayed(),true);
+        tools.checkEqualMessage(
+                dialogUtils.getTitleDialog(),
+                "Thông báo"
+        );
 
+        tools.checkEqualMessage(
+                dialogUtils.getContentDialog(),
+                "Bạn có chắc muốn xoá học hàm, học vị này?"
+        );
+        sleep(2);
+        deleteADMPage.clickDeleteDialog();
+        sleep(2);
         tools.checkEqualMessage(
                 dialogUtils.getTitleDialog(),
                 "Thông báo"
@@ -68,6 +79,7 @@ import java.util.List;
 
         tools.checkContainsMessageListElement(buttons, "OK");
         deleteADMPage.clickFailClose();
+
 
     }
 

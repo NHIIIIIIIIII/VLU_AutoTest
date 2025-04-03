@@ -26,24 +26,11 @@ public class DeleteADMPage {
     private final By deleteDialogBtn = By.xpath("//button[normalize-space()='Xoá']");
     private final By closeDialogBtn = By.xpath("//button[contains(text(),'Huỷ')]");
 
-    // Locators for Field Errors
-    private final By findNotFound = By.xpath("//td[@class='dataTables_empty']");
-
-    // Error Messages
-    private final String errorDataAvailable = "Không thể xoá do học hàm, học vị này đã có dữ liệu!";
-    private final String errorFindNotFound = "Không tìm thấy kết quả";
-
     // Constructor
     public DeleteADMPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
         this.notifiCheck = new Notification(this.wait);
-    }
-
-    // Getters for Error Messages
-
-    public String getErrorFindNotFound() {
-        return errorFindNotFound;
     }
 
     // Getter for Notification
@@ -65,36 +52,8 @@ public class DeleteADMPage {
                 .sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, searchValue);
     }
 
-    public boolean checkDialogConfirmDisplayed() {
-        try {
-            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
-            WebElement dialogElement = shortWait.until(ExpectedConditions.visibilityOfElementLocated(dialogConfirm));
-            System.out.println("Dialog is displayed");
-            return true;
-        } catch (TimeoutException timeEx) {
-            return false;
-        }
-    }
-
-    public WebElement getFailNotification() {
-        try {
-            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
-            return shortWait.until(ExpectedConditions.visibilityOfElementLocated(this.failNotification));
-        } catch (TimeoutException timeoutException) {
-            Assert.fail("Not found failNotification");
-            return null;
-        }
-    }
-
-    public String getTextFailNotification() {
-        return getFailNotification().getText();
-    }
-
-    public String getTextFindNotFound() {
-        return wait.until(ExpectedConditions.presenceOfElementLocated(findNotFound)).getText();
-    }
-
     // Methods Dialog
+
     public boolean checkTextDialog(WebDriver driver) {
         try {
             driver.findElement(notificationTextDialog);
