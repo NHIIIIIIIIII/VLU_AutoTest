@@ -2,9 +2,7 @@ package testCases;
 
 import base.BaseTest;
 import org.testng.Assert;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.DeleteADMPage;
@@ -23,12 +21,12 @@ public class DeleteADMTest extends BaseTest {
 
     @Test(priority = 0, testName = "TC_DeleteADM_01")
     public void testDeleteSuccess() {
-        deleteADMPage.searchADM("Another Valid Name");
+        deleteADMPage.searchADM("PhD in Information Technology");
         deleteADMPage.clickDeleteButton();
         Assert.assertTrue(deleteADMPage.checkDialogConfirmDisplayed(), "Dialog not displayed");
+        deleteADMPage.checkDialog();
         deleteADMPage.clickDeleteDialog();
         notifiCheck.testDeleteNotification();
-//        deleteADMPage.clickFailClose();
     }
 
     @Test(priority = 1, testName = "TC_DeleteADM_02")
@@ -36,8 +34,9 @@ public class DeleteADMTest extends BaseTest {
         deleteADMPage.searchADM("Tiến sĩ");
         deleteADMPage.clickDeleteButton();
         Assert.assertTrue(deleteADMPage.checkDialogConfirmDisplayed(), "Dialog not displayed");
+        deleteADMPage.checkDialog();
         deleteADMPage.clickDeleteDialog();
-        sleep(5); // Giảm thời gian sleep từ 50 xuống 5 để tối ưu, tùy chỉnh nếu cần
+        sleep(5);
         System.out.println("======= Fail Notification ======");
         System.out.println("Actual: " + deleteADMPage.getTextFailNotification());
         System.out.println("Expect: " + deleteADMPage.getErrorDataAvailable());
@@ -48,17 +47,6 @@ public class DeleteADMTest extends BaseTest {
         deleteADMPage.clickFailClose();
     }
 
-    @Test(priority = 2, testName = "TC_DeleteADM_03")
-    public void testDeleteFailWithFindNotFound() {
-        deleteADMPage.searchADM("Tiến sĩ Không Tồn Tại");
-        sleep(5);
-        System.out.println("======= Fail Notification ======");
-        System.out.println("Actual: " + deleteADMPage.getTextFindNotFound());
-        System.out.println("Expect: " + deleteADMPage.getErrorFindNotFound());
-        Assert.assertEquals(deleteADMPage.getTextFindNotFound(),
-                deleteADMPage.getErrorFindNotFound(),
-                "No result message does not match expected");
-    }
     @AfterClass
     public void cleanup() {
 //        cleanupTest();

@@ -16,7 +16,6 @@ public class UpdateUserTest extends BaseTest {
         UserManagement = new UserManagementPage(driver, wait);
     }
 
-
     @BeforeMethod
     public void prepareTest() {
         // Bấm vào tab Người dùng
@@ -76,11 +75,11 @@ public class UpdateUserTest extends BaseTest {
 
     @AfterMethod
     public void cleanupAfterTest() {
-        // Bấm nút Exit (closeButton) để đóng form sau mỗi DeleteMajorTest case
+        // Bấm nút Exit (closeButton) để đóng form sau mỗi test case
         try {
             UserManagement.clickCloseButton();
         } catch (Exception e) {
-            System.out.println("Không thể bấm nút Exit sau DeleteMajorTest case. Chi tiết lỗi: " + e.getMessage());
+            System.out.println("Không thể bấm nút Exit sau test case. Chi tiết lỗi: " + e.getMessage());
         }
     }
 }

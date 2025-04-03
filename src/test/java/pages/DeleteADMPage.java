@@ -17,9 +17,14 @@ public class DeleteADMPage {
     private final By deleteBtn = By.xpath("//a[@title='Xoá']");
     private final By searchBoxField = By.xpath("//input[@placeholder='Nhập tìm kiếm...']");
     private final By dialogConfirm = By.xpath("//div[contains(@role,'dialog')]");
-    private final By deleteDialogBtn = By.xpath("//button[normalize-space()='Xoá']");
     private final By failNotification = By.xpath("(//div[@id='swal2-html-container'])[1]");
-    private final By failCloseBtn = By.xpath("//button[normalize-space()='OK']");
+    private final By failOKBtn = By.xpath("//button[normalize-space()='OK']");
+
+    // Locators dialog
+    private final By notificationTextDialog = By.xpath("//h2[@id='swal2-title']");
+    private final By notificationMessageDialog = By.xpath("//div[@id='swal2-html-container']");
+    private final By deleteDialogBtn = By.xpath("//button[normalize-space()='Xoá']");
+    private final By closeDialogBtn = By.xpath("//button[contains(text(),'Huỷ')]");
 
     // Locators for Field Errors
     private final By findNotFound = By.xpath("//td[@class='dataTables_empty']");
@@ -36,21 +41,26 @@ public class DeleteADMPage {
     }
 
     // Getters for Error Messages
-    public String getErrorDataAvailable() { return errorDataAvailable; }
-    public String getErrorFindNotFound() { return errorFindNotFound; }
+    public String getErrorDataAvailable() {
+        return errorDataAvailable;
+    }
+
+    public String getErrorFindNotFound() {
+        return errorFindNotFound;
+    }
+
+    // Getter for Notification
+    public Notification getNotifiCheck() {
+        return notifiCheck;
+    }
 
     // Methods
-
     public void clickDeleteButton() {
         wait.until(ExpectedConditions.elementToBeClickable(deleteBtn)).click();
     }
 
-    public void clickDeleteDialog() {
-        wait.until(ExpectedConditions.elementToBeClickable(deleteDialogBtn)).click();
-    }
-
     public void clickFailClose() {
-        wait.until(ExpectedConditions.elementToBeClickable(failCloseBtn)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(failOKBtn)).click();
     }
 
     public void searchADM(String searchValue) {
@@ -82,12 +92,69 @@ public class DeleteADMPage {
     public String getTextFailNotification() {
         return getFailNotification().getText();
     }
+
     public String getTextFindNotFound() {
         return wait.until(ExpectedConditions.presenceOfElementLocated(findNotFound)).getText();
     }
 
-    // Getter for Notification
-    public Notification getNotifiCheck() {
-        return notifiCheck;
+    // Methods Dialog
+    public boolean checkTextDialog(WebDriver driver) {
+        try {
+            driver.findElement(notificationTextDialog);
+            System.out.println("Text Dialog is displayed");
+            return true;
+        } catch (NoSuchElementException e) {
+            System.out.println("Text Dialog not found displayed");
+            return false;
+        }
+    }
+
+    public boolean checkMessageDialog(WebDriver driver) {
+        try {
+            driver.findElement(notificationMessageDialog);
+            System.out.println("Message Dialog is displayed");
+            return true;
+        } catch (NoSuchElementException e) {
+            System.out.println("Message Dialog not found displayed");
+            return false;
+        }
+    }
+
+    public boolean checkDeleteDialogBtn(WebDriver driver) {
+        try {
+            driver.findElement(deleteDialogBtn);
+            System.out.println("Delete Dialog Button is displayed");
+            return true;
+        } catch (NoSuchElementException e) {
+            System.out.println("Delete Dialog Button not found displayed");
+            return false;
+        }
+    }
+
+    public boolean checkCloseDialogBtn(WebDriver driver) {
+        try {
+            driver.findElement(closeDialogBtn);
+            System.out.println("Close Dialog Button is displayed");
+            return true;
+        } catch (NoSuchElementException e) {
+            System.out.println("Close Dialog Button not found displayed");
+            return false;
+        }
+    }
+
+    public void clickDeleteDialog() {
+        wait.until(ExpectedConditions.elementToBeClickable(deleteDialogBtn)).click();
+    }
+
+    public void clickCloseDialog() {
+        wait.until(ExpectedConditions.elementToBeClickable(closeDialogBtn)).click();
+    }
+
+    public void checkDialog() {
+        checkTextDialog(driver);
+        checkMessageDialog(driver);
+        checkDeleteDialogBtn(driver);
+        checkCloseDialogBtn(driver);
+
     }
 }

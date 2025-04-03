@@ -50,6 +50,7 @@ public class DeleteMajorTest extends BaseTest {
         tools.checkContainsMessageListElement(buttons,"Xoá");
         tools.checkContainsMessageListElement(buttons,"Huỷ");
 
+
         deleteMajorPage.clickDeletedDialog();
         notifiCheck.testDeleteNotification();
     }
@@ -72,6 +73,7 @@ public class DeleteMajorTest extends BaseTest {
                 dialogUtils.getContentDialog(),
                 "Bạn có chắc muốn xoá ngành này?"
         );
+
 
         deleteMajorPage.clickDeletedDialog();
         sleep(10);
