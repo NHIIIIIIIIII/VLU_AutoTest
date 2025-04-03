@@ -29,9 +29,9 @@ public class JsonReader extends BaseTest {
     public Object[][] AcademicDegreeData() {
         return new Object[][]{
                 {tools.generateRandomString(10), "Tiến sĩ Công nghệ thông tin", 12},
+                {"A1234BC5", "Another Valid Name", 2},  // Thất bại do mã học hàm trùng lặp (ID duplicate)
                 {tools.generateRandomString(100), tools.generateRandomString(150), 110},
                 {"", "", null },  // Thất bại do trống cột - id
-                {"A1234BC5", "Another Valid Name", 2},  // Thất bại do mã học hàm trùng lặp (ID duplicate)
                 {"MO0$%02", "Valid Name", 1},  // Thất bại do mã học hàm có ký tự đặc biệt (ID không hợp lệ)
                 {tools.generateRandomString(10), "Valid Name", 0},  // Thất bại do thứ tự = 0 (Order = 0)
         };
