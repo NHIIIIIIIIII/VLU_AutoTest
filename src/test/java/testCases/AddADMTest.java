@@ -2,6 +2,7 @@ package testCases;
 
 import base.BaseTest;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -9,15 +10,18 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.AddADMPage;
+import utils.Dialog;
 import utils.JsonReader;
 import utils.Notification;
 
 import java.time.Duration;
+import java.util.List;
 
 public class AddADMTest extends BaseTest {
     private AddADMPage addADMPage;
     private Notification notifiCheck;
     private JsonReader jsonReader;
+    Dialog dialogUtils;
 
     /**
      * @author Nguyễn Liên Nhi - 2274802010612
@@ -31,10 +35,12 @@ public class AddADMTest extends BaseTest {
         addADMPage = new AddADMPage(driver);
         notifiCheck = new Notification(wait);
         jsonReader = new JsonReader();
+        dialogUtils = new Dialog(driver, wait);
     }
 
     @Test(priority = 1, testName = "TC_AddADM_01")
     public void testAddADMSucces() {
+        addADMPage.isDialogDisplayed();
         Object[] data = jsonReader.getTestCase(0); //
         addADMPage.clickAddADButton();
         sleep(5);
@@ -53,10 +59,75 @@ public class AddADMTest extends BaseTest {
         sleep(5);
     }
 
-//   data > maxLength
+    // data duplicate id - trùng lặp id
     @Test(priority = 2, testName = "TC_AddADM_02")
-    public void testAddADMErrorWithDataMaxLength() {
+    public void testAddADMErrorWithDuplicateID() {
         Object[] data = jsonReader.getTestCase(1);
+        addADMPage.clickAddADButton();
+        sleep(5);
+
+        addADMPage.enterCodeAD((String) data[0]);
+        sleep(5);
+
+        addADMPage.enterNameAD((String) data[1]);
+        sleep(5);
+
+        addADMPage.enterOrderAD(String.valueOf((int) data[2]));
+        sleep(5);
+
+        addADMPage.clickSaveADButton();
+        sleep(2);
+
+        addADMPage.checkDialog();
+        System.out.println("======= Fail Notification ======");
+        tools.checkEqualBoolean("Kiểm tra dialog hiển thị",dialogUtils.checkDialogConfirmDisplayed(),true);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleDialog(),
+                "Thông báo"
+        );
+
+        tools.checkEqualMessage(
+                dialogUtils.getContentDialog(),
+                "Mã học hàm, học vị này đã tồn tại!"
+        );
+
+        sleep(20);
+
+        List<WebElement> buttons = dialogUtils.getElementsDialog();
+
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 1,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+
+        tools.checkContainsMessageListElement(buttons, "OK");
+        sleep(2);
+        addADMPage.clickOkADButtonDialog();
+        addADMPage.clickCloseADButtonDialog();
+
+//        // Replace sleep with explicit wait for the error dialog
+//        try {
+//            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//            wait.until(ExpectedConditions.visibilityOf(addADMPage.checkErrorDialogDisplayed()));
+//            System.out.println("==========================================");
+//            System.out.println("Check Error: ");
+//            System.out.println("Actual: " + addADMPage.checkErrorDialogDisplayed().getText());
+//            System.out.println("Expect: " + addADMPage.getIdADDuplicateEM());
+//            Assert.assertEquals(addADMPage.checkErrorDialogDisplayed().getText(), addADMPage.getIdADDuplicateEM(), "Error Id Duplicated");
+//            System.out.println("==========================================");
+//
+//            addADMPage.clickOkADButton();
+//        } catch (TimeoutException e) {
+//            Assert.fail("Error dialog did not appear within 10 seconds", e);
+//        }
+    }
+
+    //   data > maxLength
+    @Test(priority = 3, testName = "TC_AddADM_03")
+    public void testAddADMErrorWithDataMaxLength() {
+        Object[] data = jsonReader.getTestCase(2);
         addADMPage.clickAddADButton();
         sleep(5);
 
@@ -89,9 +160,9 @@ public class AddADMTest extends BaseTest {
     }
 
     // data empty - trống thông tin
-    @Test(priority = 3, testName = "TC_AddADM_03")
+    @Test(priority = 4, testName = "TC_AddADM_04")
     public void testAddADMErrorWithDataEmpty() {
-        Object[] data = jsonReader.getTestCase(2);
+        Object[] data = jsonReader.getTestCase(3);
         addADMPage.clickAddADButton();
         sleep(5);
 
@@ -127,42 +198,6 @@ public class AddADMTest extends BaseTest {
         sleep(2);
     }
 
-    // data duplicate id - trùng lặp id
-    @Test(priority = 4, testName = "TC_AddADM_04")
-    public void testAddADMErrorWithDuplicateID() {
-        Object[] data = jsonReader.getTestCase(3);
-        addADMPage.clickAddADButton();
-        sleep(5);
-
-        addADMPage.enterCodeAD((String) data[0]);
-        sleep(5);
-
-        addADMPage.enterNameAD((String) data[1]);
-        sleep(5);
-
-        addADMPage.enterOrderAD(String.valueOf((int) data[2]));
-        sleep(5);
-
-        addADMPage.clickSaveADButton();
-        sleep(2);
-
-        // Replace sleep with explicit wait for the error dialog
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.visibilityOf(addADMPage.checkErrorDialogDisplayed()));
-        System.out.println("==========================================");
-        System.out.println("Check Error: ");
-        System.out.println("Actual: " + addADMPage.checkErrorDialogDisplayed().getText());
-        System.out.println("Expect: " + addADMPage.getIdADDuplicateEM());
-        Assert.assertEquals(addADMPage.checkErrorDialogDisplayed().getText(), addADMPage.getIdADDuplicateEM(), "Error Id Duplicated");
-        System.out.println("==========================================");
-
-        addADMPage.clickOkADButton();
-        addADMPage.clickCloseADButton();
-        } catch (TimeoutException e) {
-            Assert.fail("Error dialog did not appear within 10 seconds", e);
-        }
-    }
 
     // Data Invalid Format ID - định dạng ko hợp lệ
     @Test(priority = 5, testName = "TC_AddADM_05")

@@ -70,7 +70,7 @@ public class UpdateADMTest extends BaseTest {
         updateADMPage.clickEditADButton();
         sleep(5);
 
-        updateADMPage.enterNameAD("A very long name exceeding 100 characters A very long name exceeding 100 characters A very long name exceeding 100 characters");
+        updateADMPage.enterNameAD("Tiến sĩ Công nghệ thông tin và Truyền thông, chuyên về trí tuệ nhân tạo và các ứng dụng trong đời sống hàng ngày và Tiến sĩ Công nghệ thông tin và Truyền thông, chuyên về trí tuệ nhân tạo và các ứng dụng trong đời sống hàng ngày");
         sleep(5);
 
         updateADMPage.enterOrderAD("3");
