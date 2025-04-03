@@ -28,7 +28,7 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
-        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
 
         addMajorPage.enterMajorId("CNTT2023Success");
         sleep(5);
@@ -50,7 +50,7 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
-        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
 
         addMajorPage.enterMajorId("CNTT2023");
         sleep(5);
@@ -102,7 +102,7 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
-        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
 
         addMajorPage.enterMajorId("CNTT202 3");
         sleep(5);
@@ -136,7 +136,7 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
-        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
 
         addMajorPage.enterMajorId("CNTT2023#@$%^");
         sleep(5);
@@ -171,7 +171,7 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
-        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
 
         addMajorPage.enterMajorId("");
         sleep(5);
@@ -236,7 +236,7 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
-        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
 
         addMajorPage.enterMajorId("LoremipsumdolorsitametconsecteturadipiscingelitLoremipsumdolorsitametconsecteturadipiscingelitLoremipsumdolorsitametconsecteturadipiscingelitLoremipsumdolorsitametconsecteturadipiscingelitwdrgvggreag");
         sleep(5);

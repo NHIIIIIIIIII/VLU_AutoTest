@@ -41,9 +41,6 @@ public class DeleteADMPage {
     }
 
     // Getters for Error Messages
-    public String getErrorDataAvailable() {
-        return errorDataAvailable;
-    }
 
     public String getErrorFindNotFound() {
         return errorFindNotFound;
