@@ -20,6 +20,7 @@ public class Dialog {
     private final By dialogContent = By.xpath("//div[@id='swal2-html-container']");
     private final By CloseBtn = By.xpath("//button[normalize-space()='OK']");
     private final By dialogTitle = By.xpath("//h2[@id='swal2-title']");
+    private final By dialogManagement = By.xpath("//div[@role='dialog' and @class='ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-draggable']");
 
     public Dialog(WebDriver driver, WebDriverWait wait){
         this.driver = driver;
@@ -70,6 +71,12 @@ public class Dialog {
         return null;
     }
 
-
+    public boolean checkDialogAddDisplayed() {
+        try {
+            return wait.until(ExpectedConditions.presenceOfElementLocated(dialogManagement)).isDisplayed();
+        } catch (TimeoutException tm) {
+            return false;
+        }
+    }
 
 }

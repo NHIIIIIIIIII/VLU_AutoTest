@@ -159,16 +159,16 @@ public class Tools {
 
     public void checkEqualMessage(String actualMessage, String expectMessage) {
         System.out.println("==========================================");
-        System.out.println("Check Error : ");
+        System.out.println("Check Expect In Actual ");
         System.out.println("Actual : " + actualMessage);
         System.out.println("Expect : " + expectMessage);
         Assert.assertEquals(actualMessage, expectMessage, "Message not equal");
         System.out.println("==========================================");
     }
 
-    public void checkEqualBoolean(Boolean actualMessage, Boolean expectMessage) {
+    public void checkEqualBoolean(String title , Boolean actualMessage, Boolean expectMessage) {
         System.out.println("==========================================");
-        System.out.println("Check Error : ");
+        System.out.println("Check Expect In Actual "+ title);
         System.out.println("Actual : " + actualMessage);
         System.out.println("Expect : " + expectMessage);
         Assert.assertEquals(actualMessage, expectMessage, "Message not equal");

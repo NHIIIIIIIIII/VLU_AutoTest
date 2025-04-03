@@ -33,6 +33,7 @@ public class UpdateMajorTest extends BaseTest {
         sleep(5);
         updateMajorPage.clickUpdateButton();
         sleep(5);
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
 
         updateMajorPage.enterMajorName("Công nghệ thông tin 2023");
         sleep(5);
@@ -48,9 +49,11 @@ public class UpdateMajorTest extends BaseTest {
     public void UpdateMajorWithEmptyName() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
+
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
 
         updateMajorPage.enterMajorName("");
         sleep(5);
@@ -72,6 +75,7 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
 
         updateMajorPage.enterMajorName("Cong Nghe Thong Tin");
         sleep(5);
@@ -94,6 +98,7 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
 
         sleep(5);
 
@@ -120,6 +125,7 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
 
         sleep(5);
 
@@ -143,6 +149,7 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
 
         sleep(5);
 
@@ -167,6 +174,7 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
 
         sleep(5);
 

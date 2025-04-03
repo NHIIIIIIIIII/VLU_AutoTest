@@ -5,7 +5,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import utils.Notification;
 
 import java.time.Duration;
 
@@ -67,6 +66,8 @@ public class AddMajorPage {
         trainingProgramDropdownElement.selectByVisibleText(item);
 
     }
+
+
 
 
     /**
@@ -154,11 +155,12 @@ public class AddMajorPage {
     public void clickUpdateButton() {
         wait.until(ExpectedConditions.elementToBeClickable(updateButton)).click();
     }
+
     public void searchMajor(String searchValue) {
         wait.until(ExpectedConditions.presenceOfElementLocated(searchBoxField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, searchValue);
     }
 
-    public String getTextMajorIdError(){
+    public String getTextMajorIdError() {
         return wait.until(ExpectedConditions.presenceOfElementLocated(majorIdError)).getText();
 
     }
@@ -167,11 +169,11 @@ public class AddMajorPage {
         return wait.until(ExpectedConditions.presenceOfElementLocated(majorNameError)).getText();
     }
 
-    public String getTextMajorAbbreviationError(){
+    public String getTextMajorAbbreviationError() {
         return wait.until(ExpectedConditions.presenceOfElementLocated(majorAbbreviationError)).getText();
     }
 
-    public String getTextTrainingProgramError(){
+    public String getTextTrainingProgramError() {
         return wait.until(ExpectedConditions.presenceOfElementLocated(programTypeError)).getText();
 
     }
