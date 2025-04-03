@@ -1,21 +1,27 @@
-package testCases;
+    package testCases;
 
 import base.BaseTest;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.DeleteADMPage;
+import utils.Dialog;
 import utils.Notification;
 
-public class DeleteADMTest extends BaseTest {
+import java.util.List;
+
+    public class DeleteADMTest extends BaseTest {
     DeleteADMPage deleteADMPage;
     private Notification notifiCheck;
+    Dialog dialogUtils;
 
     @BeforeClass
     public void setupClass() {
         driver.get("https://cntttest.vanlanguni.edu.vn:18081/Phancong02/AcademicDegree");
         deleteADMPage = new DeleteADMPage(driver, wait);
+        dialogUtils = new Dialog(driver, wait);
         notifiCheck = new Notification(wait);
     }
 
@@ -23,7 +29,7 @@ public class DeleteADMTest extends BaseTest {
     public void testDeleteSuccess() {
         deleteADMPage.searchADM("PhD in Information Technology");
         deleteADMPage.clickDeleteButton();
-        Assert.assertTrue(deleteADMPage.checkDialogConfirmDisplayed(), "Dialog not displayed");
+        tools.checkEqualBoolean("Kiểm tra dialog hiển thị",dialogUtils.checkDialogConfirmDisplayed(),true);
         deleteADMPage.checkDialog();
         deleteADMPage.clickDeleteDialog();
         notifiCheck.testDeleteNotification();
@@ -33,18 +39,36 @@ public class DeleteADMTest extends BaseTest {
     public void testDeleteFailWithDataAvailable() {
         deleteADMPage.searchADM("Tiến sĩ");
         deleteADMPage.clickDeleteButton();
-        Assert.assertTrue(deleteADMPage.checkDialogConfirmDisplayed(), "Dialog not displayed");
+        tools.checkEqualBoolean("Kiểm tra dialog hiển thị",dialogUtils.checkDialogConfirmDisplayed(),true);
         deleteADMPage.checkDialog();
         deleteADMPage.clickDeleteDialog();
         sleep(5);
         System.out.println("======= Fail Notification ======");
-        System.out.println("Actual: " + deleteADMPage.getTextFailNotification());
-        System.out.println("Expect: Không thể xoá do học hàm, học vị này đã có dữ liệu!" );
-        Assert.assertEquals(deleteADMPage.getTextFailNotification(),
-                "Không thể xoá do học hàm, học vị này đã có dữ liệu!",
-                "Fail Notification not match with expect");
+        tools.checkEqualBoolean("Kiểm tra dialog hiển thị",dialogUtils.checkDialogConfirmDisplayed(),true);
 
+        tools.checkEqualMessage(
+                dialogUtils.getTitleDialog(),
+                "Thông báo"
+        );
+
+        tools.checkEqualMessage(
+                dialogUtils.getContentDialog(),
+                "Không thể xoá do học hàm, học vị này đã có dữ liệu!"
+        );
+
+        sleep(20);
+
+        List<WebElement> buttons = dialogUtils.getElementsDialog();
+
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 1,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+
+        tools.checkContainsMessageListElement(buttons, "OK");
         deleteADMPage.clickFailClose();
+
     }
 
     @AfterClass

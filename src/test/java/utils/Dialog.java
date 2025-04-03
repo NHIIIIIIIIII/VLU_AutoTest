@@ -71,7 +71,7 @@ public class Dialog {
         return null;
     }
 
-    public boolean checkDialogAddDisplayed() {
+    public boolean checkDialogManagementDisplayed() {
         try {
             return wait.until(ExpectedConditions.presenceOfElementLocated(dialogManagement)).isDisplayed();
         } catch (TimeoutException tm) {

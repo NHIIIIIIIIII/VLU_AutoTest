@@ -23,7 +23,6 @@ public class UpdateADMTest extends BaseTest {
     public void setupClass() {
         driver.get("https://cntttest.vanlanguni.edu.vn:18081/Phancong02/AcademicDegree");
         updateADMPage = new UpdateADMPage(driver);
-        jsonReader = new JsonReader();
         notifiCheck = new Notification(wait);
     }
 
