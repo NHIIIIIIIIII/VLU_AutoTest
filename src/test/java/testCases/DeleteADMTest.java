@@ -39,9 +39,9 @@ public class DeleteADMTest extends BaseTest {
         sleep(5);
         System.out.println("======= Fail Notification ======");
         System.out.println("Actual: " + deleteADMPage.getTextFailNotification());
-        System.out.println("Expect: " + deleteADMPage.getErrorDataAvailable());
+        System.out.println("Expect: Không thể xoá do học hàm, học vị này đã có dữ liệu!" );
         Assert.assertEquals(deleteADMPage.getTextFailNotification(),
-                deleteADMPage.getErrorDataAvailable(),
+                "Không thể xoá do học hàm, học vị này đã có dữ liệu!",
                 "Fail Notification not match with expect");
 
         deleteADMPage.clickFailClose();
