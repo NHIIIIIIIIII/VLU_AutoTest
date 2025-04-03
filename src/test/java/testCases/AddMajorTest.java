@@ -1,19 +1,25 @@
 package testCases;
 
 import base.BaseTest;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.AddMajorPage;
+import utils.Dialog;
 import utils.Notification;
+
+import java.util.List;
 
 public class AddMajorTest extends BaseTest {
     AddMajorPage addMajorPage;
+    Dialog dialogUtils;
     private Notification notifiCheck;
 
     @BeforeClass
     public void setupClass() {
         addMajorPage = new AddMajorPage(driver, wait);
+        dialogUtils = new Dialog(driver, wait);
         notifiCheck = new Notification(wait);
     }
 
@@ -22,6 +28,8 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
+
         addMajorPage.enterMajorId("CNTT2023Success");
         sleep(5);
 
@@ -42,6 +50,8 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
+
         addMajorPage.enterMajorId("CNTT2023");
         sleep(5);
 
@@ -55,16 +65,33 @@ public class AddMajorTest extends BaseTest {
 
 
         String duplicateMajorIdErrorMessage = "Mã ngành này đã tồn tại!";  // Hiển thị trên dialog
+        System.out.println("=========================");
 
-        String errorMessage = "Bạn chưa nhập tên ngành";
-        System.out.println("==========================================");
-        System.out.println("Check Error : ");
-        System.out.println("Actual : " + addMajorPage.checkDialogDisplayed().getText());
-        System.out.println("Expect : " + duplicateMajorIdErrorMessage);
-        Assert.assertEquals(addMajorPage.checkDialogDisplayed().getText(),
-                            duplicateMajorIdErrorMessage,
-                            "Major Id not duplicated");
-        System.out.println("==========================================");
+        tools.checkEqualBoolean("Kiểm tra dialog hiển thị",dialogUtils.checkDialogConfirmDisplayed(),true);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleDialog(),
+                "Thông báo"
+        );
+
+        tools.checkEqualMessage(
+                dialogUtils.getContentDialog(),
+                duplicateMajorIdErrorMessage
+        );
+
+        sleep(20);
+
+        List<WebElement> buttons = dialogUtils.getElementsDialog();
+
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 1,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+
+        tools.checkContainsMessageListElement(buttons, "OK");
+
+
         addMajorPage.clickOkErrorButton();
     }
 
@@ -75,6 +102,8 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
+
         addMajorPage.enterMajorId("CNTT202 3");
         sleep(5);
 
@@ -90,14 +119,13 @@ public class AddMajorTest extends BaseTest {
         String majorIdInvalidFormatErrorMessage = "Chỉ được nhập số-chữ không dấu và không có khoảng trắng!";
 
 
-        String errorMessage = "Bạn chưa nhập tên ngành";
         System.out.println("==========================================");
         System.out.println("Check Error : ");
         System.out.println("Actual : " + addMajorPage.getTextMajorIdError());
         System.out.println("Expect : " + majorIdInvalidFormatErrorMessage);
         Assert.assertEquals(addMajorPage.getTextMajorIdError(),
                             majorIdInvalidFormatErrorMessage,
-                            "Major Id not duplicated");
+                            "Major Id not error");
         System.out.println("==========================================");
         addMajorPage.clickCloseButton();
     }
@@ -108,6 +136,8 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
+
         addMajorPage.enterMajorId("CNTT2023#@$%^");
         sleep(5);
 
@@ -130,7 +160,7 @@ public class AddMajorTest extends BaseTest {
         System.out.println("Expect : " + majorIdInvalidFormatErrorMessage);
         Assert.assertEquals(addMajorPage.getTextMajorIdError(),
                             majorIdInvalidFormatErrorMessage,
-                            "Major Id not duplicated");
+                            "Major Id not error");
         System.out.println("==========================================");
         addMajorPage.clickCloseButton();
     }
@@ -141,6 +171,8 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
+
         addMajorPage.enterMajorId("");
         sleep(5);
 
@@ -204,13 +236,15 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị",dialogUtils.checkDialogAddDisplayed(),true);
+
         addMajorPage.enterMajorId("LoremipsumdolorsitametconsecteturadipiscingelitLoremipsumdolorsitametconsecteturadipiscingelitLoremipsumdolorsitametconsecteturadipiscingelitLoremipsumdolorsitametconsecteturadipiscingelitwdrgvggreag");
         sleep(5);
 
         addMajorPage.enterMajorName("LoremipsumdolorsitametconsecteturadipiscingelitSeddoeiusmodtemporincididuntutlaboreetdoloremagnaaliquaUtenimadminimveniamquisnostrudexercitationullamcolaborisnisiutaliquipexeacommodoconsLoremipsumdolorsitametconsecteturadipiscingelitSeddoeiusmodtemporincididuntutlaboreetdoloremagnaaliquaUtenimadminimveniamquisnostrudexercitationullamcolaborisnisiutaliquipexeacommodoconsequatDuisauteiruredolorinreprehenderitequatDuisauteiruredolorinreprehenderit");
         sleep(5);
 
-            addMajorPage.enterMajorAbbreviation("LoremipsumdolorsitametconsecteturadipiscingelitLoremipsumdolorsitametconsecteturadipiscingelit");
+        addMajorPage.enterMajorAbbreviation("LoremipsumdolorsitametconsecteturadipiscingelitLoremipsumdolorsitametconsecteturadipiscingelit");
         sleep(5);
         addMajorPage.selectTrainingProgram("Đặc biệt");
         addMajorPage.clickSaveButton();
