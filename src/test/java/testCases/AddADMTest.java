@@ -38,11 +38,11 @@ public class AddADMTest extends BaseTest {
         dialogUtils = new Dialog(driver, wait);
     }
 
-    @Test(priority = 1, testName = "TC_AddADM_01")
-    public void testAddADMSucces() {
-        addADMPage.isDialogDisplayed();
+    @Test(priority = 1, testName = "AddADMSucces")
+    public void TC_AddADM_01() {
         Object[] data = jsonReader.getTestCase(0); //
         addADMPage.clickAddADButton();
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý học hàm, học vị hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
         sleep(5);
 
         addADMPage.enterCodeAD((String) data[0]);
@@ -60,10 +60,11 @@ public class AddADMTest extends BaseTest {
     }
 
     // data duplicate id - trùng lặp id
-    @Test(priority = 2, testName = "TC_AddADM_02")
-    public void testAddADMErrorWithDuplicateID() {
+    @Test(priority = 2, testName = "AddADMErrorWithDuplicateID")
+    public void TC_AddADM_02() {
         Object[] data = jsonReader.getTestCase(1);
         addADMPage.clickAddADButton();
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý học hàm, học vị hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
         sleep(5);
 
         addADMPage.enterCodeAD((String) data[0]);
@@ -77,7 +78,6 @@ public class AddADMTest extends BaseTest {
 
         addADMPage.clickSaveADButton();
         sleep(2);
-
         addADMPage.checkDialog();
         System.out.println("======= Fail Notification ======");
         tools.checkEqualBoolean("Kiểm tra dialog hiển thị",dialogUtils.checkDialogConfirmDisplayed(),true);
@@ -125,10 +125,11 @@ public class AddADMTest extends BaseTest {
     }
 
     //   data > maxLength
-    @Test(priority = 3, testName = "TC_AddADM_03")
-    public void testAddADMErrorWithDataMaxLength() {
+    @Test(priority = 3, testName = "AddADMErrorWithDataMaxLength")
+    public void TC_AddADM_03() {
         Object[] data = jsonReader.getTestCase(2);
         addADMPage.clickAddADButton();
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý học hàm, học vị hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
         sleep(5);
 
         addADMPage.enterCodeAD((String) data[0]);
@@ -160,10 +161,11 @@ public class AddADMTest extends BaseTest {
     }
 
     // data empty - trống thông tin
-    @Test(priority = 4, testName = "TC_AddADM_04")
-    public void testAddADMErrorWithDataEmpty() {
+    @Test(priority = 4, testName = "AddADMErrorWithDataEmpty")
+    public void TC_AddADM_04() {
         Object[] data = jsonReader.getTestCase(3);
         addADMPage.clickAddADButton();
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý học hàm, học vị hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
         sleep(5);
 
         addADMPage.enterCodeAD((String) data[0]);
@@ -200,10 +202,11 @@ public class AddADMTest extends BaseTest {
 
 
     // Data Invalid Format ID - định dạng ko hợp lệ
-    @Test(priority = 5, testName = "TC_AddADM_05")
-    public void testAddADMErrorWithInvalidFormat() {
+    @Test(priority = 5, testName = "AddADMErrorWithInvalidFormat")
+    public void TC_AddADM_05 () {
         Object[] data = jsonReader.getTestCase(4);
         addADMPage.clickAddADButton();
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý học hàm, học vị hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
         sleep(5);
 
         addADMPage.enterCodeAD((String) data[0]);
@@ -230,10 +233,11 @@ public class AddADMTest extends BaseTest {
     }
 
     // Data Order < minLength
-    @Test(priority = 6, testName = "TC_AddADM_06")
-    public void testAddADMErrorWithDataMinLength() {
+    @Test(priority = 6, testName = "AddADMErrorWithDataMinLength")
+    public void TC_AddADM_06() {
         Object[] data = jsonReader.getTestCase(5);
         addADMPage.clickAddADButton();
+        tools.checkEqualBoolean("Kiểm tra dialog Quản lý học hàm, học vị hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
         sleep(5);
 
         addADMPage.enterCodeAD((String) data[0]);

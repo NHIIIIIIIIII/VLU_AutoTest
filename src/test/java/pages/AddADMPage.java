@@ -69,20 +69,6 @@ public class AddADMPage extends BaseTest {
     public String getOrderADMinLengthEM() { return orderADMinLengthEM; }
 
     // Action Methods
-    public boolean isDialogDisplayed() {
-        try {
-            sleep(2);
-            if (driver.findElement(openADTab).isDisplayed()) {
-                System.out.println("Tab Quản lý học hàm, học vị đã xuất hiện");
-                return true;
-            }
-        } catch (NoSuchElementException e) {
-            System.out.println("Tab Quản lý học hàm, học vị chưa xuất hiện");
-        }
-        return false;
-    }
-
-
     public void clickAddADButton() {
         wait.until(ExpectedConditions.elementToBeClickable(addADButton)).click();
     }

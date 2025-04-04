@@ -25,8 +25,8 @@ import java.util.List;
         notifiCheck = new Notification(wait);
     }
 
-    @Test(priority = 0, testName = "TC_DeleteADM_01")
-    public void testDeleteSuccess() {
+    @Test(priority = 0, testName = "DeleteSuccess")
+    public void TC_DeleteADM_01() {
         deleteADMPage.searchADM("Tiến sĩ Công nghệ thông tin");
         deleteADMPage.clickDeleteButton();
         tools.checkEqualBoolean("Kiểm tra dialog hiển thị",dialogUtils.checkDialogConfirmDisplayed(),true);
@@ -37,8 +37,8 @@ import java.util.List;
         notifiCheck.testDeleteNotification();
     }
 
-    @Test(priority = 1, testName = "TC_DeleteADM_02")
-    public void testDeleteFailWithDataAvailable() {
+    @Test(priority = 1, testName = "DeleteFailWithDataAvailable")
+    public void TC_DeleteADM_02() {
         deleteADMPage.searchADM("Tiến sĩ");
         deleteADMPage.clickDeleteButton();
         tools.checkEqualBoolean("Kiểm tra dialog hiển thị",dialogUtils.checkDialogConfirmDisplayed(),true);

@@ -26,8 +26,8 @@ public class UpdateADMTest extends BaseTest {
         notifiCheck = new Notification(wait);
     }
 
-    @Test(priority = 0, testName = "TC_UpdateADM_01")
-    public void testValidUpdateNormalCase() {
+    @Test(priority = 0, testName = "ValidUpdateNormalCase")
+    public void TC_UpdateADM_01() {
         updateADMPage.clickEditADButton();
         sleep(5);
 
@@ -41,8 +41,8 @@ public class UpdateADMTest extends BaseTest {
         notifiCheck.testUpdateNotification();
     }
 
-    @Test(priority = 1, testName = "TC_UpdateADM_02")
-    public void testInvalidUpdateEmptyName() {
+    @Test(priority = 1, testName = "InvalidUpdateEmptyName")
+    public void TC_UpdateADM_02() {
         updateADMPage.clickEditADButton();
         sleep(5);
 
@@ -65,8 +65,8 @@ public class UpdateADMTest extends BaseTest {
         updateADMPage.clickExitADButton();
     }
 
-    @Test(priority = 2, testName = "TC_UpdateADM_03")
-    public void testInvalidUpdateNameExceeds100Chars() {
+    @Test(priority = 2, testName = "InvalidUpdateNameExceeds100Chars")
+    public void TC_UpdateADM_03() {
         updateADMPage.clickEditADButton();
         sleep(5);
 
@@ -89,8 +89,8 @@ public class UpdateADMTest extends BaseTest {
         updateADMPage.clickExitADButton();
     }
 
-    @Test(priority = 3, testName = "TC_UpdateADM_04")
-    public void testInvalidUpdateOrderEmpty() {
+    @Test(priority = 3, testName = "InvalidUpdateOrderEmpty")
+    public void TC_UpdateADM_04() {
         updateADMPage.clickEditADButton();
         sleep(5);
 
@@ -113,8 +113,8 @@ public class UpdateADMTest extends BaseTest {
         updateADMPage.clickExitADButton();
     }
 
-    @Test(priority = 4, testName = "TC_UpdateADM_05")
-    public void testInvalidUpdateOrderExceeds100() {
+    @Test(priority = 4, testName = "InvalidUpdateOrderExceeds100")
+    public void TC_UpdateADM_05() {
         updateADMPage.clickEditADButton();
         sleep(5);
 
@@ -137,8 +137,8 @@ public class UpdateADMTest extends BaseTest {
         updateADMPage.clickExitADButton();
     }
 
-    @Test(priority = 5, testName = "TC_UpdateADM_06")
-    public void testInvalidUpdateOrderEqualsZero() {
+    @Test(priority = 5, testName = "InvalidUpdateOrderEqualsZero")
+    public void TC_UpdateADM_06() {
         updateADMPage.clickEditADButton();
         sleep(5);
 
