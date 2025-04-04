@@ -25,8 +25,8 @@ public class UpdateMajorTest extends BaseTest {
     }
 
 
-    @Test(priority = 0, testName = "TC_UM_01")
-    public void addNewMajor() {
+    @Test(priority = 0, testName = "updateMajorSuccessfully")
+    public void TC_UM_01() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
         updateMajorPage.searchMajor("CNTT2023");
@@ -45,8 +45,8 @@ public class UpdateMajorTest extends BaseTest {
         notifiCheck.testUpdateNotification();
     }
 
-    @Test(priority = 1, testName = "TC_UM_02")
-    public void UpdateMajorWithEmptyName() {
+    @Test(priority = 1, testName = "UpdateMajorWithEmptyName")
+    public void TC_UM_02() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
 
@@ -68,8 +68,8 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.clickCloseButton();
     }
 
-    @Test(priority = 2, testName = "TC_UM_03")
-    public void UpdateMajorWithEmptyMajorAbbreviation() {
+    @Test(priority = 2, testName = "UpdateMajorWithEmptyMajorAbbreviation")
+    public void TC_UM_03() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
         updateMajorPage.searchMajor("CNTT2023");
@@ -91,8 +91,8 @@ public class UpdateMajorTest extends BaseTest {
     }
 
 
-    @Test(priority = 3, testName = "TC_UM_04")
-    public void UpdateMajorWithAllEmptyAndNoSelectTrainingProgram() {
+    @Test(priority = 3, testName = "UpdateMajorWithAllEmptyAndNoSelectTrainingProgram")
+    public void TC_UM_04() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
         updateMajorPage.searchMajor("CNTT2023");
@@ -118,8 +118,8 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.clickCloseButton();
     }
 
-    @Test(priority = 4, testName = "TC_UM_05")
-    public void UpdateMajorWithMajorAbbreviationMore50() {
+    @Test(priority = 4, testName = "UpdateMajorWithMajorAbbreviationMore50")
+    public void TC_UM_05() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
         updateMajorPage.searchMajor("CNTT2023");
@@ -142,8 +142,8 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.clickCloseButton();
     }
 
-    @Test(priority = 5, testName = "TC_UM_06")
-    public void UpdateMajorWithMajorNameMore255() {
+    @Test(priority = 5, testName = "UpdateMajorWithMajorNameMore255")
+    public void TC_UM_06() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
         updateMajorPage.searchMajor("CNTT2023");
@@ -167,8 +167,8 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.clickCloseButton();
     }
 
-    @Test(priority = 6, testName = "TC_UM_07")
-    public void UpdateMajorWithMajorNameAndAbbreviationMore() {
+    @Test(priority = 6, testName = "UpdateMajorWithMajorNameAndAbbreviationMore")
+    public void TC_UM_07() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
         updateMajorPage.searchMajor("CNTT2023");

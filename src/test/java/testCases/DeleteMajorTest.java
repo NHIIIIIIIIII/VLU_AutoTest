@@ -22,8 +22,8 @@ public class DeleteMajorTest extends BaseTest {
         dialogUtils = new Dialog(driver,wait);
     }
 
-    @Test(priority = 0,testName = "TC_DM_01")
-    public void testDeleteSuccess(){
+    @Test(priority = 0,testName = "DeleteSuccess")
+    public void TC_DM_01(){
         deleteMajorPage.clickTermAndMajorTab();
         deleteMajorPage.clickMajorTab();
         deleteMajorPage.searchMajor("CNTT2023Success");
@@ -55,8 +55,8 @@ public class DeleteMajorTest extends BaseTest {
         notifiCheck.testDeleteNotification();
     }
 
-    @Test(priority = 1, testName = "TC_DM_02")
-    public void testDeleteFail() {
+    @Test(priority = 1, testName = "DeleteFail")
+    public void TC_DM_02() {
         deleteMajorPage.clickTermAndMajorTab();
         deleteMajorPage.clickMajorTab();
         deleteMajorPage.searchMajor("012345");

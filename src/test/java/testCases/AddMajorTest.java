@@ -23,8 +23,8 @@ public class AddMajorTest extends BaseTest {
         notifiCheck = new Notification(wait);
     }
 
-    @Test(priority = 0, testName = "TC_CM_01")
-    public void testAddMajorSuccess() {
+    @Test(priority = 0, testName = "AddMajorSuccess")
+    public void TC_CM_01() {
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
         addMajorPage.clickAddMajorButton();
@@ -44,8 +44,8 @@ public class AddMajorTest extends BaseTest {
     }
 
 
-    @Test(priority = 1, testName = "TC_CM_02")
-    public void testAddMajorFailWithExistId() {
+    @Test(priority = 1, testName = "AddMajorFailWithExistId")
+    public void TC_CM_02() {
 
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
@@ -96,8 +96,8 @@ public class AddMajorTest extends BaseTest {
     }
 
 
-    @Test(priority = 2, testName = "TC_CM_03")
-    public void testAddMajorFailWithSpace() {
+    @Test(priority = 2, testName = "AddMajorFailWithSpace")
+    public void TC_CM_03() {
 
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
@@ -130,8 +130,8 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickCloseButton();
     }
 
-    @Test(priority = 3, testName = "TC_CM_04")
-    public void testAddMajorFailWithIdInvalid() {
+    @Test(priority = 3, testName = "AddMajorFailWithIdInvalid")
+    public void TC_CM_04 () {
 
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
@@ -165,8 +165,8 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickCloseButton();
     }
 
-    @Test(priority = 4, testName = "TC_CM_05")
-    public void testAddMajorFailWithEmpty() {
+    @Test(priority = 4, testName = "AddMajorFailWithEmpty")
+    public void TC_CM_05() {
 
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
@@ -230,8 +230,8 @@ public class AddMajorTest extends BaseTest {
         addMajorPage.clickCloseButton();
     }
 
-    @Test(priority = 5, testName = "TC_CM_06")
-    public void testAddMajorFailWithInfoBoundary() {
+    @Test(priority = 5, testName = "AddMajorFailWithInfoBoundary")
+    public void TC_CM_06() {
 
         addMajorPage.clickTermAndMajorTab();
         addMajorPage.clickMajorTab();
