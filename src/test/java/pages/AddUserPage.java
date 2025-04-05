@@ -214,4 +214,28 @@ public class AddUserPage {
         WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(roleError));
         Assert.assertEquals(errorElement.getText(), expectedMessage);
     }
+    public static String getEmailErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(emailError));
+        return errorElement.getText();
+    }
+
+    public static String getUserIdErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(userIdError));
+        return errorElement.getText();
+    }
+
+    public static String getUserNameErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(userNameError));
+        return errorElement.getText();
+    }
+
+    public static String getContractTypeErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(contractTypeError));
+        return errorElement.getText();
+    }
+
+    public static String getRoleErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(roleError));
+        return errorElement.getText();
+    }
 }

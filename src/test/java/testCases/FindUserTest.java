@@ -18,35 +18,53 @@ public class FindUserTest extends BaseTest {
     }
 
     @Test
-    public void testFindUserById() {
-        // Click on User tab and search for user by ID
+    public void TC_SU_01() {
+        System.out.println("🔹 Kiểm tra tìm kiếm người dùng theo ID...");
         FindUserPage.clickUserTab();
         FindUserPage.searchUser("2274802010979");
         
-        // Verify the search results
-        boolean userFound = FindUserPage.verifyUserById("2274802010979");
-        Assert.assertTrue(userFound, "User with ID 2274802010979 should be found");
+        String expectedId = "2274802010979";
+        String actualId = FindUserPage.getFoundUserId();
+        
+        System.out.println("==========================================");
+        System.out.println("Check Search Result:");
+        System.out.println("Expect: " + expectedId);
+        System.out.println("Actual: " + actualId);
+        Assert.assertEquals(actualId, expectedId, "User ID does not match expected");
+        System.out.println("==========================================");
     }
 
     @Test
-    public void testFindUserByName() {
-        // Click on User tab and search for user by name
+    public void TC_SU_02() {
+        System.out.println("🔹 Kiểm tra tìm kiếm người dùng theo tên...");
         FindUserPage.clickUserTab();
         FindUserPage.searchUser("Bui Ke Ton Tuong");
         
-        // Verify the search results
-        boolean userFound = FindUserPage.verifyUserByName("Bui Ke Ton Tuong");
-        Assert.assertTrue(userFound, "User with name 'Bui Ke Ton Tuong' should be found");
+        String expectedName = "Bui Ke Ton Tuong";
+        String actualName = FindUserPage.getFoundUserName();
+        
+        System.out.println("==========================================");
+        System.out.println("Check Search Result:");
+        System.out.println("Expect: " + expectedName);
+        System.out.println("Actual: " + actualName);
+        Assert.assertEquals(actualName, expectedName, "User name does not match expected");
+        System.out.println("==========================================");
     }
 
     @Test
-    public void testFindUserByEmail() {
-        // Click on User tab and search for user by email
+    public void TC_SU_03() {
+        System.out.println("🔹 Kiểm tra tìm kiếm người dùng theo email...");
         FindUserPage.clickUserTab();
         FindUserPage.searchUser("tuong.2274802010979");
         
-        // Verify the search results
-        boolean userFound = FindUserPage.verifyUserByEmail("tuong.2274802010979");
-        Assert.assertTrue(userFound, "User with email containing 'tuong.2274802010979' should be found");
+        String expectedEmail = "tuong.2274802010979@vanlanguni.vn";
+        String actualEmail = FindUserPage.getFoundUserEmail();
+        
+        System.out.println("==========================================");
+        System.out.println("Check Search Result:");
+        System.out.println("Expect: " + expectedEmail);
+        System.out.println("Actual: " + actualEmail);
+        Assert.assertTrue(actualEmail.contains(expectedEmail), "Email does not contain expected value");
+        System.out.println("==========================================");
     }
 }

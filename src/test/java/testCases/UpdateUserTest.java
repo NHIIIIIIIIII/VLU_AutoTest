@@ -24,7 +24,7 @@ public class UpdateUserTest extends BaseTest {
     }
 
     @Test
-    public void testUpdateUserIdWithInvalidCharacters() {
+    public void TC_UU_01() {
         String currentUserId = updateUser.getUserIdValue();
         String invalidUserId = currentUserId + "a b c";
         updateUser.enterUserId(invalidUserId);
@@ -33,7 +33,7 @@ public class UpdateUserTest extends BaseTest {
     }
 
     @Test
-    public void testUpdateEmailWithInvalidDomain() {
+    public void TC_UU_02() {
         String currentEmail = updateUser.getEmailValue();
         String invalidEmail = currentEmail.replace("@vanlanguni.vn", "@gmail.com");
         updateUser.enterEmail(invalidEmail);
@@ -42,7 +42,7 @@ public class UpdateUserTest extends BaseTest {
     }
 
     @Test
-    public void testUpdateUserIdWithValidChange() {
+    public void TC_UU_03() {
         String currentUserId = updateUser.getUserIdValue();
         String newUserId = currentUserId + "1";
         updateUser.enterUserId(newUserId);

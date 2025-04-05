@@ -109,4 +109,30 @@ public class FindUserPage {
             return false;
         }
     }
+    public String getFoundUserId() {
+        try {
+            WebElement idCell = wait.until(ExpectedConditions.presenceOfElementLocated(userIdColumn));
+            return idCell.getText().trim();
+        } catch (Exception e) {
+            return "No user found";
+        }
+    }
+
+    public String getFoundUserName() {
+        try {
+            WebElement nameCell = wait.until(ExpectedConditions.presenceOfElementLocated(userNameColumn));
+            return nameCell.getText().trim();
+        } catch (Exception e) {
+            return "No user found";
+        }
+    }
+
+    public String getFoundUserEmail() {
+        try {
+            WebElement emailCell = wait.until(ExpectedConditions.presenceOfElementLocated(userEmailColumn));
+            return emailCell.getText().trim();
+        } catch (Exception e) {
+            return "No user found";
+        }
+    }
 }
