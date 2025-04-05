@@ -81,7 +81,7 @@ public class AddMajorTest extends BaseTest {
 
         sleep(20);
 
-        List<WebElement> buttons = dialogUtils.getElementsDialog();
+        List<WebElement> buttons = dialogUtils.getElementsButtonDialog();
 
         System.out.println("Các button được tìm thấy: " + buttons.size());
         Assert.assertEquals(buttons.size(), 1,"Buttons have more than expect");

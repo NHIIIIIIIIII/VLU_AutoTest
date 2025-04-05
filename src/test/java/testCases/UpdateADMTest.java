@@ -62,7 +62,7 @@ public class UpdateADMTest extends BaseTest {
         Assert.assertEquals(updateADMPage.getTextADMNameError(), updateADMPage.getNameADEmptyEM(), "Error Message not equal");
         System.out.println("==========================================");
 
-        updateADMPage.clickExitADButton();
+        updateADMPage.clickCloseADButton();
     }
 
     @Test(priority = 2, testName = "InvalidUpdateNameExceeds100Chars")
@@ -86,7 +86,7 @@ public class UpdateADMTest extends BaseTest {
         Assert.assertEquals(updateADMPage.getTextADMNameError(), updateADMPage.getNameADMaxLengthEM(), "Error Message not equal");
         System.out.println("==========================================");
 
-        updateADMPage.clickExitADButton();
+        updateADMPage.clickCloseADButton();
     }
 
     @Test(priority = 3, testName = "InvalidUpdateOrderEmpty")
@@ -110,7 +110,7 @@ public class UpdateADMTest extends BaseTest {
         Assert.assertEquals(updateADMPage.getTextADMOderError(), updateADMPage.getOrderADEmptyEM(), "Error Message not equal");
         System.out.println("==========================================");
 
-        updateADMPage.clickExitADButton();
+        updateADMPage.clickCloseADButton();
     }
 
     @Test(priority = 4, testName = "InvalidUpdateOrderExceeds100")
@@ -134,7 +134,7 @@ public class UpdateADMTest extends BaseTest {
         Assert.assertEquals(updateADMPage.getTextADMOderError(), updateADMPage.getOrderADMaxLengthEM(), "Error Message not equal");
         System.out.println("==========================================");
 
-        updateADMPage.clickExitADButton();
+        updateADMPage.clickCloseADButton();
     }
 
     @Test(priority = 5, testName = "InvalidUpdateOrderEqualsZero")

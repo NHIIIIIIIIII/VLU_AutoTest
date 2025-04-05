@@ -21,6 +21,13 @@ public class Dialog {
     private final By CloseBtn = By.xpath("//button[normalize-space()='OK']");
     private final By dialogTitle = By.xpath("//h2[@id='swal2-title']");
     private final By dialogManagement = By.xpath("//div[@role='dialog' and @class='ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-draggable']");
+    private final By dialogTitleManagement = By.className("ui-dialog-title");
+//    private final By dialogTextIDLabels = By.id("id");
+//    private final By dialogInputFields = By.className("form-control text-box single-line");
+//    private final By saveManagementButton = By.xpath("//button[contains(text(),'Lưu')]");
+//    private final By closeManagementButton = By.xpath("//button[@id='btnClose']");
+
+
 
     public Dialog(WebDriver driver, WebDriverWait wait){
         this.driver = driver;
@@ -41,7 +48,7 @@ public class Dialog {
         }
     }
 
-    public List<WebElement> getElementsDialog() {
+    public List<WebElement> getElementsButtonDialog() {
         if (checkDialogConfirmDisplayed()) {
             List<WebElement> buttons = wait.until(ExpectedConditions.presenceOfElementLocated(dialogConfirm)).findElements(By.tagName("button"));
             List<WebElement> filteredButtons = new ArrayList<>();
@@ -56,6 +63,72 @@ public class Dialog {
         }
         return new ArrayList<>();
     }
+
+    public List<WebElement> getElementsLabelManagementDialog() {
+        if (checkDialogManagementDisplayed()) {
+            List<WebElement> labels  = wait.until(ExpectedConditions.presenceOfElementLocated(dialogManagement)).findElements(By.tagName("label"));
+            List<WebElement> filteredLabels = new ArrayList<>();
+
+            for (WebElement label : labels) {
+                if (!label.getText().trim().isEmpty()) {
+                    filteredLabels.add(label);
+                }
+            }
+
+            return filteredLabels;
+        }
+        return new ArrayList<>();
+    }
+
+    public List<WebElement> getElementsInputManagementDialog() {
+        if (checkDialogManagementDisplayed()) {
+            // Tìm tất cả các phần tử input trong dialog
+            List<WebElement> inputs = wait.until(ExpectedConditions.presenceOfElementLocated(dialogManagement))
+                    .findElements(By.tagName("input"));
+            List<WebElement> filteredInputs = new ArrayList<>();
+
+            for (WebElement input : inputs) {
+                // Kiểm tra nếu giá trị của ô input không trống
+                if (input.getAttribute("value") != null && !input.getAttribute("value").trim().isEmpty()) {
+                    filteredInputs.add(input);
+                }
+            }
+
+            return filteredInputs;
+        }
+        return new ArrayList<>();
+    }
+
+    public List<WebElement> getElementsButtonManagementDialog() {
+        if (checkDialogManagementDisplayed()) {
+            List<WebElement> buttons = wait.until(ExpectedConditions.presenceOfElementLocated(dialogManagement)).findElements(By.tagName("button"));
+            List<WebElement> filteredButtons = new ArrayList<>();
+
+            for (WebElement button : buttons) {
+                if (!button.getText().trim().isEmpty()) {
+                    filteredButtons.add(button);
+                }
+            }
+
+            return filteredButtons;
+        }
+        return new ArrayList<>();
+    }
+
+
+    public String getTitleManagement() {
+        if (checkDialogManagementDisplayed()) {
+            try {
+                return wait.until(ExpectedConditions.presenceOfElementLocated(dialogTitleManagement)).getText();
+            } catch (TimeoutException e) {
+                System.out.println("Title element not found: " + e.getMessage());
+                return null;
+            }
+        }
+        return null;
+    }
+
+
 
     public String getTitleDialog() {
         if (checkDialogConfirmDisplayed()) {

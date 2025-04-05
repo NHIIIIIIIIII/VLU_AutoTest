@@ -40,7 +40,7 @@ public class DeleteMajorTest extends BaseTest {
                 "Bạn có chắc muốn xoá ngành này?"
         );
 
-        List<WebElement> buttons = dialogUtils.getElementsDialog();
+        List<WebElement> buttons = dialogUtils.getElementsButtonDialog();
 
         System.out.println("Các button được tìm thấy: " + buttons.size());
         for (WebElement button : buttons) {
@@ -89,7 +89,7 @@ public class DeleteMajorTest extends BaseTest {
         );
 
 
-        List<WebElement> buttons = dialogUtils.getElementsDialog();
+        List<WebElement> buttons = dialogUtils.getElementsButtonDialog();
 
         System.out.println("Các button được tìm thấy: " + buttons.size());
         for (WebElement button : buttons) {
