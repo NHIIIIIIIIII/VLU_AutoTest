@@ -8,7 +8,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import pages.UpdateUserPage;
 
-public class UpdateUserTest extends BaseTest {
+public class
+UpdateUserTest extends BaseTest {
     private UpdateUserPage updateUser;
 
     @BeforeClass
@@ -20,13 +21,14 @@ public class UpdateUserTest extends BaseTest {
     public void prepareTest() {
         updateUser.clickUserTab();
         updateUser.enterSearchQuery("Buiquangtuong@vanlanguni.vn");
-        updateUser.clickUpdateButton();
     }
 
     @Test
     public void TC_UU_01() {
+        updateUser.clickUpdateButton();
         String currentUserId = updateUser.getUserIdValue();
         String invalidUserId = currentUserId + "a b c";
+
         updateUser.enterUserId(invalidUserId);
         updateUser.clickSaveButton();
         updateUser.checkUserIdError("Chỉ được nhập số-chữ không dấu và không có khoảng trắng!");
@@ -34,6 +36,7 @@ public class UpdateUserTest extends BaseTest {
 
     @Test
     public void TC_UU_02() {
+        updateUser.clickUpdateButton();
         String currentEmail = updateUser.getEmailValue();
         String invalidEmail = currentEmail.replace("@vanlanguni.vn", "@gmail.com");
         updateUser.enterEmail(invalidEmail);
@@ -43,6 +46,7 @@ public class UpdateUserTest extends BaseTest {
 
     @Test
     public void TC_UU_03() {
+        updateUser.clickUpdateButton();
         String currentUserId = updateUser.getUserIdValue();
         String newUserId = currentUserId + "1";
         updateUser.enterUserId(newUserId);

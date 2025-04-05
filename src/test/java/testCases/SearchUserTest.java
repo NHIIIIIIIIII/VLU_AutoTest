@@ -1,20 +1,17 @@
 package testCases;
 
 import base.BaseTest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.FindUserPage;
-import java.util.List;
+import pages.SearchUserPage;
 
-public class FindUserTest extends BaseTest {
-    private FindUserPage FindUserPage;
+public class SearchUserTest extends BaseTest {
+    private SearchUserPage FindUserPage;
 
     @BeforeClass
     public void setupClass() {
-        FindUserPage = new FindUserPage(driver, wait);
+        FindUserPage = new SearchUserPage(driver, wait);
     }
 
     @Test

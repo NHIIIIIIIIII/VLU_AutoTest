@@ -10,7 +10,7 @@ public class AddUserTest extends BaseTest {
     @BeforeClass
     public void setupClass() {
         new AddUserPage(driver, wait);
-        System.out.println("Precondition: Kết nối Internet ổn định, tài khoản có quyền tạo tài khoản.");
+
     }
 
     @Test
@@ -40,7 +40,9 @@ public class AddUserTest extends BaseTest {
         AddUserPage.addNewUserDetails1(
                 "227480201091851",
                 "Tran Thi Be",
-                "tranthibe@gmail.com"
+                "tranthibe@gmail.com",
+                "Cơ hữu",
+                "Giảng viên"
         );
 
         String expectedError = "Vui lòng nhập email Văn Lang hợp lệ!";

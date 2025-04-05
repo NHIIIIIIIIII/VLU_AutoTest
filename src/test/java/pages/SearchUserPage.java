@@ -4,12 +4,10 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Notification;
-import java.time.Duration;
+
 import java.util.List;
 
-import org.testng.Assert;
-
-public class FindUserPage {
+public class SearchUserPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
     private final Notification notifiCheck;
@@ -25,7 +23,7 @@ public class FindUserPage {
     private final By userEmailColumn = By.xpath("//tbody//tr[1]//td[4]");
 
     // Constructor
-    public FindUserPage(WebDriver driver, WebDriverWait wait) {
+    public SearchUserPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
         this.notifiCheck = new Notification(this.wait);

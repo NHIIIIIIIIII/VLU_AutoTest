@@ -56,13 +56,14 @@ public class AddUserPage {
         if (!role.isEmpty()) selectRole(role);
         clickSaveButton();
     }
-    public static void addNewUserDetails1(String id, String name, String email) {
+    public static void addNewUserDetails1(String id, String name, String email, String contract, String role) {
         clickUserTab();
         clickAddUserButton();
         enterUserId(id);
         enterUserName(name);
         enterEmail(email);
-
+        enterEmail(contract);
+        enterEmail(role);
         clickSaveButton();
     }
 
