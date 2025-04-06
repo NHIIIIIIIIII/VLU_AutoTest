@@ -172,7 +172,7 @@ public class Tools {
         System.out.println("Actual : " + actualMessage);
         System.out.println("Expect : " + expectMessage);
         Assert.assertEquals(actualMessage, expectMessage, "Message not equal");
-        System.out.println("==========================================");
+//        System.out.println("==========================================");
     }
 
 
@@ -224,6 +224,27 @@ public class Tools {
             }
         }
 
+        Assert.assertTrue(found, "Expected message '" + expectedMessage + "' not found in " + actualMessages);
+    }
+
+    public void checkContainsAriaLabelMessage(List<WebElement> listElement, String expectedMessage) {
+        System.out.println("==========================================");
+        System.out.println("Check Expect In Actual : ");
+
+        // Tạo danh sách chứa giá trị aria-label của các phần tử
+        List<String> actualMessages = listElement.stream()
+                .map(element -> {
+                    String ariaLabel = element.getDomAttribute("aria-label");
+                    return (ariaLabel != null) ? ariaLabel.trim() : "";
+                })
+                .filter(label -> !label.isEmpty())
+                .collect(Collectors.toList());
+
+        System.out.println("Actual : " + actualMessages);
+        System.out.println("Expect : " + expectedMessage);
+        System.out.println("==========================================");
+
+        boolean found = actualMessages.contains(expectedMessage);
         Assert.assertTrue(found, "Expected message '" + expectedMessage + "' not found in " + actualMessages);
     }
 }

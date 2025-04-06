@@ -80,21 +80,37 @@ public class Dialog {
         return new ArrayList<>();
     }
 
-    public List<WebElement> getElementsInputManagementDialog() {
+
+    public List<WebElement> getElementsInputAddManagementDialog() {
         if (checkDialogManagementDisplayed()) {
-            // Tìm tất cả các phần tử input trong dialog
-            List<WebElement> inputs = wait.until(ExpectedConditions.presenceOfElementLocated(dialogManagement))
-                    .findElements(By.tagName("input"));
+            WebElement dialog = wait.until(ExpectedConditions.presenceOfElementLocated(dialogManagement));
+            List<WebElement> inputs = dialog.findElements(By.tagName("input"));
             List<WebElement> filteredInputs = new ArrayList<>();
 
             for (WebElement input : inputs) {
-                // Kiểm tra nếu giá trị của ô input không trống
-                if (input.getAttribute("value") != null && !input.getAttribute("value").trim().isEmpty()) {
+                String arialabel = input.getDomAttribute("aria-label");
+                if (arialabel != null && !arialabel.trim().isEmpty()) {
                     filteredInputs.add(input);
                 }
             }
 
             return filteredInputs;
+        }
+        return new ArrayList<>();
+    }
+    public List<WebElement> getElementsOptionInSelect() {
+        if (checkDialogManagementDisplayed()) {
+            WebElement selectElement = wait.until(ExpectedConditions.presenceOfElementLocated(dialogManagement));
+            List<WebElement> options = selectElement.findElements(By.tagName("option"));
+            List<WebElement> filteredOptions = new ArrayList<>();
+
+            for (WebElement option : options) {
+                if (!option.getText().trim().isEmpty()) {
+                    filteredOptions.add(option);
+                }
+            }
+
+            return filteredOptions;
         }
         return new ArrayList<>();
     }

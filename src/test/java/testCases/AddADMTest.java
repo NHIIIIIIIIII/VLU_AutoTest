@@ -57,23 +57,24 @@ public class AddADMTest extends BaseTest {
         for (WebElement lable : labels) {
             System.out.println(" - " + lable.getText().trim());
         }
+        sleep(5);
+        tools.checkContainsMessageListElement(labels, "Mã học hàm, học vị:");
+        tools.checkContainsMessageListElement(labels, "Tên học hàm, học vị:");
+        tools.checkContainsMessageListElement(labels, "Thứ tự:");
 
         sleep(20);
-        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
-        sleep(5); // Chờ một chút (hoặc dùng wait nếu cần thiết)
+        List<WebElement> inputs = dialogUtils.getElementsInputAddManagementDialog();
         System.out.println("Các input được tìm thấy: " + inputs.size());
-        Assert.assertEquals(inputs.size(), 3, "Inputs have more than expected");
+        Assert.assertEquals(inputs.size(), 3, "Inputs have more than expect");
 
         for (WebElement input : inputs) {
-            // Lấy giá trị aria-label và kiểm tra nếu nó là null
-            String ariaLabel = input.getDomAttribute("aria-label");
-            if (ariaLabel != null && !ariaLabel.trim().isEmpty()) {
-                System.out.println(" - " + ariaLabel.trim());
-            } else {
-                System.out.println(" - aria-label is null or empty");
-            }
+            String label = input.getDomAttribute("aria-label");
+            System.out.println(" - " + (label != null ? label.trim() : "not found"));
         }
-
+        sleep(5);
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập mã học hàm, học vị");
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập tên học hàm, học vị");
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập thứ tự học hàm, học vị");
 
         sleep(20);
         List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
@@ -82,6 +83,9 @@ public class AddADMTest extends BaseTest {
         for (WebElement button : buttons) {
             System.out.println(" - " + button.getText().trim());
         }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
 
         addADMPage.enterCodeAD((String) data[0]);
         sleep(5);
@@ -104,6 +108,48 @@ public class AddADMTest extends BaseTest {
         addADMPage.clickAddADButton();
         tools.checkEqualBoolean("Kiểm tra dialog Quản lý học hàm, học vị hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
         sleep(5);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleManagement(),
+                "Quản lý học hàm, học vị"
+        );
+        sleep(20);
+
+        List<WebElement> labels = dialogUtils.getElementsLabelManagementDialog();
+        System.out.println("Các label được tìm thấy: " + labels.size());
+        Assert.assertEquals(labels.size(), 3,"Labels have more than expect");
+        for (WebElement lable : labels) {
+            System.out.println(" - " + lable.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(labels, "Mã học hàm, học vị:");
+        tools.checkContainsMessageListElement(labels, "Tên học hàm, học vị:");
+        tools.checkContainsMessageListElement(labels, "Thứ tự:");
+
+        sleep(20);
+        List<WebElement> inputs = dialogUtils.getElementsInputAddManagementDialog();
+        System.out.println("Các input được tìm thấy: " + inputs.size());
+        Assert.assertEquals(inputs.size(), 3, "Inputs have more than expect");
+
+        for (WebElement input : inputs) {
+            String label = input.getDomAttribute("aria-label");
+            System.out.println(" - " + (label != null ? label.trim() : "not found"));
+        }
+        sleep(5);
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập mã học hàm, học vị");
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập tên học hàm, học vị");
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập thứ tự học hàm, học vị");
+
+        sleep(20);
+        List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 2,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
 
         addADMPage.enterCodeAD((String) data[0]);
         sleep(5);
@@ -132,17 +178,18 @@ public class AddADMTest extends BaseTest {
 
         sleep(20);
 
-        List<WebElement> buttons = dialogUtils.getElementsButtonDialog();
+        List<WebElement> buttonOKs = dialogUtils.getElementsButtonDialog();
 
-        System.out.println("Các button được tìm thấy: " + buttons.size());
-        Assert.assertEquals(buttons.size(), 1,"Buttons have more than expect");
-        for (WebElement button : buttons) {
-            System.out.println(" - " + button.getText().trim());
+        System.out.println("Các button được tìm thấy: " + buttonOKs.size());
+        Assert.assertEquals(buttonOKs.size(), 1,"Buttons have more than expect");
+        for (WebElement buttonOK : buttonOKs) {
+            System.out.println(" - " + buttonOK.getText().trim());
         }
 
-        tools.checkContainsMessageListElement(buttons, "OK");
+        tools.checkContainsMessageListElement(buttonOKs, "OK");
         sleep(2);
         addADMPage.clickOkADButtonDialog();
+        sleep(2);
         addADMPage.clickCloseADButtonDialog();
 
 //        // Replace sleep with explicit wait for the error dialog
@@ -169,6 +216,48 @@ public class AddADMTest extends BaseTest {
         addADMPage.clickAddADButton();
         tools.checkEqualBoolean("Kiểm tra dialog Quản lý học hàm, học vị hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
         sleep(5);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleManagement(),
+                "Quản lý học hàm, học vị"
+        );
+        sleep(20);
+
+        List<WebElement> labels = dialogUtils.getElementsLabelManagementDialog();
+        System.out.println("Các label được tìm thấy: " + labels.size());
+        Assert.assertEquals(labels.size(), 3,"Labels have more than expect");
+        for (WebElement lable : labels) {
+            System.out.println(" - " + lable.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(labels, "Mã học hàm, học vị:");
+        tools.checkContainsMessageListElement(labels, "Tên học hàm, học vị:");
+        tools.checkContainsMessageListElement(labels, "Thứ tự:");
+
+        sleep(20);
+        List<WebElement> inputs = dialogUtils.getElementsInputAddManagementDialog();
+        System.out.println("Các input được tìm thấy: " + inputs.size());
+        Assert.assertEquals(inputs.size(), 3, "Inputs have more than expect");
+
+        for (WebElement input : inputs) {
+            String label = input.getDomAttribute("aria-label");
+            System.out.println(" - " + (label != null ? label.trim() : "not found"));
+        }
+        sleep(5);
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập mã học hàm, học vị");
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập tên học hàm, học vị");
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập thứ tự học hàm, học vị");
+
+        sleep(20);
+        List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 2,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
 
         addADMPage.enterCodeAD((String) data[0]);
         sleep(5);
@@ -205,6 +294,49 @@ public class AddADMTest extends BaseTest {
         addADMPage.clickAddADButton();
         tools.checkEqualBoolean("Kiểm tra dialog Quản lý học hàm, học vị hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
         sleep(5);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleManagement(),
+                "Quản lý học hàm, học vị"
+        );
+        sleep(20);
+
+        List<WebElement> labels = dialogUtils.getElementsLabelManagementDialog();
+        System.out.println("Các label được tìm thấy: " + labels.size());
+        Assert.assertEquals(labels.size(), 3,"Labels have more than expect");
+        for (WebElement lable : labels) {
+            System.out.println(" - " + lable.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(labels, "Mã học hàm, học vị:");
+        tools.checkContainsMessageListElement(labels, "Tên học hàm, học vị:");
+        tools.checkContainsMessageListElement(labels, "Thứ tự:");
+
+        sleep(20);
+        List<WebElement> inputs = dialogUtils.getElementsInputAddManagementDialog();
+        System.out.println("Các input được tìm thấy: " + inputs.size());
+        Assert.assertEquals(inputs.size(), 3, "Inputs have more than expect");
+
+        for (WebElement input : inputs) {
+            String label = input.getDomAttribute("aria-label");
+            System.out.println(" - " + (label != null ? label.trim() : "not found"));
+        }
+        sleep(5);
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập mã học hàm, học vị");
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập tên học hàm, học vị");
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập thứ tự học hàm, học vị");
+
+        sleep(20);
+        List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 2,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
+
 
         addADMPage.enterCodeAD((String) data[0]);
         sleep(5);
@@ -247,6 +379,49 @@ public class AddADMTest extends BaseTest {
         tools.checkEqualBoolean("Kiểm tra dialog Quản lý học hàm, học vị hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
         sleep(5);
 
+        tools.checkEqualMessage(
+                dialogUtils.getTitleManagement(),
+                "Quản lý học hàm, học vị"
+        );
+        sleep(20);
+
+        List<WebElement> labels = dialogUtils.getElementsLabelManagementDialog();
+        System.out.println("Các label được tìm thấy: " + labels.size());
+        Assert.assertEquals(labels.size(), 3,"Labels have more than expect");
+        for (WebElement lable : labels) {
+            System.out.println(" - " + lable.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(labels, "Mã học hàm, học vị:");
+        tools.checkContainsMessageListElement(labels, "Tên học hàm, học vị:");
+        tools.checkContainsMessageListElement(labels, "Thứ tự:");
+
+        sleep(20);
+        List<WebElement> inputs = dialogUtils.getElementsInputAddManagementDialog();
+        System.out.println("Các input được tìm thấy: " + inputs.size());
+        Assert.assertEquals(inputs.size(), 3, "Inputs have more than expect");
+
+        for (WebElement input : inputs) {
+            String label = input.getDomAttribute("aria-label");
+            System.out.println(" - " + (label != null ? label.trim() : "not found"));
+        }
+        sleep(5);
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập mã học hàm, học vị");
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập tên học hàm, học vị");
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập thứ tự học hàm, học vị");
+
+        sleep(20);
+        List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 2,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
+
+
         addADMPage.enterCodeAD((String) data[0]);
         sleep(5);
 
@@ -277,6 +452,48 @@ public class AddADMTest extends BaseTest {
         addADMPage.clickAddADButton();
         tools.checkEqualBoolean("Kiểm tra dialog Quản lý học hàm, học vị hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
         sleep(5);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleManagement(),
+                "Quản lý học hàm, học vị"
+        );
+        sleep(20);
+
+        List<WebElement> labels = dialogUtils.getElementsLabelManagementDialog();
+        System.out.println("Các label được tìm thấy: " + labels.size());
+        Assert.assertEquals(labels.size(), 3,"Labels have more than expect");
+        for (WebElement lable : labels) {
+            System.out.println(" - " + lable.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(labels, "Mã học hàm, học vị:");
+        tools.checkContainsMessageListElement(labels, "Tên học hàm, học vị:");
+        tools.checkContainsMessageListElement(labels, "Thứ tự:");
+
+        sleep(20);
+        List<WebElement> inputs = dialogUtils.getElementsInputAddManagementDialog();
+        System.out.println("Các input được tìm thấy: " + inputs.size());
+        Assert.assertEquals(inputs.size(), 3, "Inputs have more than expect");
+
+        for (WebElement input : inputs) {
+            String label = input.getDomAttribute("aria-label");
+            System.out.println(" - " + (label != null ? label.trim() : "not found"));
+        }
+        sleep(5);
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập mã học hàm, học vị");
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập tên học hàm, học vị");
+        tools.checkContainsAriaLabelMessage(inputs, "Nhập thứ tự học hàm, học vị");
+
+        sleep(20);
+        List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 2,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
 
         addADMPage.enterCodeAD((String) data[0]);
         sleep(5);
