@@ -1,11 +1,15 @@
 package testCases;
 
 import base.BaseTest;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.UpdateMajorPage;
 import utils.Dialog;
 import utils.Notification;
+
+import java.util.List;
 
 /**
  * @author Trần Văn Hiếu - 2274802010262
@@ -29,11 +33,60 @@ public class UpdateMajorTest extends BaseTest {
     public void TC_UM_01() {
         updateMajorPage.clickTermAndMajorTab();
         updateMajorPage.clickMajorTab();
+
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
         sleep(5);
-        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        sleep(5);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleManagement(),
+                "Quản lý ngành học"
+        );
+        sleep(20);
+
+        List<WebElement> labels = dialogUtils.getElementsLabelManagementDialog();
+        System.out.println("Các label được tìm thấy: " + labels.size());
+        Assert.assertEquals(labels.size(), 4, "Labels have more than expect");
+        for (WebElement lable : labels) {
+            System.out.println(" - " + lable.getText().trim());
+        }
+        tools.checkContainsMessageListElement(labels, "Mã ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên viết tắt:");
+        tools.checkContainsMessageListElement(labels, "CTĐT:");
+
+        sleep(20);
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
+        System.out.println("Các input được tìm thấy: " + inputs.size());
+
+        sleep(20);
+
+        List<WebElement> options = dialogUtils.getElementsOptionInSelect();
+        System.out.println("Các option được tìm thấy: " + options.size());
+        Assert.assertEquals(options.size(), 3, "Options have more or less than expected");
+
+        for (WebElement option : options) {
+            System.out.println(" - " + option.getText().trim());
+
+        }
+        tools.checkContainsMessageListElement(options, "Tiêu chuẩn");
+        tools.checkContainsMessageListElement(options, "Đặc biệt");
+
+        sleep(20);
+        List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 2,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
+
 
         updateMajorPage.enterMajorName("Công nghệ thông tin 2023");
         sleep(5);
@@ -53,7 +106,54 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
-        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        sleep(5);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleManagement(),
+                "Quản lý ngành học"
+        );
+        sleep(20);
+
+        List<WebElement> labels = dialogUtils.getElementsLabelManagementDialog();
+        System.out.println("Các label được tìm thấy: " + labels.size());
+        Assert.assertEquals(labels.size(), 4, "Labels have more than expect");
+        for (WebElement lable : labels) {
+            System.out.println(" - " + lable.getText().trim());
+        }
+        tools.checkContainsMessageListElement(labels, "Mã ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên viết tắt:");
+        tools.checkContainsMessageListElement(labels, "CTĐT:");
+
+        sleep(20);
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
+        System.out.println("Các input được tìm thấy: " + inputs.size());
+
+        sleep(20);
+
+        List<WebElement> options = dialogUtils.getElementsOptionInSelect();
+        System.out.println("Các option được tìm thấy: " + options.size());
+        Assert.assertEquals(options.size(), 3, "Options have more or less than expected");
+
+        for (WebElement option : options) {
+            System.out.println(" - " + option.getText().trim());
+
+        }
+        tools.checkContainsMessageListElement(options, "Tiêu chuẩn");
+        tools.checkContainsMessageListElement(options, "Đặc biệt");
+
+        sleep(20);
+        List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 2,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
+
 
         updateMajorPage.enterMajorName("");
         sleep(5);
@@ -75,7 +175,54 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
-        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        sleep(5);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleManagement(),
+                "Quản lý ngành học"
+        );
+        sleep(20);
+
+        List<WebElement> labels = dialogUtils.getElementsLabelManagementDialog();
+        System.out.println("Các label được tìm thấy: " + labels.size());
+        Assert.assertEquals(labels.size(), 4, "Labels have more than expect");
+        for (WebElement lable : labels) {
+            System.out.println(" - " + lable.getText().trim());
+        }
+        tools.checkContainsMessageListElement(labels, "Mã ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên viết tắt:");
+        tools.checkContainsMessageListElement(labels, "CTĐT:");
+
+        sleep(20);
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
+        System.out.println("Các input được tìm thấy: " + inputs.size());
+
+        sleep(20);
+
+        List<WebElement> options = dialogUtils.getElementsOptionInSelect();
+        System.out.println("Các option được tìm thấy: " + options.size());
+        Assert.assertEquals(options.size(), 3, "Options have more or less than expected");
+
+        for (WebElement option : options) {
+            System.out.println(" - " + option.getText().trim());
+
+        }
+        tools.checkContainsMessageListElement(options, "Tiêu chuẩn");
+        tools.checkContainsMessageListElement(options, "Đặc biệt");
+
+        sleep(20);
+        List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 2,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
+
 
         updateMajorPage.enterMajorName("Cong Nghe Thong Tin");
         sleep(5);
@@ -98,7 +245,54 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
-        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        sleep(5);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleManagement(),
+                "Quản lý ngành học"
+        );
+        sleep(20);
+
+        List<WebElement> labels = dialogUtils.getElementsLabelManagementDialog();
+        System.out.println("Các label được tìm thấy: " + labels.size());
+        Assert.assertEquals(labels.size(), 4, "Labels have more than expect");
+        for (WebElement lable : labels) {
+            System.out.println(" - " + lable.getText().trim());
+        }
+        tools.checkContainsMessageListElement(labels, "Mã ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên viết tắt:");
+        tools.checkContainsMessageListElement(labels, "CTĐT:");
+
+        sleep(20);
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
+        System.out.println("Các input được tìm thấy: " + inputs.size());
+
+        sleep(20);
+
+        List<WebElement> options = dialogUtils.getElementsOptionInSelect();
+        System.out.println("Các option được tìm thấy: " + options.size());
+        Assert.assertEquals(options.size(), 3, "Options have more or less than expected");
+
+        for (WebElement option : options) {
+            System.out.println(" - " + option.getText().trim());
+
+        }
+        tools.checkContainsMessageListElement(options, "Tiêu chuẩn");
+        tools.checkContainsMessageListElement(options, "Đặc biệt");
+
+        sleep(20);
+        List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 2,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
+
 
         sleep(5);
 
@@ -125,7 +319,54 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
-        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        sleep(5);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleManagement(),
+                "Quản lý ngành học"
+        );
+        sleep(20);
+
+        List<WebElement> labels = dialogUtils.getElementsLabelManagementDialog();
+        System.out.println("Các label được tìm thấy: " + labels.size());
+        Assert.assertEquals(labels.size(), 4, "Labels have more than expect");
+        for (WebElement lable : labels) {
+            System.out.println(" - " + lable.getText().trim());
+        }
+        tools.checkContainsMessageListElement(labels, "Mã ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên viết tắt:");
+        tools.checkContainsMessageListElement(labels, "CTĐT:");
+
+        sleep(20);
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
+        System.out.println("Các input được tìm thấy: " + inputs.size());
+
+        sleep(20);
+
+        List<WebElement> options = dialogUtils.getElementsOptionInSelect();
+        System.out.println("Các option được tìm thấy: " + options.size());
+        Assert.assertEquals(options.size(), 3, "Options have more or less than expected");
+
+        for (WebElement option : options) {
+            System.out.println(" - " + option.getText().trim());
+
+        }
+        tools.checkContainsMessageListElement(options, "Tiêu chuẩn");
+        tools.checkContainsMessageListElement(options, "Đặc biệt");
+
+        sleep(20);
+        List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 2,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
+
 
         sleep(5);
 
@@ -149,7 +390,54 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
-        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        sleep(5);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleManagement(),
+                "Quản lý ngành học"
+        );
+        sleep(20);
+
+        List<WebElement> labels = dialogUtils.getElementsLabelManagementDialog();
+        System.out.println("Các label được tìm thấy: " + labels.size());
+        Assert.assertEquals(labels.size(), 4, "Labels have more than expect");
+        for (WebElement lable : labels) {
+            System.out.println(" - " + lable.getText().trim());
+        }
+        tools.checkContainsMessageListElement(labels, "Mã ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên viết tắt:");
+        tools.checkContainsMessageListElement(labels, "CTĐT:");
+
+        sleep(20);
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
+        System.out.println("Các input được tìm thấy: " + inputs.size());
+
+        sleep(20);
+
+        List<WebElement> options = dialogUtils.getElementsOptionInSelect();
+        System.out.println("Các option được tìm thấy: " + options.size());
+        Assert.assertEquals(options.size(), 3, "Options have more or less than expected");
+
+        for (WebElement option : options) {
+            System.out.println(" - " + option.getText().trim());
+
+        }
+        tools.checkContainsMessageListElement(options, "Tiêu chuẩn");
+        tools.checkContainsMessageListElement(options, "Đặc biệt");
+
+        sleep(20);
+        List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 2,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
+
 
         sleep(5);
 
@@ -174,7 +462,54 @@ public class UpdateMajorTest extends BaseTest {
         updateMajorPage.searchMajor("CNTT2023");
         sleep(5);
         updateMajorPage.clickUpdateButton();
-        tools.checkEqualBoolean("Kiểm tra dialog Quản lý hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        tools.checkEqualBoolean("Kiểm tra dialog add hiển thị", dialogUtils.checkDialogManagementDisplayed(), true);
+        sleep(5);
+
+        tools.checkEqualMessage(
+                dialogUtils.getTitleManagement(),
+                "Quản lý ngành học"
+        );
+        sleep(20);
+
+        List<WebElement> labels = dialogUtils.getElementsLabelManagementDialog();
+        System.out.println("Các label được tìm thấy: " + labels.size());
+        Assert.assertEquals(labels.size(), 4, "Labels have more than expect");
+        for (WebElement lable : labels) {
+            System.out.println(" - " + lable.getText().trim());
+        }
+        tools.checkContainsMessageListElement(labels, "Mã ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên ngành:");
+        tools.checkContainsMessageListElement(labels, "Tên viết tắt:");
+        tools.checkContainsMessageListElement(labels, "CTĐT:");
+
+        sleep(20);
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
+        System.out.println("Các input được tìm thấy: " + inputs.size());
+
+        sleep(20);
+
+        List<WebElement> options = dialogUtils.getElementsOptionInSelect();
+        System.out.println("Các option được tìm thấy: " + options.size());
+        Assert.assertEquals(options.size(), 3, "Options have more or less than expected");
+
+        for (WebElement option : options) {
+            System.out.println(" - " + option.getText().trim());
+
+        }
+        tools.checkContainsMessageListElement(options, "Tiêu chuẩn");
+        tools.checkContainsMessageListElement(options, "Đặc biệt");
+
+        sleep(20);
+        List<WebElement> buttons = dialogUtils.getElementsButtonManagementDialog();
+        System.out.println("Các button được tìm thấy: " + buttons.size());
+        Assert.assertEquals(buttons.size(), 2,"Buttons have more than expect");
+        for (WebElement button : buttons) {
+            System.out.println(" - " + button.getText().trim());
+        }
+        sleep(5);
+        tools.checkContainsMessageListElement(buttons, "Huỷ");
+        tools.checkContainsMessageListElement(buttons, "Lưu");
+
 
         sleep(5);
 

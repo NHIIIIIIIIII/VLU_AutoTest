@@ -22,6 +22,8 @@ public class UpdateADMPage {
     // Locators for Input Elements
     private final By nameADInput = By.xpath("//input[@id='name']");
     private final By orderADInput = By.xpath("//input[@id='level']");
+    private final By searchBoxField = By.xpath("//input[@placeholder='Nhập tìm kiếm...']");
+
 
     // Locators for Field Errors
     private final By nameADMError = By.id("name-error");
@@ -53,6 +55,10 @@ public class UpdateADMPage {
     public String getOrderADMinLengthEM() { return orderADMinLengthEM; }
 
     // Action Methods
+    public void searchAD(String searchValue) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(searchBoxField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, searchValue);
+    }
+
     public void clickEditADButton() {
         wait.until(ExpectedConditions.elementToBeClickable(editADButton)).click();
     }
@@ -84,4 +90,5 @@ public class UpdateADMPage {
     public String getTextADMOderError() {
         return wait.until(ExpectedConditions.presenceOfElementLocated(orderADMError)).getText();
     }
+
 }

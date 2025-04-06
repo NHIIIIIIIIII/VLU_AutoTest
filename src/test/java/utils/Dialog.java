@@ -81,7 +81,7 @@ public class Dialog {
     }
 
 
-    public List<WebElement> getElementsInputAddManagementDialog() {
+    public List<WebElement> getElementsInputManagementDialog() {
         if (checkDialogManagementDisplayed()) {
             WebElement dialog = wait.until(ExpectedConditions.presenceOfElementLocated(dialogManagement));
             List<WebElement> inputs = dialog.findElements(By.tagName("input"));
@@ -98,6 +98,7 @@ public class Dialog {
         }
         return new ArrayList<>();
     }
+
     public List<WebElement> getElementsOptionInSelect() {
         if (checkDialogManagementDisplayed()) {
             WebElement selectElement = wait.until(ExpectedConditions.presenceOfElementLocated(dialogManagement));

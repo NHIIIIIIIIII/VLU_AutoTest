@@ -63,7 +63,7 @@ public class AddADMTest extends BaseTest {
         tools.checkContainsMessageListElement(labels, "Thứ tự:");
 
         sleep(20);
-        List<WebElement> inputs = dialogUtils.getElementsInputAddManagementDialog();
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
         System.out.println("Các input được tìm thấy: " + inputs.size());
         Assert.assertEquals(inputs.size(), 3, "Inputs have more than expect");
 
@@ -127,7 +127,7 @@ public class AddADMTest extends BaseTest {
         tools.checkContainsMessageListElement(labels, "Thứ tự:");
 
         sleep(20);
-        List<WebElement> inputs = dialogUtils.getElementsInputAddManagementDialog();
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
         System.out.println("Các input được tìm thấy: " + inputs.size());
         Assert.assertEquals(inputs.size(), 3, "Inputs have more than expect");
 
@@ -235,7 +235,7 @@ public class AddADMTest extends BaseTest {
         tools.checkContainsMessageListElement(labels, "Thứ tự:");
 
         sleep(20);
-        List<WebElement> inputs = dialogUtils.getElementsInputAddManagementDialog();
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
         System.out.println("Các input được tìm thấy: " + inputs.size());
         Assert.assertEquals(inputs.size(), 3, "Inputs have more than expect");
 
@@ -313,7 +313,7 @@ public class AddADMTest extends BaseTest {
         tools.checkContainsMessageListElement(labels, "Thứ tự:");
 
         sleep(20);
-        List<WebElement> inputs = dialogUtils.getElementsInputAddManagementDialog();
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
         System.out.println("Các input được tìm thấy: " + inputs.size());
         Assert.assertEquals(inputs.size(), 3, "Inputs have more than expect");
 
@@ -397,7 +397,7 @@ public class AddADMTest extends BaseTest {
         tools.checkContainsMessageListElement(labels, "Thứ tự:");
 
         sleep(20);
-        List<WebElement> inputs = dialogUtils.getElementsInputAddManagementDialog();
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
         System.out.println("Các input được tìm thấy: " + inputs.size());
         Assert.assertEquals(inputs.size(), 3, "Inputs have more than expect");
 
@@ -471,7 +471,7 @@ public class AddADMTest extends BaseTest {
         tools.checkContainsMessageListElement(labels, "Thứ tự:");
 
         sleep(20);
-        List<WebElement> inputs = dialogUtils.getElementsInputAddManagementDialog();
+        List<WebElement> inputs = dialogUtils.getElementsInputManagementDialog();
         System.out.println("Các input được tìm thấy: " + inputs.size());
         Assert.assertEquals(inputs.size(), 3, "Inputs have more than expect");
 
