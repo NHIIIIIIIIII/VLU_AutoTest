@@ -17,11 +17,13 @@ public class UpdateADMPage {
     private final By editADButton = By.xpath("//tbody/tr[1]/td[5]/a[1]");
     private final By saveADButton = By.xpath("//button[contains(text(),'Lưu')]");
     private final By okADButton = By.xpath("//button[normalize-space()='OK']");
-    private final By exitADButton = By.xpath("//button[@class='ui-dialog-titlebar-close btn-close']");
+    private final By closeADButton = By.xpath("//button[@class='ui-dialog-titlebar-close btn-close']");
 
     // Locators for Input Elements
     private final By nameADInput = By.xpath("//input[@id='name']");
     private final By orderADInput = By.xpath("//input[@id='level']");
+    private final By searchBoxField = By.xpath("//input[@placeholder='Nhập tìm kiếm...']");
+
 
     // Locators for Field Errors
     private final By nameADMError = By.id("name-error");
@@ -53,6 +55,10 @@ public class UpdateADMPage {
     public String getOrderADMinLengthEM() { return orderADMinLengthEM; }
 
     // Action Methods
+    public void searchAD(String searchValue) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(searchBoxField)).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, searchValue);
+    }
+
     public void clickEditADButton() {
         wait.until(ExpectedConditions.elementToBeClickable(editADButton)).click();
     }
@@ -61,8 +67,8 @@ public class UpdateADMPage {
         wait.until(ExpectedConditions.elementToBeClickable(saveADButton)).click();
     }
 
-    public void clickExitADButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(exitADButton)).click();
+    public void clickCloseADButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(closeADButton)).click();
     }
 
     public void enterNameAD(String name) {
@@ -84,4 +90,5 @@ public class UpdateADMPage {
     public String getTextADMOderError() {
         return wait.until(ExpectedConditions.presenceOfElementLocated(orderADMError)).getText();
     }
+
 }
