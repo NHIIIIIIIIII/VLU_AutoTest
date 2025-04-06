@@ -191,7 +191,6 @@ public class AddADMTest extends BaseTest {
         addADMPage.clickOkADButtonDialog();
         sleep(2);
         addADMPage.clickCloseADButtonDialog();
-
 //        // Replace sleep with explicit wait for the error dialog
 //        try {
 //            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

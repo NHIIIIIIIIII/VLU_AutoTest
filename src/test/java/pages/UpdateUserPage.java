@@ -7,7 +7,7 @@ import utils.Notification;
 import java.time.Duration;
 import org.testng.Assert;
 
-public class UserManagementPage {
+public class UpdateUserPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
     private final Notification notifiCheck;
@@ -56,10 +56,56 @@ public class UserManagementPage {
     private final String duplicateUserIdErrorMessage = "Mã người dùng này đã tồn tại!";
 
     // Constructor
-    public UserManagementPage(WebDriver driver, WebDriverWait wait) {
+    // Fix constructor name
+    public UpdateUserPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
         notifiCheck = new Notification(this.wait);
+    }
+
+    // Add methods to match test calls
+    public String getUserId() {
+        return getUserIdValue();
+    }
+
+    public void setUserId(String id) {
+        enterUserId(id);
+    }
+
+    public String getEmail() {
+        return getEmailValue();
+    }
+
+    public void setEmail(String email) {
+        enterEmail(email);
+    }
+
+    public void clickSave() {
+        clickSaveButton();
+    }
+
+    public void clickClose() {
+        clickCloseButton();
+    }
+
+    public void clickUpdate() {
+        clickUpdateButton();
+    }
+
+    public void searchUser(String query) {
+        enterSearchQuery(query);
+    }
+
+    public void verifyUserIdError(String expectedMessage) {
+        checkUserIdError(expectedMessage);
+    }
+
+    public void verifyEmailError(String expectedMessage) {
+        checkEmailError(expectedMessage);
+    }
+
+    public void verifyUpdateSuccess() {
+        checkSuccessNotification();
     }
 
     // Click on the User tab
@@ -374,6 +420,7 @@ public class UserManagementPage {
         clickSaveButton();
     }
 
+    // Add new user and handle multiple cases
     // Add new user and handle multiple cases
     public void addUserWithMultiCase(String id, String name, String email, String contract, String role) {
         clickUserTab();

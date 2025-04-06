@@ -1,16 +1,20 @@
 package pages;
 
+import base.BaseTest;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Dialog;
 import utils.Notification;
 import java.time.Duration;
 import org.testng.Assert;
 
-public class AddUserPage {
+
+public class AddUserPage  {
     private static WebDriver driver;
     private static WebDriverWait wait;
     private static Notification notifiCheck;
+
 
     // Input Elements
     private static final By userIdInput = By.id("staff_id");
@@ -56,13 +60,15 @@ public class AddUserPage {
         if (!role.isEmpty()) selectRole(role);
         clickSaveButton();
     }
-    public static void addNewUserDetails1(String id, String name, String email) {
+    public static void addNewUserDetails1(String id, String name, String email, String contract, String role) {
         clickUserTab();
         clickAddUserButton();
+
         enterUserId(id);
         enterUserName(name);
         enterEmail(email);
-
+        enterEmail(contract);
+        enterEmail(role);
         clickSaveButton();
     }
 
@@ -213,5 +219,29 @@ public class AddUserPage {
     public static void checkRoleError(String expectedMessage) {
         WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(roleError));
         Assert.assertEquals(errorElement.getText(), expectedMessage);
+    }
+    public static String getEmailErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(emailError));
+        return errorElement.getText();
+    }
+
+    public static String getUserIdErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(userIdError));
+        return errorElement.getText();
+    }
+
+    public static String getUserNameErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(userNameError));
+        return errorElement.getText();
+    }
+
+    public static String getContractTypeErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(contractTypeError));
+        return errorElement.getText();
+    }
+
+    public static String getRoleErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(roleError));
+        return errorElement.getText();
     }
 }
