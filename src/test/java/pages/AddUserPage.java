@@ -1,16 +1,20 @@
 package pages;
 
+import base.BaseTest;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Dialog;
 import utils.Notification;
 import java.time.Duration;
 import org.testng.Assert;
 
-public class AddUserPage {
+
+public class AddUserPage  {
     private static WebDriver driver;
     private static WebDriverWait wait;
     private static Notification notifiCheck;
+
 
     // Input Elements
     private static final By userIdInput = By.id("staff_id");
@@ -59,6 +63,7 @@ public class AddUserPage {
     public static void addNewUserDetails1(String id, String name, String email, String contract, String role) {
         clickUserTab();
         clickAddUserButton();
+
         enterUserId(id);
         enterUserName(name);
         enterEmail(email);

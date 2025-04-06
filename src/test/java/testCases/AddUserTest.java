@@ -23,6 +23,7 @@ public class AddUserTest extends BaseTest {
                 "Cơ hữu",
                 "Giảng viên"
         );
+
         AddUserPage.checkSuccessNotification();
         System.out.println("TC_CU_01: Test thành công - Hệ thống cho phép tạo người dùng mới và hiển thị thông báo t    hành công.");
         Thread.sleep(1000);
