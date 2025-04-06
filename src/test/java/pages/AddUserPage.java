@@ -56,13 +56,14 @@ public class AddUserPage {
         if (!role.isEmpty()) selectRole(role);
         clickSaveButton();
     }
-    public static void addNewUserDetails1(String id, String name, String email) {
+    public static void addNewUserDetails1(String id, String name, String email, String contract, String role) {
         clickUserTab();
         clickAddUserButton();
         enterUserId(id);
         enterUserName(name);
         enterEmail(email);
-
+        enterEmail(contract);
+        enterEmail(role);
         clickSaveButton();
     }
 
@@ -213,5 +214,29 @@ public class AddUserPage {
     public static void checkRoleError(String expectedMessage) {
         WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(roleError));
         Assert.assertEquals(errorElement.getText(), expectedMessage);
+    }
+    public static String getEmailErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(emailError));
+        return errorElement.getText();
+    }
+
+    public static String getUserIdErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(userIdError));
+        return errorElement.getText();
+    }
+
+    public static String getUserNameErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(userNameError));
+        return errorElement.getText();
+    }
+
+    public static String getContractTypeErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(contractTypeError));
+        return errorElement.getText();
+    }
+
+    public static String getRoleErrorMessage() {
+        WebElement errorElement = wait.until(ExpectedConditions.presenceOfElementLocated(roleError));
+        return errorElement.getText();
     }
 }

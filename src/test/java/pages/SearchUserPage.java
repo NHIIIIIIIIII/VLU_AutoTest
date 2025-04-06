@@ -4,12 +4,10 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Notification;
-import java.time.Duration;
+
 import java.util.List;
 
-import org.testng.Assert;
-
-public class FindUserPage {
+public class SearchUserPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
     private final Notification notifiCheck;
@@ -17,15 +15,15 @@ public class FindUserPage {
     // Input Elements
     private final By searchInput = By.xpath("(//input[@placeholder='Nhập tìm kiếm...'])[1]");
     private final By userTab = By.xpath("(//span[contains(text(),'Người dùng')])[1]");
-    
+
     // Result Elements
     private final By searchResults = By.xpath("//table[@id='tblUser']//tbody/tr");
-    private final By userIdColumn = By.xpath("//th[@aria-label='Email: Sắp xếp thứ tự giảm dần']");
-    private final By userNameColumn = By.xpath("//th[@aria-label='Email: Sắp xếp thứ tự giảm dần']");
-    private final By userEmailColumn = By.xpath("//th[@aria-label='Email: Sắp xếp thứ tự giảm dần']");
+    private final By userIdColumn = By.xpath("//tbody//tr[1]//td[2]");
+    private final By userNameColumn = By.xpath("//tbody//tr[1]//td[3]");
+    private final By userEmailColumn = By.xpath("//tbody//tr[1]//td[4]");
 
     // Constructor
-    public FindUserPage(WebDriver driver, WebDriverWait wait) {
+    public SearchUserPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
         this.notifiCheck = new Notification(this.wait);
@@ -107,6 +105,32 @@ public class FindUserPage {
         } catch (Exception e) {
             System.out.println("Error while verifying user by email: " + e.getMessage());
             return false;
+        }
+    }
+    public String getFoundUserId() {
+        try {
+            WebElement idCell = wait.until(ExpectedConditions.presenceOfElementLocated(userIdColumn));
+            return idCell.getText().trim();
+        } catch (Exception e) {
+            return "No user found";
+        }
+    }
+
+    public String getFoundUserName() {
+        try {
+            WebElement nameCell = wait.until(ExpectedConditions.presenceOfElementLocated(userNameColumn));
+            return nameCell.getText().trim();
+        } catch (Exception e) {
+            return "No user found";
+        }
+    }
+
+    public String getFoundUserEmail() {
+        try {
+            WebElement emailCell = wait.until(ExpectedConditions.presenceOfElementLocated(userEmailColumn));
+            return emailCell.getText().trim();
+        } catch (Exception e) {
+            return "No user found";
         }
     }
 }
