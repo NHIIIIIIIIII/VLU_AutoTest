@@ -15,7 +15,7 @@ public class AddUserTest extends BaseTest {
 
     @Test
     public void TC_CU_01() throws InterruptedException {
-        System.out.println("🔹 TC_CU_01: Kiểm tra hệ thống cho phép tạo người dùng mới với thông tin hợp lệ...");
+        System.out.println("TC_CU_01: Kiểm tra hệ thống cho phép tạo người dùng mới với thông tin hợp lệ...");
         AddUserPage.addNewUserDetails(
                 "227480201091840",
                 "Nguyen Van An",
@@ -31,7 +31,7 @@ public class AddUserTest extends BaseTest {
 
     @Test
     public void TC_CU_02() throws InterruptedException {
-        System.out.println("🔹 TC_CU_02: Kiểm tra hệ thống báo lỗi khi nhập email không hợp lệ...");
+        System.out.println("TC_CU_02: Kiểm tra hệ thống báo lỗi khi nhập email không hợp lệ...");
         System.out.println("==========================================");
         System.out.println("Test Data:");
         System.out.println("User ID: 227480201091851");
@@ -60,7 +60,7 @@ public class AddUserTest extends BaseTest {
 
     @Test
     public void TC_CU_03() throws InterruptedException {
-        System.out.println("🔹 TC_CU_03: Kiểm tra hệ thống báo lỗi khi bỏ trống trường bắt buộc...");
+        System.out.println("TC_CU_03: Kiểm tra hệ thống báo lỗi khi bỏ trống trường bắt buộc...");
         System.out.println("==========================================");
         System.out.println("Test Data: All fields empty");
 

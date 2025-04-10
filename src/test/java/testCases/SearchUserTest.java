@@ -16,7 +16,7 @@ public class SearchUserTest extends BaseTest {
 
     @Test
     public void TC_SU_01() {
-        System.out.println("🔹 Kiểm tra tìm kiếm người dùng theo ID...");
+        System.out.println("Kiểm tra tìm kiếm người dùng theo ID...");
         FindUserPage.clickUserTab();
         FindUserPage.searchUser("2274802010979");
         
@@ -33,7 +33,7 @@ public class SearchUserTest extends BaseTest {
 
     @Test
     public void TC_SU_02() {
-        System.out.println("🔹 Kiểm tra tìm kiếm người dùng theo tên...");
+        System.out.println("Kiểm tra tìm kiếm người dùng theo tên...");
         FindUserPage.clickUserTab();
         FindUserPage.searchUser("Bui Ke Ton Tuong");
         
@@ -50,7 +50,7 @@ public class SearchUserTest extends BaseTest {
 
     @Test
     public void TC_SU_03() {
-        System.out.println("🔹 Kiểm tra tìm kiếm người dùng theo email...");
+        System.out.println("Kiểm tra tìm kiếm người dùng theo email...");
         FindUserPage.clickUserTab();
         FindUserPage.searchUser("tuong.2274802010979");
         
